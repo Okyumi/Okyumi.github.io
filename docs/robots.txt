@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://okyumi.github.io/sitemap.xml

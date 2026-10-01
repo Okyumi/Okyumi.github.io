@@ -1,0 +1,76 @@
+---
+title: "\"In Mathematics, the Art of Asking Questions Is More Valuable Than Solving Problems\""
+date: "2023-03-01"
+source: "https://omoriyumi.com/blog/2023/03/01/in-mathematics-the-art-of-asking-questions-is-more-valuable-than-solving-problems/"
+featured: true
+---
+
+Cantor said,“ In Mathematics, the art of asking questions is more valuable than solving problems”. This sentiment reflects the essence of human thought and science, which is driven by an insatiable curiosity, a desire for knowledge, and the courage to challenge authority and upend existing scientific paradigms. Indeed, the freedom of thought has two dimensions, the first being freedom from the constraints of others, and the second being freedom from purpose. In the realm of mathematics, which demands logical rigor, asking insightful and valuable questions necessitates a high level of mathematical literacy on the part of the questioner. Over time, the paradigm of mathematics has been disrupted, transformed, revitalized, and advanced through a succession of paradoxes and unsolvable problems, triggering three significant crises in the history of mathematics, and propelling the discipline forward. This essay will provide a brief account of how philosophers of mathematics have been propelled by their curiosity to explore and study the concept of infinity over the past two thousand years, from the sixth BCE to the nineteenth century AD.
+
+## The First Mathematical Crisis
+
+The foundation of mathematical rigor dates back to ancient Greece, where mathematical reasoning was initially intertwined with religious beliefs. The Pythagoreans, who emerged during that era, viewed infinity as something beyond the natural world (Topper, 2014). They considered numbers to have divine and mystical meanings and believed that numerical properties were the fundamental components of the universe. Around the 5th century BC, the philosopher Zeno of Elea posed a series of paradoxes involving infinity, which aimed to demonstrate the absurdity of this concept and support his belief that the world is static in essence. One of his most famous paradoxes is the Dichotomy Paradox, which argues that in order to reach a specific point, one must first traverse half the distance, then half the remaining distance, and so on ad infinitum. Hence, according to Zeno, one can never truly reach their destination (Salmon, 1980). This paradox, among others proposed by Zeno, caused a sense of unease around the study of the continuum and infinity, as infinity was perceived as an abstract and perplexing notion (Topper, 2014).
+
+As a result, many mathematicians abandoned it entirely for a considerable period. Some mathematicians, in their apprehension of infinity, avoided this concept and formulated their methods in certain geometric contexts. For instance, Eudoxus introduced the method of exhaustion, while Archimedes used a sophisticated and refined version of logical reasoning to examine the circle.
+
+Even though Archimedes was able to establish the area of a circle without relying on infinity, the Pythagoreans were confronted with an “irrational” number, √2, which shattered their own belief in the concept of Peras (the limit) and Apeiron (the unlimited or infinite). What is interesting about √2 is that it can expand indefinitely without any repetitions. This discovery exposed the limitations of positive integers (Topper, 2014). Moreover, it compelled the Pythagoreans and other mathematicians to acknowledge the role of infinity in mathematics since they had no other recourse for an explanation.
+
+The discovery of the √2 marked a seismic shift in the mathematical paradigm of ancient Greece, prompting the first crisis in the field. Greek philosophers found themselves at a crossroads, torn between accepting and rejecting the concept of infinity. While they recognized that some mathematical entities appeared to continue indefinitely, such as √2, time, and the divisibility of matter, they were also faced with paradoxes like Zeno’s, which challenged the very concept of infinity.
+
+## The Second Mathematical Crisis
+
+In the 4th century BC, Aristotle proposed a solution to this dilemma by distinguishing between two types of infinity: the potential and the actual infinite. Aristotle argued that sets like that of the natural numbers were potentially infinite, meaning they could continue indefinitely without end, but they were not actually infinite because they were not one finished thing (Bowin et al., 2007). The actual infinite, which he believed does not exist in the real world, is the supposed completion of an unending process. In the case of the Dichotomy paradox, the time span can likewise be subdivided into infinitely many non-zero intervals, giving Achilles infinitely many non-zero time intervals in which to traverse the infinitely many non-zero space intervals, so the paradox itself demonstrates the concept of potential rather than the actual infinity (Bowin et al., 2007). His clarification of two infinity provided a way of reconciling the evidence of the world with the demands of logic and continued to prevail among mathematicians until the 19th century, even after the discovery of calculus in the 17th century.
+
+In the 17th century, Newton and Leibniz drew attention again to infinity by introducing the idea of infinitesimals (Wapner, 2006). Zeno’s paradoxes were considered no more than picky sophisms of logic with little merit (Salmon, 1980). For example, in the arrow paradox, Zeno assumed that the notion of instantaneous non-zero velocity was illegitimate; however, when an instantaneous velocity is understood as a derivative – the rate of change of position with respect to time, Zeno’s assumption appeared to be incorrect. In the 19th century, Cauchy’s discovery of convergence series – infinitely many positive intervals of space or time can add up to anything less than infinity – provided a deeper and more satisfying solution to Zeno’s paradox than Aristotle’s (Salmon, 1980).
+
+Yet calculus was not a panacea. There are still some problems remain. Philosophers probably would not be impressed by Calculus’ solution since using calculus as a tool to calculate the instantaneous velocity based on the very assumption that the arrow is actually moving, which is precisely the question Zeno wants to put forward; also, they want to question the nature of the time itself: is time just an illusion (Salmon, 1980)? Put that aside, for mathematicians, there were some serious problems regarding the foundation of calculus. Back then, the use of infinitesimals was unsystematic, as sometimes it was used as zero, but sometimes not. Lacking a solid foundation in calculus and the absence of clear-cut definitions for continuity, real numbers, and irrational numbers undoubtedly cast a shadow over mathematics, a discipline known for its rigor and consistency (Rucker et al., 2019). The second crisis in mathematics thus occurred.
+
+## The Third Mathematical Crisis
+
+It was in the 19th century that the definition of a limit had been formalized (by Cauchy), and a definition for irrationals and real numbers based on Dedekind cuts was provided (Wapner, 2006).
+
+Mathematics marched forward on its trajectory of progress. One might have assumed that the discourse on infinity in mathematics had culminated by now. Yet, Cantor, an enigmatic and contentious mathematician, appeared on the scene. Can infinity be counted, and can some infinities be bigger than others? Georg Cantor demonstrated that infinity was not beyond our understanding but was a number unto itself, consisting of an infinite number of other numbers (Dauben, 1983). In his set theory, he formulated the concept of countable infinity, which refers to sets that exhibit a one-to-one correspondence with the set of natural numbers and the notion of uncountable infinity. The common cardinality of countably infinite sets was represented by the transfinite number ℵ0, while the uncountably infinite sets were by c (known as continuum) or 2ℵ0.
+
+Through his innovative transfinite set theory and diagonalization proof, Cantor showed that there are different sizes of infinity and challenged the very foundations of mathematics by revealing that some infinities were greater than others (Dauben, 1983). Nevertheless, not all of his contemporaries accepted his groundbreaking ideas. For example, Leopold Kronecker dismissed Cantor as a charlatan, and publishing his work became increasingly difficult (Rucker et al., 2019).
+
+In subsequent years, one question puzzled Cantor. Can a set whose size is strictly between the countably infinite integers and the uncountably infinite real numbers exist? Georg Cantor proposed that there cannot be, which is now known as the continuum hypothesis (Dauben, 1983). Cantor attempted to prove the continuum hypothesis, but his efforts proved inconclusive, as he once proved it true and other times proved it the other way around. This enigma of the continuum hypothesis sparked the third crisis in the history of mathematics, as it was eventually discovered to be unprovable by Paul Cohen.
+
+Before Paul Cohen’s work in 1963, Kurt Gödel published the incompleteness theorem in 1930, demonstrating the existence of statements that can be true but unprovable. The discovery of an unprovable axiom created a significant crisis in mathematics, rooted in the formalization of mathematics through mathematical logic, which aimed to provide a self-contained and self-sufficient proof system (Dauben, 1983). The formalists, led by David Hilbert, believed in a formal system of proof that relied on logical symbolic language and strict manipulation rules. Hilbert posed three fundamental questions about mathematics: is it complete, consistent, and decidable? However, the discovery of Gödel’s incompleteness theorem showed that no formal system could be both complete and consistent (Wapner, 2006). This undermined the foundation of mathematics and raised serious questions about the nature of mathematical truth. The unprovability of the continuum hypothesis, occurring at a critical moment, acted as a catalyst for the third upheaval in the mathematical paradigm (Dauben, 1983).
+
+Once one gains an understanding of the three mathematical crises, it becomes apparent that the notion of infinity looms like a specter, haunting every mathematical crisis throughout history. Even today, countless philosophers, scientists, and mathematicians still ponder at it.
+
+I often awe that humans are such a fascinating carbon-based species, who dwell within a finite world, enclosed by a finite shell, yet persistently reflect upon the concept of infinity. With a visual spectrum only spanning wavelengths of 380-740 nm, an auditory frequency range of 20 Hz to 20 kHz, and a height range of merely 1.4-2.2m, humans appear minuscule in the grandeur of the vast universe, constrained by their limited physical and biological senses. No one can actually feel the magnetic fields, smell hydrogen, or perceive the BOLD signal changes in the brain. But human ingenuity has given birth to remarkable inventions such as the radio telescope that marvel at galaxies 14 billion light-years away, the laser interferometer that measures sound waves beyond the range of human hearing, and the magnetic resonance imaging that reveal complex structures within our bodies and brain activity, etc. With each invention, each ‘how’ generated by each ‘why’, humans have expanded their sensory range with new eyes, ears, noses, and mouths and even with the hippocampus and MTL, stretching the limits of physicality, the mind, and cognitive capacities.
+
+Evolution tells us that humans could have survived without the plethora of inventions and concepts, that humans do not have to grapple with concepts in quantum physics or existentialism, nor do they have to contemplate and define infinity repeatedly. Yet, they still do—thousands of times.
+
+What I see as the most remarkable aspect of humans is their incessant questioning, their unwavering curiosity as they ask “why” time and time again within the spark of 100 billion neurons in their brains. And is it not the exquisite nature of mathematics that it has consistently presented a series of “whys” throughout its history?
+
+**Bibliography**
+
+Bowin, J. (2007). Aristotelian Infinity. In *Oxford Studies in ancient philosophy* (Vol. 32, pp. 233–
+
+250). essay, Oxford: Oxford University Press.
+
+Dauben, J. W. (1983). Georg Cantor and the origins of transfinite set theory. *Scientific American*,
+
+*248*(6), 122–131. doi:10.1038/scientificamerican0683-122
+
+Rucker, R. (2019). From Pythagoreanism to Cantorism. In *Infinity and The mind: The science and*
+
+*philosophy of the infinite* (pp. 291–297). essay, Princeton, NJ: Princeton University Press.
+
+Salmon, W. C. (1980). A contemporary look at Zeno’s paradox. In *Space, time, and motion a*
+
+*philosophical introduction* (pp. 129–149). essay, Minneapolis: University of Minnesota Press.
+
+Topper, D. R. (2014). Pythagoras and the Phobia of Infinity. In *Idolatry and Infinity of Art, math,*
+
+*and god* (pp. 11–18). essay, Boca Raton, FL: Brown Walker Press.
+
+Wapner, L. M. (2006). Georg Cantor – The Founder of Modern Set Theory. In *The pea and the sun:*
+
+*A mathematical paradox* (pp. 5–17). essay, Wellesley, MA: A K Peters Ltd.
+
+## One thought on ““In Mathematics, the art of asking questions is more valuable than solving problems””
+
+Nice share!
