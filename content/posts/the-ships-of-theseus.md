@@ -4,6 +4,7 @@ date: "2026-05-04"
 source: "https://omoriyumi.com/blog/2026/05/04/the-ships-of-theseus-rebuilt-at-different-rate-reality-is-a-consistent-lucid-dream/"
 cover: "assets/cover-theseus.jpeg"
 featured: true
+excerpt: "We are all Ships of Theseus rebuilt at different rates. 6 trillion cells within me breathe and dance, with death and forgetting taking place at every moment inside my body. And I went through 4 billion years of evolution to become what I am today. Homo sapiens have about 6000 billion cells. Well, and 10,000 billion bacteria. “We” are much less than the bacteria living inside us. Much like a giant pool/ocean/forest of bacteria. E. coli is wearing us. Hence, if you ask me whether humans are kind by nature, I would say it’s prolly determined by the gut microbiome :) | Video games are like lucid dreams. What a blessing it would be to travel and teleport between different kinds of lucid dreams, and thereby turn reality itself into a lucid dream, except for the fact that reality is a consistent one. Dark matter can be a form of representation collapse."
 ---
 
 <p>We are all Ships of Theseus rebuilt at different rates. 6 trillion cells within me breathe and dance, with death and forgetting taking place at every moment inside my body. And I went through 4 billion years of evolution to become what I am today. I will always appreciate being alive.</p>
@@ -79,3 +80,4 @@ featured: true
 
 
 <p>Dark matter can be a form of representation collapse.</p>
+

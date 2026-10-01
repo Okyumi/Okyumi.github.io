@@ -4,6 +4,7 @@ date: "2023-10-03"
 source: "https://omoriyumi.com/blog/2023/10/03/why-we-cannot-hear-gravitational-fields/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/03/dynamics_gravity-002-2744487906.png"
+excerpt: "What if we could hear gravitational fields? Would Earth's pull translate into a hum, a low murmur, or chaotic static? What if randomness itself was heard as music? If time could be smelled, what would tomorrow taste like? What would the past feel like, beyond memory? The very fact that we struggle to conceptualize these experiences is proof of the constraints imposed by our physiology."
 ---
 
 Oct 3, 2023
@@ -35,3 +36,4 @@ We have created instruments—extensions of our senses—that allow us to percei
 The pursuit of knowledge is not just an intellectual endeavor—it is an act of rebellion against the constraints of human perception. It is, quite literally, the expansion of our senses beyond what nature has given us.
 
 And that, more than anything, is what makes it beautiful.
+

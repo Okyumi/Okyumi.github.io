@@ -4,6 +4,7 @@ date: "2023-03-01"
 source: "https://omoriyumi.com/blog/2023/03/01/in-mathematics-the-art-of-asking-questions-is-more-valuable-than-solving-problems/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/03/image-18.png"
+excerpt: "Cantor said,“ In Mathematics, the art of asking questions is more valuable than solving problems”. This sentiment reflects the essence of human thought and science, which is driven by an insatiable curiosity, a desire for knowledge, and the courage to challenge authority and upend existing scientific paradigms. Indeed, the freedom of thought has two dimensions, the first being freedom from the constraints of others, and the second being freedom from purpose. In the realm of mathematics, which demands logical rigor, asking insightful and valuable questions necessitates a high level of mathematical literacy on the part of the questioner. Over time, the paradigm of mathematics has been disrupted, transformed, revitalized, and advanced through a succession of paradoxes and unsolvable problems, triggering three significant crises in the history of mathematics, and propelling the discipline forward."
 ---
 
 Cantor said,“ In Mathematics, the art of asking questions is more valuable than solving problems”. This sentiment reflects the essence of human thought and science, which is driven by an insatiable curiosity, a desire for knowledge, and the courage to challenge authority and upend existing scientific paradigms. Indeed, the freedom of thought has two dimensions, the first being freedom from the constraints of others, and the second being freedom from purpose. In the realm of mathematics, which demands logical rigor, asking insightful and valuable questions necessitates a high level of mathematical literacy on the part of the questioner. Over time, the paradigm of mathematics has been disrupted, transformed, revitalized, and advanced through a succession of paradoxes and unsolvable problems, triggering three significant crises in the history of mathematics, and propelling the discipline forward. This essay will provide a brief account of how philosophers of mathematics have been propelled by their curiosity to explore and study the concept of infinity over the past two thousand years, from the sixth BCE to the nineteenth century AD.
@@ -75,3 +76,4 @@ Wapner, L. M. (2006). Georg Cantor – The Founder of Modern Set Theory. In *The
 ## One thought on ““In Mathematics, the art of asking questions is more valuable than solving problems””
 
 Nice share!
+

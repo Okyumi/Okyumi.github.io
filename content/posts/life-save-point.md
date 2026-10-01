@@ -4,6 +4,7 @@ date: "2025-09-17"
 source: "https://omoriyumi.com/blog/2025/09/17/life-save-point/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/08/46946c98-b2e5-4df8-a1fd-b84f15032ec4.jpeg"
+excerpt: "I hope you run and walk as if you might lose your legs tomorrow. Cherish the sun as if you might never see it again. Live every moment as if it were your last, and fully engage with life, nature, people, and yourself. I hope you have a powerful heart. I hope you are at ease, relaxed, and happy. I hope that when you are climbing a peak, your heart has the drive to push forward. I hope that when you fall into a valley, your heart has the strength to endure. I hope that when you lie still, your inner world is peaceful. I hope that no matter what the world becomes, you can find your place within it. I hope you are confident, brave, calm, gentle, kind, and interesting. Most of all, I hope you are happy."
 ---
 
 I’ll cut you a deal, Chie says to the mice. I’ll come back and see you this evening if you get on with learning to fly. You can’t keep clinging to the bars of the cage for the rest of the time you have, which isn’t long I must tell you. You’re going to crash into the Atlantic Ocean in a couple of months, and if you survive that you’ll then be analyzed in a lab and swiftly sacrificed to science. Got to let go, might as well do it now. You’ll like it without gravity, you’ll stop being afraid. **Life is short (yours especially). Let go, be bold.** [Sep 21 2025]
@@ -109,3 +110,4 @@ Every word on our hearts engraved
 In the dark, you will not stray
 
 Forge ahead till the end we pray [Sep 17 2025]
+

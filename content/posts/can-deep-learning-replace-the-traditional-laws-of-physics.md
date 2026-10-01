@@ -4,6 +4,7 @@ date: "2024-11-15"
 source: "https://omoriyumi.com/blog/2024/11/15/can-deep-learning-replace-the-traditional-laws-of-physics/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/03/image-10.png"
+excerpt: "complexity itself can sometimes lead to the emergence of simple, fundamental patterns. For example, in topological materials, we observe remarkably robust and simple phenomena. In the quantum Hall effect, the system's conductivity remains quantized and independent of its shape. Similarly, in topological insulators, surface electrons behave as if they are massless, with quantized conductivity unaffected by the material’s physical form. This behavior mirrors that of a topological object, whose properties are determined not by its shape but by its topological structure. For instance, a torus retains its topological properties regardless of how it is reshaped, as long as its defining hole remains. Such \"topological robustness\" exemplifies resilience that supports anti-reductionist principles."
 ---
 
 Context:My capstone mentor brought up this question during a talk regarding recent AI breakthrough addressing complex system.
@@ -43,3 +44,4 @@ I question whether there is truly a need to unify all these laws into a single f
 Throughout human history, whether through early practices like astrology, divination, rituals, or later pursuits in philosophy, science, and other fields, there seems to have always been a common thread: the quest to reduce uncertainty about the world. At its core, this pursuit is driven by our need to make life more predictable. But deep learning and neural networks, despite their impressive capabilities, are themselves riddled with uncertainty. They do not necessarily provide answers to the deeper “why” questions. It’s like a child asking if the sun will rise tomorrow and why and being told, “Yes, it will, and it will rise in the east, there’s no why”.
 
 In overall, I think deep learning reminds us to give up on the reductionist view, but itself might not be the way for people to pursue or understand the physics.
+

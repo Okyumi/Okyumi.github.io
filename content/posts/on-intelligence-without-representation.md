@@ -4,6 +4,7 @@ date: "2025-09-21"
 source: "https://omoriyumi.com/blog/2025/09/21/on-intelligence-without-representation/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/11/21.jpeg"
+excerpt: "Intelligence is a nonlinear, emergent phenomenon arising from the processing and transformation of information within a dynamic system. It is not an attribute of any specific entity, but rather a system-level property that may manifest under certain structural and informational conditions. The unpredictability of intelligent behavior (if intelligence is truly an emergent phenomenon) may share more with meteorology than with quantum mechanics. That is, intelligence may be deterministic at the micro-level, yet fundamentally unpredictable at the macro-level due to its nonlinear, dynamic complexity.\n\nPersonally, I find this idea compelling when thinking about the question of free will. If our sense of agency arises from the emergent dynamics of an extraordinarily complex system, like the brain, then the unpredictability we associate with free will may not require metaphysical indeterminism. Instead, it could be an inevitable result of a deterministic but chaotic system whose behavior cannot be reduced to its parts. In this light, the freedom we experience (whether it is objectively real or simply illusory, this is out of the discussion here) might be a natural byproduct of emergent unpredictability, not a contradiction of physical law but an expression of it."
 ---
 
 I would like to provide a definition for the intelligence (this is a very personal one, not rigorous/precise enough, but let’s put it here to lay the foundation for the discussion):
@@ -122,3 +123,4 @@ The above framing also reinforces why I see the current moment in AI as fundamen
 We are not witnessing better tools for an old paradigm. We are watching the early signs of a new one: one where intelligence is not built but brought forth, and where our role gradually shifts from engineers to observers, trying to interpret what we have created after it surprises us.
 
 This, to me, is the core reason why this AI spring is not like the previous ones. Not because the tools are more powerful, but because the underlying philosophy has begun to change.
+

@@ -4,6 +4,7 @@ date: "2025-04-03"
 source: "https://omoriyumi.com/blog/2025/04/03/leave-the-door-to-the-unknown-ajar/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/04/image.png"
+excerpt: "In 1934, Karl Popper proposed that every scientific theory must be falsifiable. Since then, falsifiability has become a central criterion in modern scientific thought. However, from a Bayesian point of view, falsification is itself a probabilistic event. This implies that truth is not a fixed, absolute entity, but rather a distribution of beliefs that are continuously updated as new evidence is introduced."
 ---
 
 At the heart of Bayesian inference lies a deceptively simple idea: we update our beliefs—our
@@ -65,3 +66,4 @@ If we observe 999 white swans, Bayes tells us it’s increasingly likely that sw
 but not certain. Even after 9,999 white swans, we still can’t conclude definitively that all swans are white. The probability rises, but certainty remains out of reach.
 
 That’s the Bayesian insight: all inference of truth is probabilistic, not absolute. And that’s precisely what falsifiability warns us about: we cannot reach truth through inference or generalization from experience (bayesian inference is always probabilistic). We can only approach truth by identifying what is not true through counterexamples, and this is the only way.
+

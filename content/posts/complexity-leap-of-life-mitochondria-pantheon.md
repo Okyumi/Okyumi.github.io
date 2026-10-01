@@ -4,6 +4,7 @@ date: "2025-11-17"
 source: "https://omoriyumi.com/blog/2025/11/17/complexity-leap-of-life-mitochondria-pantheon/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/11/23.jpeg"
+excerpt: "In his brilliant book Power, Sex, Suicide: Mitochondria and the Meaning of Life, Nick Lane argues that the single most revolutionary event in the history of life on Earth was not the origin of life itself, but something that happened roughly two billion years later: the moment one bacterium engulfed another and, instead of digesting it, struck up an intimate partnership. That engulfed bacterium became the mitochondrion, the power plant of every complex cell. ||  When the first cancer cell appeared, it thought it had found the secret to immortality. At first, it just wanted to live forever."
 ---
 
 Recently I’ve been reading these three books, Power, Sex, Suicide: Mitochondria and the Meaning of Life by Nick Lane; Cosmos by Carl Sagan; and Mendel’s Demon Mark Ridley.
@@ -58,3 +59,4 @@ Immortality is appealing to me; I am honest about my thoughts and feelings.
 It wasn’t until watching *Pantheon* this time that Maggie brought up a very interesting point. She said that people need death because death allows them to grow. Assuming immortality exists, imagine throughout your entire life, your parents always exist, and their parents always exist, and your grandparents’ parents also always exist. In that scenario, a person would never truly grow up and become an independent individual. This touched me because it made me realize the limitations of my own perspective. My previous perspective was focused on my own future, as if I were the first immortal individual, and from then on, I might or might not have descendants. But when I am born as a descendant into a world where my ancestors will always exist, that would be a terrifying thing. I think this is my biggest takeaway from the show so far.
 
 Indeed. When the first cancer cell appeared, it thought it had found the secret to immortality. At first, it just wanted to live forever.
+

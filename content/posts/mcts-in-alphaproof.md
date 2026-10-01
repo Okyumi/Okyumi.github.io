@@ -4,6 +4,7 @@ date: "2025-04-13"
 source: "https://omoriyumi.com/blog/2025/04/13/mtcs-in-alphaproof-is-rl-a-viable-path-towards-agi-esa-es-la-fuerza-de-la-vida/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2024/07/Join-the-dots-Collage.jpeg"
+excerpt: "I was thinking, specifically in language/or the symbol systems, if we want to achieve superhuman intelligence, we actually only need two stages. 1) let the machine understand the language to communicate (and this is already achieved). 2) let it self-play with one of itself or multiple of itself against the ground truth. and that’s it. and to make the convergence faster, it would be good to make sure that it’s also capable do the following in the middle of the process (in a very abstract way): the system could abstractly transfer its current knowledge to the subsequent generation, metaphorically \"dying\" to allow the new generation an accelerated learning process. The new generation’s ability should be lower bounded by the previous generation. Typically, during the early lifecycle, explorative behaviors dominate, whereas towards the end, exploration should decrease to near zero."
 ---
 
 context: A podcast about the AlphaProof
@@ -73,3 +74,4 @@ The ending left me feeling heart-broken, but I very much liked it. La guerra es 
 hopefully we can all be like Sisyphus in our own lives. The wind may blow away a leaf, but it cannot blow away a butterfly.
 
 Esa es la fuerza de la vida.
+

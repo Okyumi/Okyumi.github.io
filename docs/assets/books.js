@@ -46,11 +46,10 @@ function filter() {
   for (const year of years) {
     const visible = [...year.querySelectorAll('.book')].filter(book => !book.hidden).length;
     year.hidden = visible === 0;
-    year.querySelector('.year-count').textContent = `${visible} entries`;
+    year.querySelector('.year-count').textContent = `${visible} ${visible === 1 ? 'book' : 'books'}`;
     links.find(link => link.hash.slice(1) === year.id).hidden = year.hidden;
   }
-  const filtered = terms.length > 0 || theme.value !== 'all';
-  status.textContent = `${count} ${filtered ? (count === 1 ? 'match' : 'matches') : 'entries'}`;
+  status.textContent = `${count} ${count === 1 ? 'book' : 'books'}`;
   document.querySelector('.books-empty').hidden = count !== 0;
   lockedUntil = 0;
   updateYear();

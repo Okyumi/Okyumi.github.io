@@ -4,6 +4,7 @@ date: "2023-09-16"
 source: "https://omoriyumi.com/blog/2023/09/16/do-we-no-longer-need-to-use-animals-in-our-pursuit-of-understanding-human-behavior-with-the-advent-of-neuroimaging-techniques/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2023/09/image.png"
+excerpt: "But perhaps it is also worth acknowledging that, whether we like it or not, we are all complicit in this cycle of life and death. We kill insects in our daily lives, we shed and destroy countless cells within our own bodies every second, and we consume other living things to sustain ourselves. Life is, in some ways, an ongoing paradox—both miraculous and cruel."
 ---
 
 Sep 16, 2023
@@ -26,3 +27,4 @@ Recognizing this does not mean we must abandon ethical consideration. On the con
 Perhaps the challenge, then, is not simply to accept or reject animal research, but to approach it with awareness and humility—to hold both abstract, far-reaching love and concrete, immediate compassion in equal regard. Only by doing so can we truly navigate this world—one that is, at once, both beautiful and brutal.
 
 Edited in 2025: Author wrote the answer years ago. Her opinion might have changed.
+
