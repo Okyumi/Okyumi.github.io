@@ -3972,5 +3972,113 @@
     "englishAuthor": "Ban Zhuo",
     "year": null,
     "id": "d4989df60db3b9ec"
+  },
+  {
+    "id": "82337ee4384f0e3f",
+    "title": "The Space Barons",
+    "author": "Christian Davenport",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "4db802513280b289",
+    "title": "The Pea and the Sun: A Mathematical Paradox",
+    "author": "Leonard M. Wapner",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "e0cd6d8d9a4d5b38",
+    "title": "Dawn of the New Everything",
+    "author": "Jaron Lanier",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "906b7db4bb95f96b",
+    "title": "The Jazz of Physics",
+    "author": "Stephon Alexander",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "b1194cf0d427b24c",
+    "title": "中东死生门：巴以行走观察",
+    "author": "周轶君",
+    "language": "zh",
+    "year": null,
+    "englishTitle": "Life and Death in the Middle East: Observations from Israel and Palestine",
+    "englishAuthor": "Zhou Yijun"
+  },
+  {
+    "id": "b74159142dc59624",
+    "title": "The Spirit Catches You and You Fall Down",
+    "author": "Anne Fadiman",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "054ffd088533d185",
+    "title": "The List of Suspicious Things",
+    "author": "Jennie Godfrey",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "b98c03a28a304574",
+    "title": "Soonish",
+    "author": "Kelly Weinersmith and Zach Weinersmith",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "566d423cbc88ebda",
+    "title": "A City on Mars",
+    "author": "Kelly Weinersmith and Zach Weinersmith",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "118cd19b9ed30e65",
+    "title": "宇野の最速でわかる地理〈地理総合＋地理探究〉",
+    "author": "宇野仙",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Uno’s Quick Guide to Geography"
+  },
+  {
+    "id": "399f30717da8ee37",
+    "title": "The Flowers of Evil",
+    "author": "Charles Baudelaire",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "1bd22831d77e58d0",
+    "title": "The Question of Palestine",
+    "author": "Edward W. Said",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "76d7b4b2388e1931",
+    "title": "The Lies That Bind",
+    "author": "Kwame Anthony Appiah",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "402296cbabd5a5d1",
+    "title": "The Wretched of the Earth",
+    "author": "Frantz Fanon",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "aad02116f3297049",
+    "title": "What If?",
+    "author": "Randall Munroe",
+    "language": "en",
+    "year": null
   }
 ]
