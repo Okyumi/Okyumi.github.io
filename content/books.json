@@ -1,1 +1,3976 @@
-[]
+[
+  {
+    "id": "3ed39e051197880d",
+    "title": "燕食记",
+    "author": "葛亮",
+    "language": "zh",
+    "year": 2026,
+    "englishTitle": "A Chronicle of Swallows’ Food",
+    "englishAuthor": "Ge Liang"
+  },
+  {
+    "id": "be39fd8241967111",
+    "title": "A Little Life",
+    "author": "Hanya Yanagihara",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "798285758f000b8a",
+    "title": "A Thousand Splendid Suns",
+    "author": "Khaled Hosseini",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "65607627f5ffe80a",
+    "title": "A Universe of Consciousness",
+    "author": "Gerald M. Edelman and Giulio Tononi",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "d6e4237ca9da0770",
+    "title": "拉普拉斯的概率哲学思想阐释",
+    "author": "王幼军",
+    "language": "zh",
+    "year": 2026,
+    "englishTitle": "An Interpretation of Laplace’s Philosophy of Probability",
+    "englishAuthor": "Wang Youjun"
+  },
+  {
+    "id": "3aa0d3e425ba73fe",
+    "title": "An Invincible Summer: Selected Writings",
+    "author": "Albert Camus",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "0deca12e155b6df7",
+    "title": "Attached",
+    "author": "Amir Levine and Rachel S. F. Heller",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "ac03d52cc989e027",
+    "title": "Cabaret Mechanical Movement",
+    "author": "Aidan Lawrence Onn and Gary Alexander",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "2cde8ab058623dc6",
+    "title": "Collected Works: First Series (16-book collection)",
+    "author": "Jorge Luis Borges",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "f087c38d3e9d3fa6",
+    "title": "Designing Your Life",
+    "author": "Bill Burnett and Dave Evans",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "e10a5daec449ccb0",
+    "title": "Determined",
+    "author": "Robert M. Sapolsky",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "552042d3b45eed3c",
+    "title": "女寝大逃亡",
+    "author": "火茶",
+    "language": "zh",
+    "year": 2026,
+    "englishTitle": "Escape from the Women’s Dormitory",
+    "englishAuthor": "Huocha"
+  },
+  {
+    "id": "bb6469f62c555184",
+    "title": "Fooled by Randomness",
+    "author": "Nassim Nicholas Taleb",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "32f7977e877439d4",
+    "title": "Fried Green Tomatoes at the Whistle Stop Cafe",
+    "author": "Fannie Flagg",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "84935d8cedd85982",
+    "title": "Gravitation",
+    "author": "Charles W. Misner, Kip S. Thorne, and John Archibald Wheeler",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "00a842b865059879",
+    "title": "Hold Me Tight",
+    "author": "Sue Johnson",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "75effd3a7df279a0",
+    "title": "How Bad Do You Want It?",
+    "author": "Matt Fitzgerald",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "1910986859a15fdf",
+    "title": "Imperium",
+    "author": "Ryszard Kapuściński",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "1d37e1633706deef",
+    "title": "Infinite Jest",
+    "author": "David Foster Wallace",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "4bdaf28afa504cc7",
+    "title": "Jerusalem: The Biography",
+    "author": "Simon Sebag Montefiore",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "2846de26942dd846",
+    "title": "Life Along the Silk Road",
+    "author": "Susan Whitfield",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "3b22b924e36d9ef9",
+    "title": "Misbehaving",
+    "author": "Richard H. Thaler",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "c87cf7494e28a82c",
+    "title": "Monkeyluv",
+    "author": "Robert M. Sapolsky",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "79139577dc79e9a8",
+    "title": "Mortality, Immortality and Other Life Strategies",
+    "author": "Zygmunt Bauman",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "4e308231da7c6bc3",
+    "title": "Norse Myths: A Guide to the Gods and Heroes",
+    "author": "Carolyne Larrington",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "292fb61a4ffd25e6",
+    "title": "Probability Theory: The Logic of Science",
+    "author": "E. T. Jaynes",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "4ec27e84aee7dd36",
+    "title": "River Town",
+    "author": "Peter Hessler",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "05809a2dcd340c39",
+    "title": "Sea of Poppies",
+    "author": "Amitav Ghosh",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "3f99952c53a83cc7",
+    "title": "毛泽东选集（第一至七卷）",
+    "author": "毛泽东",
+    "language": "zh",
+    "year": 2026,
+    "englishTitle": "Selected Works of Mao Zedong (Volumes I–VII)",
+    "englishAuthor": "Mao Zedong"
+  },
+  {
+    "id": "41aba04cf608383a",
+    "title": "Seven and a Half Lessons About the Brain",
+    "author": "Lisa Feldman Barrett",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "73fcc8dd1e8831cf",
+    "title": "Shark’s Fin and Sichuan Pepper",
+    "author": "Fuchsia Dunlop",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "65d5b06b476ea4a7",
+    "title": "Stories of Your Life and Others",
+    "author": "Ted Chiang",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "9759cc02c93bd421",
+    "title": "Street of Eternal Happiness",
+    "author": "Rob Schmitz",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "3529ab492dade8f3",
+    "title": "我在废土世界扫垃圾（第一至三卷）",
+    "author": "有花在野",
+    "language": "zh",
+    "year": 2026,
+    "englishTitle": "Sweeping Up Trash in a Wasteland (Volumes 1–3)",
+    "englishAuthor": "Youhua Zaiye"
+  },
+  {
+    "id": "6ab2648f6cf92452",
+    "title": "The Body Keeps the Score",
+    "author": "Bessel van der Kolk",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "fab7750875b7dd1e",
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoevsky",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "e13a4500372ad9d0",
+    "title": "The Brutal Truth",
+    "author": "Lee Winter",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "f9304e8b815acb15",
+    "title": "The Call of the Wild",
+    "author": "Jack London",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "cc7d6dae7bc88a6c",
+    "title": "The Center of the World: A Global History of the Persian Gulf",
+    "author": "Allen James Fromherz",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "751f81dab9ef301e",
+    "title": "The Drunkard’s Walk",
+    "author": "Leonard Mlodinow",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "52cf1b0c039c0ca1",
+    "title": "The Edge of Space-Time",
+    "author": "Chanda Prescod-Weinstein",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "7fd222de30031f25",
+    "title": "The Famished Road",
+    "author": "Ben Okri",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "bf70e15b530f3e78",
+    "title": "The Garden of Forking Paths",
+    "author": "Jorge Luis Borges",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "b902eb1fc34077da",
+    "title": "The Golden Peaches of Samarkand",
+    "author": "Edward H. Schafer",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "5869a8ed3740eb30",
+    "title": "The Laws of Connection",
+    "author": "David Robson",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "afee95fc990a2768",
+    "title": "The Remains of the Day",
+    "author": "Kazuo Ishiguro",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "c350bd378e52f469",
+    "title": "The Salt Path",
+    "author": "Raynor Winn",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "6e117dece208db15",
+    "title": "The Shadow of the Sun",
+    "author": "Ryszard Kapuściński",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "842264c324a8b088",
+    "title": "The Writings of Mao Zedong, 1949–1976: Volume II",
+    "author": "Mao Zedong; edited by Michael Y. M. Kau and John K. Leung",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "1eba1a2ca2b74d98",
+    "title": "Those Who Wait",
+    "author": "Haley Cass",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "cddaf5e90699cb2d",
+    "title": "Thus Spoke Zarathustra",
+    "author": "Friedrich Nietzsche",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "f4adb9c0faa332f5",
+    "title": "Walden",
+    "author": "Henry David Thoreau",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "2e742cf5f9f5828b",
+    "title": "When We Cease to Understand the World",
+    "author": "Benjamín Labatut",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "a6f3be735fd99a12",
+    "title": "Why Nations Fail",
+    "author": "Daron Acemoglu and James A. Robinson",
+    "language": "en",
+    "year": 2026
+  },
+  {
+    "id": "1d128f8a7f54a500",
+    "title": "A Brief History of Intelligence",
+    "author": "Max Bennett",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "9f7cf55baf786c6a",
+    "title": "A Century of Fiction in The New Yorker: 1925–2025",
+    "author": "The New Yorker; edited by Deborah Treisman",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "c24b2a60b294ed35",
+    "title": "Brave New Words",
+    "author": "Salman Khan",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "c3f0dbff39e5345f",
+    "title": "Burn Math Class",
+    "author": "Jason Wilkes",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "17c13bc699109ddb",
+    "title": "Classic Feynman: All the Adventures of a Curious Character",
+    "author": "Richard P. Feynman; edited by Ralph Leighton",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "e99aab8fd8cee350",
+    "title": "Consciousness and the Universe",
+    "author": "Roger Penrose and various contributors",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "c4875942470e2aac",
+    "title": "Deep South",
+    "author": "Paul Theroux",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "5249d8278c40013e",
+    "title": "Elon Musk",
+    "author": "Walter Isaacson",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4a1a4e33e10dd40c",
+    "title": "Engineering in Plain Sight",
+    "author": "Grady Hillhouse",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "31f9b01127980abf",
+    "title": "Every Living Thing",
+    "author": "Jason Roberts",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "707599ab7f523c4e",
+    "title": "Green Dot",
+    "author": "Madeleine Gray",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "fcfe7febd4bdf763",
+    "title": "Headshot",
+    "author": "Rita Bullwinkel",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "a427af2ab4ca610f",
+    "title": "How To",
+    "author": "Randall Munroe",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "599ab15893bff58b",
+    "title": "How to Build a Universe",
+    "author": "Brian Cox and Robin Ince",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "9e8a5d8417bd2c0c",
+    "title": "How to Build Your Career in AI",
+    "author": "Andrew Ng",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "0aab00f5634de323",
+    "title": "How to Create a Mind",
+    "author": "Ray Kurzweil",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "41ddd30acd49531d",
+    "title": "How to Know a Person",
+    "author": "David Brooks",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "002cfd01dbee0cbe",
+    "title": "Human Compatible",
+    "author": "Stuart Russell",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "0805927954981724",
+    "title": "Immune",
+    "author": "Philipp Dettmer",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "922c3b715db67353",
+    "title": "In Writing",
+    "author": "Adam Phillips",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "158b4e53e4642a11",
+    "title": "同构：编程中的数学",
+    "author": "刘新宇",
+    "language": "zh",
+    "year": 2025,
+    "englishTitle": "Isomorphism: Mathematics in Programming",
+    "englishAuthor": "Liu Xinyu"
+  },
+  {
+    "id": "e8fa615fb00f99ed",
+    "title": "Japan’s Kumano Kodo Pilgrimage",
+    "author": "Kat Davis",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "a5d64ec23b75a4a2",
+    "title": "Just One Reason",
+    "author": "Jaime Clevenger",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "87907ee850b0a578",
+    "title": "Last Night at the Telegraph Club",
+    "author": "Malinda Lo",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "2ed445e1482dadbd",
+    "title": "Life 3.0",
+    "author": "Max Tegmark",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4bf487442b1b5df9",
+    "title": "Life in Three Dimensions",
+    "author": "Shigehiro Oishi",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "8e855b7e0bbe7e36",
+    "title": "Lincoln in the Bardo",
+    "author": "George Saunders",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "b7d7b132c11743f3",
+    "title": "Love, Theoretically",
+    "author": "Ali Hazelwood",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "551cf0b9bea9cea6",
+    "title": "National Geographic Backyard Guide to the Night Sky",
+    "author": "Howard Schneider",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "05ab433cacfe2a3b",
+    "title": "Nexus",
+    "author": "Yuval Noah Harari",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4700c49d77be1686",
+    "title": "On Kissing, Tickling, and Being Bored",
+    "author": "Adam Phillips",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "91af8b2cfe0d338f",
+    "title": "On the Origin of Time",
+    "author": "Thomas Hertog",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "0e538ecd3acfcad3",
+    "title": "Open Veins of Latin America",
+    "author": "Eduardo Galeano",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "3165f08648272891",
+    "title": "Orbital",
+    "author": "Samantha Harvey",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "d7da6655c208c794",
+    "title": "Origins: Fourteen Billion Years of Cosmic Evolution",
+    "author": "Neil deGrasse Tyson and Donald Goldsmith",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "b82ccbb01c0a9908",
+    "title": "Playground",
+    "author": "Richard Powers",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "6e9f98b7c45d92b5",
+    "title": "Playing with Reality",
+    "author": "Kelly Clancy",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "fdc91c43be4bc24d",
+    "title": "Riding the Iron Rooster",
+    "author": "Paul Theroux",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "edabf734906935c5",
+    "title": "唐宋词十七讲",
+    "author": "叶嘉莹",
+    "language": "zh",
+    "year": 2025,
+    "englishTitle": "Seventeen Lectures on Tang and Song Ci Poetry",
+    "englishAuthor": "Ye Jiaying"
+  },
+  {
+    "id": "82ed1318fbc099b4",
+    "title": "Some Assembly Required",
+    "author": "Neil Shubin",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "9d81f6b99d6352b6",
+    "title": "Source Code",
+    "author": "Bill Gates",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "3a05e79ec864b436",
+    "title": "Spanish Grammar for Beginners",
+    "author": "My Daily Spanish",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4a82aed51092f555",
+    "title": "Superintelligence",
+    "author": "Nick Bostrom",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "e30c2fb756327941",
+    "title": "The 12 Week Year",
+    "author": "Brian P. Moran and Michael Lennington",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "d30fdf7bb33906e1",
+    "title": "The Art of Statistics",
+    "author": "David Spiegelhalter",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "220ccbe2c900da9e",
+    "title": "The Art of Uncertainty",
+    "author": "David Spiegelhalter",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "a04da442a8da7976",
+    "title": "The Book of Beautiful Questions",
+    "author": "Warren Berger",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "332ff1305770c0fc",
+    "title": "The Catalyst",
+    "author": "Thomas R. Cech",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "b6526d922351ea53",
+    "title": "The Climbing Bible: Practical Exercises",
+    "author": "Martin Mobråten and Stian Christophersen",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "a2eeac823c2ad396",
+    "title": "The Coming Wave",
+    "author": "Mustafa Suleyman and Michael Bhaskar",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "f995f8c8b4eaa91f",
+    "title": "The Complete Illustrated Encyclopedia of the World’s Aircraft",
+    "author": "David Mondey (editor)",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "a554901ca8ee60b3",
+    "title": "The God Particle",
+    "author": "Leon M. Lederman and Dick Teresi",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "34536d59091cef32",
+    "title": "The New Yorker (April 3, 2023)",
+    "author": "Various contributors",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "dd043bdcbc20e04f",
+    "title": "The New Yorker (July 29, 2024)",
+    "author": "Various contributors",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "a37a87a397564156",
+    "title": "The Order of Time",
+    "author": "Carlo Rovelli",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4828cf09fea1add1",
+    "title": "The Philosophy of Modern Song",
+    "author": "Bob Dylan",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4d37b29dafcecb4d",
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "36066e117bdcd13d",
+    "title": "The Rise and Fall of the Dinosaurs",
+    "author": "Steve Brusatte",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "451eb205add17c90",
+    "title": "The Sentient Cell",
+    "author": "Arthur S. Reber, František Baluška, and William B. Miller Jr.",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4827d79d163f1a61",
+    "title": "The Seven Moons of Maali Almeida",
+    "author": "Shehan Karunatilaka",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "7ddb6c3a24f834ff",
+    "title": "The Singularity Is Nearer",
+    "author": "Ray Kurzweil",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "09e6798d5ee6fe9e",
+    "title": "The Smallest Day",
+    "author": "J. M. Redmann",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "8d8e1e650b7ec59a",
+    "title": "The Song of the Cell",
+    "author": "Siddhartha Mukherjee",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "3a9790273844ed4e",
+    "title": "The Universe in Zero Words",
+    "author": "Dana Mackenzie",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "afc6c71044a24612",
+    "title": "The World She Edited",
+    "author": "Amy Reading",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "5294aee817994437",
+    "title": "The Worlds I See",
+    "author": "Fei-Fei Li",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "7e33a094128f1e65",
+    "title": "Thing Explainer",
+    "author": "Randall Munroe",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "fadbd61bf2b6340b",
+    "title": "さるでも歩ける熊野古道",
+    "author": "海河童",
+    "language": "ja",
+    "year": 2025,
+    "englishTitle": "Walking the Kumano Kodo: A Beginner’s Guide",
+    "englishAuthor": "Umikappa"
+  },
+  {
+    "id": "261c972281bdf8bf",
+    "title": "West with the Night",
+    "author": "Beryl Markham",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "326c11e10882ef9d",
+    "title": "When Breath Becomes Air",
+    "author": "Paul Kalanithi",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "319482772aeedb32",
+    "title": "Where Reasons End",
+    "author": "Yiyun Li",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "4a182dbbeaf6558d",
+    "title": "Why Fish Don’t Exist",
+    "author": "Lulu Miller",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "89918b6e2a125a43",
+    "title": "Why Machines Learn",
+    "author": "Anil Ananthaswamy",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "b9a4b76ef77e4f26",
+    "title": "Why We Remember",
+    "author": "Charan Ranganath",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "f8a122c3d6c5592a",
+    "title": "Written in the Stars",
+    "author": "Alexandria Bellefleur",
+    "language": "en",
+    "year": 2025
+  },
+  {
+    "id": "3b91873934b6d539",
+    "title": "叶嘉莹说柳永词",
+    "author": "叶嘉莹",
+    "language": "zh",
+    "year": 2025,
+    "englishTitle": "Ye Jiaying on Liu Yong’s Ci Poetry",
+    "englishAuthor": "Ye Jiaying"
+  },
+  {
+    "id": "1109369d491d09db",
+    "title": "硬核生存指南",
+    "author": "夏川",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "A Hardcore Survival Guide",
+    "englishAuthor": "Xia Chuan"
+  },
+  {
+    "id": "6e323a51d820644f",
+    "title": "産ませない社会",
+    "author": "小林美希",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "A Society That Prevents Childbirth",
+    "englishAuthor": "Miki Kobayashi"
+  },
+  {
+    "id": "f674d28402bb703b",
+    "title": "無縁社会",
+    "author": "NHK取材班",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "A Society without Ties",
+    "englishAuthor": "NHK Reporting Team"
+  },
+  {
+    "id": "0128cf16f6d50808",
+    "title": "仕事漂流",
+    "author": "稲泉連",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Adrift at Work",
+    "englishAuthor": "Ren Inaizumi"
+  },
+  {
+    "id": "98fd9497ccf4f6df",
+    "title": "All My Friends Are Dead / All My Friends Are Still Dead",
+    "author": "Avery Monsen and Jory John",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "063ff3470fad9c11",
+    "title": "单口喜剧进阶指南",
+    "author": "王梓晗",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "An Advanced Guide to Stand-Up Comedy",
+    "englishAuthor": "Wang Zihan"
+  },
+  {
+    "id": "5594917ffebca499",
+    "title": "図解 なんかへんな生きもの",
+    "author": "ぬまがさワタリ",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "An Illustrated Guide to Strange Creatures",
+    "englishAuthor": "Numagasa Watari"
+  },
+  {
+    "id": "a7e99b5b755c7919",
+    "title": "Anatomy of a Rose",
+    "author": "Sharman Apt Russell",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "92ee39e965850684",
+    "title": "宇宙的另一种真相",
+    "author": "严伯钧、余晓帆、张晨波、祁晓亮、廉骉",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Another Truth of the Universe",
+    "englishAuthor": "Yan Bojun, Yu Xiaofan, Zhang Chenbo, Qi Xiaoliang, and Lian Biao"
+  },
+  {
+    "id": "87ed8722fd83cad3",
+    "title": "Babel",
+    "author": "R. F. Kuang",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "7ac71a39b75fac3f",
+    "title": "镖人（第一至五册）",
+    "author": "许先哲",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Blades of the Guardians (Volumes 1–5)",
+    "englishAuthor": "Xu Xianzhe"
+  },
+  {
+    "id": "c508c900c73b4892",
+    "title": "繁花",
+    "author": "金宇澄",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Blossoms",
+    "englishAuthor": "Jin Yucheng"
+  },
+  {
+    "id": "34586cdfda8d5c7e",
+    "title": "脑洞大开的微积分",
+    "author": "刘祺",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Calculus with Imagination",
+    "englishAuthor": "Liu Qi"
+  },
+  {
+    "id": "077acea4a06e8a30",
+    "title": "介護殺人",
+    "author": "毎日新聞大阪社会部取材班",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Caregiver Murders",
+    "englishAuthor": "Mainichi Shimbun Osaka Reporting Team"
+  },
+  {
+    "id": "707ffb19d99988b1",
+    "title": "一读就上瘾的中国史",
+    "author": "温伯陵",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Chinese History You Can’t Put Down",
+    "englishAuthor": "Wen Boling"
+  },
+  {
+    "id": "44795f25f3c729a0",
+    "title": "Close Encounters with Humankind",
+    "author": "Sang-Hee Lee and Shin-Young Yoon",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "260e789be8b276cd",
+    "title": "Conversations with God (five-book collection)",
+    "author": "Neale Donald Walsch",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "f8a889b37b773ae3",
+    "title": "Dictionary of Human Stupidity",
+    "author": "Piergiorgio Odifreddi",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "d817e39eca4b1716",
+    "title": "Discworld: Death (five-book collection)",
+    "author": "Terry Pratchett",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "bee931577c476e47",
+    "title": "Do You Talk Funny?",
+    "author": "David Nihill",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "0c5c768f88ac45b5",
+    "title": "Don’t Read Poetry",
+    "author": "Stephanie Burt",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "ae932175fc432637",
+    "title": "Drink Beer, Think Beer",
+    "author": "John Holl",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "31a4b70584b8c373",
+    "title": "Dune (six-book series)",
+    "author": "Frank Herbert",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "fc464bc8eeea87bd",
+    "title": "在宅ひとり死のススメ",
+    "author": "上野千鶴子",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Dying Alone at Home",
+    "englishAuthor": "Chizuko Ueno"
+  },
+  {
+    "id": "ebf258cb0068e4c9",
+    "title": "Excursions",
+    "author": "Henry David Thoreau",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "3b0e6946e6a93c91",
+    "title": "Exhalation",
+    "author": "Ted Chiang",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "95d71a4c1ec65f01",
+    "title": "Exploration and Discovery: Treasures of the Yale Peabody Museum of Natural History",
+    "author": "David K. Skelly and Thomas J. Near",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "a4fad008bb1186f8",
+    "title": "Feel-Good Productivity",
+    "author": "Ali Abdaal",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "9865b6bd035a003a",
+    "title": "Fly Already",
+    "author": "Etgar Keret",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "96bfcaffb6720555",
+    "title": "For the Win",
+    "author": "Kevin Werbach and Dan Hunter",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "7b81e56ba9b23061",
+    "title": "Generation Robot",
+    "author": "Terri Favro",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "ed707298b9b5234e",
+    "title": "Glucose Revolution",
+    "author": "Jessie Inchauspé",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "a8f8568d1946ab68",
+    "title": "GOTH番外篇 森野は記念写真を撮りに行くの巻",
+    "author": "乙一",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "GOTH: Morino Goes to Have Her Portrait Taken",
+    "englishAuthor": "Otsuichi"
+  },
+  {
+    "id": "98ddb0ee4f0f51fc",
+    "title": "ハイキュー!! ショーセツバン!! VII 決戦の秋",
+    "author": "星希代子、古舘春一",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Haikyu!! Novel VII: Autumn Showdown",
+    "englishAuthor": "Kiyoko Hoshi and Haruichi Furudate"
+  },
+  {
+    "id": "b38e9c9ac2e43403",
+    "title": "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow",
+    "author": "Aurélien Géron",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "4922a8372666d7d5",
+    "title": "ぼくはあと何回、満月を見るだろう",
+    "author": "坂本龍一",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "How Many More Times Will I See the Full Moon?",
+    "englishAuthor": "Ryuichi Sakamoto"
+  },
+  {
+    "id": "03fc9c164ec31cb6",
+    "title": "如何成为一个有趣的人",
+    "author": "王小圈",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "How to Become an Interesting Person",
+    "englishAuthor": "Wang Xiaoquan"
+  },
+  {
+    "id": "b150069a6782d4d2",
+    "title": "How to Get a PhD",
+    "author": "Estelle M. Phillips and Derek S. Pugh",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "2a2f651c01d9644e",
+    "title": "How to Listen to Jazz",
+    "author": "Ted Gioia",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "28fcfabd92894dba",
+    "title": "Introduction to Geography",
+    "author": "Arthur Getis, Judith Getis, and Jerome D. Fellmann",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "8d19c3234cbc59d4",
+    "title": "逆ソクラテス",
+    "author": "伊坂幸太郎",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Inverse Socrates",
+    "englishAuthor": "Kotaro Isaka"
+  },
+  {
+    "id": "774093509caa687e",
+    "title": "日本悬疑推理小说集：第三辑（二十二册）",
+    "author": "西尾維新、野﨑まど、宮澤伊織、青木祐子、三津田信三、辻村七子ほか",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Japanese Mystery Fiction: Series III (22-book collection)",
+    "englishAuthor": "Nisio Isin, Mado Nozaki, Iori Miyazawa, Yuko Aoki, Shinzo Mitsuda, Nanako Tsujimura, and others"
+  },
+  {
+    "id": "7b82bff032aa8cdd",
+    "title": "Klara and the Sun",
+    "author": "Kazuo Ishiguro",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "5965808f30f12a42",
+    "title": "クラインの壺",
+    "author": "岡嶋二人",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Klein’s Bottle",
+    "englishAuthor": "Okajima Futari"
+  },
+  {
+    "id": "7d1112a34e6b68bf",
+    "title": "Literary Wonderlands",
+    "author": "Laura Miller (editor)",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "9b6ff241a6c8cb34",
+    "title": "从哲学的角度看问题（十二册）",
+    "author": "萨姆·哈里斯、丹尼尔·丹尼特、约翰·布罗克曼等",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Looking at Problems through Philosophy (12-book collection)",
+    "englishAuthor": "Sam Harris, Daniel Dennett, John Brockman, and others"
+  },
+  {
+    "id": "3928cd8f8a362586",
+    "title": "Mastering Stand-Up (five-volume workbook series)",
+    "author": "Greg Dean",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "388c4046226dcd6e",
+    "title": "Necronomicon: The Best Weird Tales of H. P. Lovecraft",
+    "author": "H. P. Lovecraft",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "3f7204e04c1fd906",
+    "title": "Nightfall",
+    "author": "Isaac Asimov and Robert Silverberg",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "89bdf3471029903b",
+    "title": "Out of Africa",
+    "author": "Isak Dinesen",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "0b5fdb542ae8cda0",
+    "title": "Outlive",
+    "author": "Peter Attia with Bill Gifford",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "e41778dee755edfc",
+    "title": "Pebble in the Sky",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "3007d6cf8aa72550",
+    "title": "Peonies & Pomegranates: Botanical Illustrations from Asia",
+    "author": "Celia Fisher",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "e6651d42f02168dc",
+    "title": "Plants: From Roots to Riches",
+    "author": "Kathy Willis and Carolyn Fry",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "83f7c8b5828b1e21",
+    "title": "点と線",
+    "author": "松本清張",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Points and Lines",
+    "englishAuthor": "Seicho Matsumoto"
+  },
+  {
+    "id": "291f3448da227fe3",
+    "title": "Rainbows End",
+    "author": "Vernor Vinge",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "d70d75f4d73fb17e",
+    "title": "Reality Is Broken",
+    "author": "Jane McGonigal",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "bf80f4956fad612c",
+    "title": "解体諸因",
+    "author": "西澤保彦",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Reasons for Dismemberment",
+    "englishAuthor": "Yasuhiko Nishizawa"
+  },
+  {
+    "id": "d8e208571c76c06d",
+    "title": "2021日系推理必读严选集（十册）",
+    "author": "多位作者",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Selected Japanese Mystery Fiction (10-book collection)",
+    "englishAuthor": "Various authors"
+  },
+  {
+    "id": "742b0f889817a4ea",
+    "title": "島田荘司作品集（十七冊）",
+    "author": "島田荘司",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Selected Works (17-book collection)",
+    "englishAuthor": "Soji Shimada"
+  },
+  {
+    "id": "5486aaf2fe2b35e3",
+    "title": "Solar Lottery",
+    "author": "Philip K. Dick",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "bfb6e97ce74ffc53",
+    "title": "Somewhere Towards the End",
+    "author": "Diana Athill",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "7540fccaad91188b",
+    "title": "Sovietistan",
+    "author": "Erika Fatland",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "f7a87ae22b9b3c6d",
+    "title": "太白金星有点烦",
+    "author": "马伯庸",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Taibai Jinxing Is a Little Annoyed",
+    "englishAuthor": "Ma Boyong"
+  },
+  {
+    "id": "7c5aabe17285c293",
+    "title": "Talking Pictures: How to Watch Movies",
+    "author": "Ann Hornaday",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "7631c24c2ac719e4",
+    "title": "The Art of Looking",
+    "author": "Lance Esplund",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "df8e967fd29d8d1b",
+    "title": "The Complete Robot",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "4a426c3eb42f517a",
+    "title": "The Currents of Space",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "ae62d260509f4f83",
+    "title": "The Favored Daughter",
+    "author": "Fawzia Koofi with Nadene Ghouri",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "826744777229a3a3",
+    "title": "The Feynman Lectures on Physics (Volumes I–III)",
+    "author": "Richard P. Feynman, Robert B. Leighton, and Matthew Sands",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "4148d461ae1d2d88",
+    "title": "The Grapes of Wrath",
+    "author": "John Steinbeck",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "2b8c2d8e6d7a0ea7",
+    "title": "The Hitchhiker’s Guide to the Galaxy (five-book series)",
+    "author": "Douglas Adams",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "b60a78edd3d04264",
+    "title": "バビロンの架空園",
+    "author": "澁澤龍彦",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "The Imaginary Gardens of Babylon",
+    "englishAuthor": "Tatsuhiko Shibusawa"
+  },
+  {
+    "id": "dae958c9ebfaabfe",
+    "title": "额尔古纳河右岸",
+    "author": "迟子建",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "The Last Quarter of the Moon",
+    "englishAuthor": "Chi Zijian"
+  },
+  {
+    "id": "4fe4b1f41ee21b30",
+    "title": "The Long, Long Life of Trees",
+    "author": "Fiona Stafford",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "9615459812fa7f00",
+    "title": "穆斯林的葬礼",
+    "author": "霍达",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "The Muslim’s Funeral",
+    "englishAuthor": "Huo Da"
+  },
+  {
+    "id": "11417e94f7ca3e43",
+    "title": "The Nature of Sex",
+    "author": "Carin Bondar",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "bcb9f560e0b61806",
+    "title": "The Neapolitan Novels (four-book series)",
+    "author": "Elena Ferrante",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "d3c5bba4680be39d",
+    "title": "The Physics of Life: The Evolution of Everything",
+    "author": "Adrian Bejan",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "5fec145a6feab9b1",
+    "title": "The Pillars of the Earth",
+    "author": "Ken Follett",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "85ee15f9935825a0",
+    "title": "死神の精度",
+    "author": "伊坂幸太郎",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "The Precision of Death",
+    "englishAuthor": "Kotaro Isaka"
+  },
+  {
+    "id": "347f0b2498ae8bac",
+    "title": "The Qur’an",
+    "author": "Traditional",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "3783fca027f54844",
+    "title": "The Return",
+    "author": "Roberto Bolaño",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "48e246cb072f71b4",
+    "title": "The Silk Roads",
+    "author": "Peter Frankopan",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "f5e9b5c5f271b6a7",
+    "title": "The Sound of Things Falling",
+    "author": "Juan Gabriel Vásquez",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "961c7a4ac991edef",
+    "title": "The Stars, Like Dust",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "e44a68a5b52aba19",
+    "title": "The Triumph of Seeds",
+    "author": "Thor Hanson",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "c555e467078449cb",
+    "title": "The Unwinding",
+    "author": "George Packer",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "7160f6d083640926",
+    "title": "The Vegetarian",
+    "author": "Han Kang",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "16c170865035dd3d",
+    "title": "The Wasp That Brainwashed the Caterpillar",
+    "author": "Matt Simon",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "3ba9910801b6af43",
+    "title": "The Way of the SEAL",
+    "author": "Mark Divine",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "5163f6968135f9a7",
+    "title": "The Willpower Instinct",
+    "author": "Kelly McGonigal",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "5f4bbf285ae13aba",
+    "title": "Thoreau’s Animals",
+    "author": "Henry David Thoreau",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "5e5b583e29f74975",
+    "title": "Thoreau’s Wildflowers",
+    "author": "Henry David Thoreau",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "79c50179ece9420a",
+    "title": "明朝那些事儿",
+    "author": "当年明月",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Those Things about the Ming Dynasty",
+    "englishAuthor": "Dangnian Mingyue"
+  },
+  {
+    "id": "01d9fc7598e7abae",
+    "title": "東京貧困女子。彼女たちはなぜ躓いたのか",
+    "author": "中村淳彦",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Tokyo’s Impoverished Women",
+    "englishAuthor": "Atsuhiko Nakamura"
+  },
+  {
+    "id": "e69f39c3e5fe2ccf",
+    "title": "安楽死を遂げるまで",
+    "author": "宮下洋一",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Until Assisted Death",
+    "englishAuthor": "Yoichi Miyashita"
+  },
+  {
+    "id": "afa2b61db2a290c5",
+    "title": "We Have No Idea",
+    "author": "Jorge Cham and Daniel Whiteson",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "623f3dbd96fd7ae2",
+    "title": "What a Fish Knows",
+    "author": "Jonathan Balcombe",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "5a05fb43081c85a9",
+    "title": "When Nietzsche Wept",
+    "author": "Irvin D. Yalom",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "90982f74f187f488",
+    "title": "世上为什么要有图书馆",
+    "author": "杨素秋",
+    "language": "zh",
+    "year": 2024,
+    "englishTitle": "Why the World Needs Libraries",
+    "englishAuthor": "Yang Suqiu"
+  },
+  {
+    "id": "90f42510664febc8",
+    "title": "Writing as a Knife",
+    "author": "Annie Ernaux and Frédéric-Yves Jeannet",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "7a270680b6dd47ad",
+    "title": "Zen and the Art of Motorcycle Maintenance",
+    "author": "Robert M. Pirsig",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "f420be3acbd15279",
+    "title": "ZOO",
+    "author": "乙一",
+    "language": "ja",
+    "year": 2024,
+    "englishTitle": "Zoo",
+    "englishAuthor": "Otsuichi"
+  },
+  {
+    "id": "dfce6ec56f5fbda7",
+    "title": "“Surely You’re Joking, Mr. Feynman!”",
+    "author": "Richard P. Feynman",
+    "language": "en",
+    "year": 2024
+  },
+  {
+    "id": "90911a7d30fc0ea9",
+    "title": "10 Days to Faster Reading",
+    "author": "Abby Marks-Beale and the Princeton Language Institute",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "432aa218378ea35d",
+    "title": "1587, a Year of No Significance",
+    "author": "Ray Huang",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e6e1f99fa16b02ca",
+    "title": "365 Days of Drawing",
+    "author": "Lorna Scobie",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e91b2cf6fb3f28b1",
+    "title": "642 Things to Draw",
+    "author": "Chronicle Books",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "f0111b7727739e7f",
+    "title": "642 Things to Write About",
+    "author": "San Francisco Writers’ Grotto",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "411698b1826b5690",
+    "title": "A Brief History of Infinity",
+    "author": "Brian Clegg",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "b590cd25d42d98d6",
+    "title": "文革笑料集",
+    "author": "橙实、山川等",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "A Collection of Cultural Revolution Jokes",
+    "englishAuthor": "Cheng Shi, Shan Chuan, and others"
+  },
+  {
+    "id": "86e080a5a6fc5c8d",
+    "title": "A Concise History of the Middle East",
+    "author": "Arthur Goldschmidt Jr. and Lawrence Davidson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "9f6ede9136e8c021",
+    "title": "日本人の知らない 間違いやすい日本語辞典",
+    "author": "日本語研究倶楽部",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "A Dictionary of Commonly Misused Japanese",
+    "englishAuthor": "Japanese Language Research Club"
+  },
+  {
+    "id": "e887fb433f2b38f9",
+    "title": "A Global History",
+    "author": "L. S. Stavrianos",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e1000ba17064ba42",
+    "title": "日本の歴史（八巻）",
+    "author": "吉村武彦ほか",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "A History of Japan (eight-volume collection)",
+    "englishAuthor": "Takehiko Yoshimura and various authors"
+  },
+  {
+    "id": "be664a3cdde4e1a3",
+    "title": "流俗地",
+    "author": "黎紫书",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "A Land of Mundane Life",
+    "englishAuthor": "Li Zishu"
+  },
+  {
+    "id": "1e976cacc68c8f04",
+    "title": "A Mosque in Munich",
+    "author": "Ian Johnson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "d6522f64da1f509e",
+    "title": "A Short History of Nearly Everything / At Home",
+    "author": "Bill Bryson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "89b694b78a11fca7",
+    "title": "放課後",
+    "author": "東野圭吾",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "After School",
+    "englishAuthor": "Keigo Higashino"
+  },
+  {
+    "id": "ff0befb6b7f59db6",
+    "title": "Alternate Worlds: The Illustrated History of Science Fiction",
+    "author": "James Gunn",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "0f62aa11a8e51b84",
+    "title": "Antimatter",
+    "author": "Frank Close",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "2fe83f0b4ec941b8",
+    "title": "Apprentice to Genius",
+    "author": "Robert Kanigel",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "8738b8ba0943e489",
+    "title": "Are Numbers Real?",
+    "author": "Brian Clegg",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e08b91d1f49ab7bf",
+    "title": "午夜降临前抵达",
+    "author": "刘子超",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Arriving before Midnight",
+    "englishAuthor": "Liu Zichao"
+  },
+  {
+    "id": "2750416a47b01851",
+    "title": "Artificial Intelligence: A Guide for Thinking Humans",
+    "author": "Melanie Mitchell",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "c030829d96f63cb1",
+    "title": "Astronomy 101",
+    "author": "Carolyn Collins Petersen",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "9a1463e437457d02",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "12595efe15a19bd0",
+    "title": "BBC Natural History (seven-book collection)",
+    "author": "Alastair Fothergill, Huw Cordey, Laura Barwick, and Stephen Moss",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "a498dfa2e58a5c17",
+    "title": "BBC The Sky at Night (eight-book collection)",
+    "author": "BBC Sky at Night Magazine",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "281cf5bf1c72ab3f",
+    "title": "数学之美",
+    "author": "吴军",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Beauty of Mathematics",
+    "englishAuthor": "Wu Jun"
+  },
+  {
+    "id": "a825aee994757dde",
+    "title": "Borrowed Time",
+    "author": "Sue Armstrong",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "c85d95aa31baccc0",
+    "title": "Bullshit Jobs",
+    "author": "David Graeber",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "5b3e0ae50df79fe7",
+    "title": "Burn",
+    "author": "Herman Pontzer",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "ae4c3e1006aed6d2",
+    "title": "Chaos: Making a New Science",
+    "author": "James Gleick",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "dc8a712635ee04da",
+    "title": "Consciousness and the Brain",
+    "author": "Stanislas Dehaene",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "546603bafb7c18fe",
+    "title": "Decisive Moments in History",
+    "author": "Stefan Zweig",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "9469f781dbcbfd8d",
+    "title": "Deep Learning",
+    "author": "Ian Goodfellow, Yoshua Bengio, and Aaron Courville",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "676517f58036ac4a",
+    "title": "dele",
+    "author": "本多孝好",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Dele",
+    "englishAuthor": "Takayoshi Honda"
+  },
+  {
+    "id": "f3f6594b3dbcbd83",
+    "title": "Demian",
+    "author": "Hermann Hesse",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "a6234422e45dd6c6",
+    "title": "Disturbing the Universe",
+    "author": "Freeman Dyson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "d3930fb047451ea3",
+    "title": "Dive into Deep Learning",
+    "author": "Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "dcacfcfcc08d2a21",
+    "title": "Einstein’s Cosmos",
+    "author": "Michio Kaku",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "0438c1a806a43c82",
+    "title": "中国国家地理百科全书（十册）",
+    "author": "陆大道主编、中国地理学会",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Encyclopedia of China’s Geography (10-book collection)",
+    "englishAuthor": "Lu Dadao (editor) and the Geographical Society of China"
+  },
+  {
+    "id": "beb1f26b5d152528",
+    "title": "Exercised",
+    "author": "Daniel E. Lieberman",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "28d9778fb99cfdd5",
+    "title": "Factory Girls",
+    "author": "Leslie T. Chang",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "f8e93af73d4fe142",
+    "title": "Fall of Giants",
+    "author": "Ken Follett",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "ef88cb308e7875d9",
+    "title": "命运",
+    "author": "蔡崇达",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Fate",
+    "englishAuthor": "Cai Chongda"
+  },
+  {
+    "id": "9a0d27e065802245",
+    "title": "Flowers for Algernon",
+    "author": "Daniel Keyes",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "f8eb63110e522431",
+    "title": "沿着季风的方向",
+    "author": "刘子超",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Following the Monsoon",
+    "englishAuthor": "Liu Zichao"
+  },
+  {
+    "id": "f06097534563619f",
+    "title": "Fully Human",
+    "author": "Steve Biddulph",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "b4117835a0de8c6d",
+    "title": "Gene Eating",
+    "author": "Giles Yeo",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e4a92ce562791671",
+    "title": "German History in 100 Objects",
+    "author": "Hermann Schäfer",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "3eaa1b6aceba8732",
+    "title": "ゴールデンスランバー",
+    "author": "伊坂幸太郎",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Golden Slumber",
+    "englishAuthor": "Kotaro Isaka"
+  },
+  {
+    "id": "1625ec658bbeee65",
+    "title": "Hidden America",
+    "author": "Jeanne Marie Laskas",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "00a6a226549373d6",
+    "title": "高校生ワーキングプア",
+    "author": "NHKスペシャル取材班",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "High-School Working Poor",
+    "englishAuthor": "NHK Special Reporting Team"
+  },
+  {
+    "id": "604c9c8f640053c1",
+    "title": "History of Science: A Beginner’s Guide",
+    "author": "Sean F. Johnston",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "7326269cf8830b9d",
+    "title": "In Search of Memory",
+    "author": "Eric R. Kandel",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "9eb4d63d96406c35",
+    "title": "Indian Mathematics",
+    "author": "George Gheverghese Joseph",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "8d00a948b9c47cef",
+    "title": "Invisible Women",
+    "author": "Caroline Criado Perez",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "ece221fd79fc4848",
+    "title": "Is the Internet Changing the Way You Think?",
+    "author": "John Brockman (editor)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "66c0a62f50521d1d",
+    "title": "白夜行",
+    "author": "東野圭吾",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Journey under the Midnight Sun",
+    "englishAuthor": "Keigo Higashino"
+  },
+  {
+    "id": "154a564ad3de989b",
+    "title": "Life Ascending",
+    "author": "Nick Lane",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "368780d34b127d98",
+    "title": "Lifespan",
+    "author": "David A. Sinclair and Matthew D. LaPlante",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "1ef56ef5ee839f55",
+    "title": "Looking Out, Looking In",
+    "author": "Ronald B. Adler and Russell F. Proctor II",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "5697d53d0959eff5",
+    "title": "失落的卫星",
+    "author": "刘子超",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Lost Satellites",
+    "englishAuthor": "Liu Zichao"
+  },
+  {
+    "id": "c8ba4d37b5b1c806",
+    "title": "ラッシュライフ",
+    "author": "伊坂幸太郎",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Lush Life",
+    "englishAuthor": "Kotaro Isaka"
+  },
+  {
+    "id": "27c6dd569d4daa96",
+    "title": "Military Studies: Very Short Introductions (four-book collection)",
+    "author": "Various authors",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e3e18b886a454a44",
+    "title": "New Scientist: A Guide to Science (collection)",
+    "author": "New Scientist",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "d9e765827f8e02b1",
+    "title": "ノルウェイの森",
+    "author": "村上春樹",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Norwegian Wood",
+    "englishAuthor": "Haruki Murakami"
+  },
+  {
+    "id": "e6b4345f378f8e6d",
+    "title": "One Two Three… Infinity",
+    "author": "George Gamow",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "05e4af74ef4645c4",
+    "title": "Origins: A NASA Astronomer’s Answers to Everything",
+    "author": "Bahram Mobasher",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "1f81885708b6d115",
+    "title": "Penguin Great Ideas (48-book collection)",
+    "author": "Various authors",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "f9372a2ce23cb75e",
+    "title": "幻夜",
+    "author": "東野圭吾",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Phantom Night",
+    "englishAuthor": "Keigo Higashino"
+  },
+  {
+    "id": "e0e4ee5fe23ca39c",
+    "title": "六极物理",
+    "author": "严伯钧",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Physics at Six Extremes",
+    "englishAuthor": "Yan Bojun"
+  },
+  {
+    "id": "2ad07eb387be27b7",
+    "title": "Planets",
+    "author": "Nirmala Nataraj",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "d29e0111b14115c0",
+    "title": "Popular Physics (five-book collection)",
+    "author": "Michio Kaku",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "6829e32d4205306c",
+    "title": "Practice Perfect",
+    "author": "Doug Lemov, Erica Woolway, and Katie Yezzi",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "16eef72d1d800f36",
+    "title": "Primeval and Other Times",
+    "author": "Olga Tokarczuk",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "b9d375feba33704e",
+    "title": "Reality+",
+    "author": "David J. Chalmers",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "c99c2f4a2f984777",
+    "title": "科学美国人：从星系到量子（十册）",
+    "author": "《环球科学》杂志社、外研社科学出版工作室",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Scientific American: From Galaxies to Quanta (10-book collection)",
+    "englishAuthor": "Scientific American Chinese Edition and FLTRP Science Publishing"
+  },
+  {
+    "id": "a569fa7490494f18",
+    "title": "科学美国人精选系列（四册）",
+    "author": "《环球科学》杂志社、外研社科学出版工作室",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Scientific American: Selected Science Writing (4-book collection)",
+    "englishAuthor": "Scientific American Chinese Edition and FLTRP Science Publishing"
+  },
+  {
+    "id": "d4f713770a7c6c03",
+    "title": "Sex in the Sea",
+    "author": "Marah J. Hardt",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "190655083ec538d0",
+    "title": "皮囊",
+    "author": "蔡崇达",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Skin",
+    "englishAuthor": "Cai Chongda"
+  },
+  {
+    "id": "2df08aa1c9e41189",
+    "title": "SLAM DUNK（第一巻）",
+    "author": "井上雄彦",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Slam Dunk (Volume 1)",
+    "englishAuthor": "Takehiko Inoue"
+  },
+  {
+    "id": "6f1ab6766443bfea",
+    "title": "夏と花火と私の死体",
+    "author": "乙一",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Summer, Fireworks, and My Corpse",
+    "englishAuthor": "Otsuichi"
+  },
+  {
+    "id": "8f32266ba8fd29dc",
+    "title": "The Art of Learning",
+    "author": "Josh Waitzkin",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "2025a26721931281",
+    "title": "The Body: A Guide for Occupants",
+    "author": "Bill Bryson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "0705180d21dcdaa1",
+    "title": "鸢尾花书：数学要素",
+    "author": "姜伟",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "The Book of Iris: Essentials of Mathematics",
+    "englishAuthor": "Jiang Wei"
+  },
+  {
+    "id": "2e5b135671a166df",
+    "title": "The Clockwork Universe",
+    "author": "Edward Dolnick",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "9a0a6b43f4d8309f",
+    "title": "生命密码（两册）",
+    "author": "尹烨",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "The Code of Life (two-book collection)",
+    "englishAuthor": "Yin Ye"
+  },
+  {
+    "id": "a1ac7b0c6d066d31",
+    "title": "嫌われる勇気",
+    "author": "岸見一郎、古賀史健",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "The Courage to Be Disliked",
+    "englishAuthor": "Ichiro Kishimi and Fumitake Koga"
+  },
+  {
+    "id": "1685d67f78fdba9a",
+    "title": "The Crowd: A Study of the Popular Mind",
+    "author": "Gustave Le Bon",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e799afd0ef27304e",
+    "title": "深海浅说",
+    "author": "汪品先",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "The Deep Sea Explained",
+    "englishAuthor": "Wang Pinxian"
+  },
+  {
+    "id": "702dd35300e54261",
+    "title": "The Discussion Book",
+    "author": "Stephen D. Brookfield and Stephen Preskill",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e3ef43763ab27c94",
+    "title": "The End of Certainty",
+    "author": "Ilya Prigogine",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "aec28c5ff45e94a3",
+    "title": "The First Three Minutes",
+    "author": "Steven Weinberg",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "9c3911c4b9129a79",
+    "title": "The Future of the Brain",
+    "author": "Gary Marcus and Jeremy Freeman (editors)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "de5d6676d11f6e91",
+    "title": "The Incredible Unlikeliness of Being",
+    "author": "Alice Roberts",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "1a395674d3b7c86c",
+    "title": "The Information",
+    "author": "James Gleick",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "ae6694da104d560b",
+    "title": "The Little Book of String Theory",
+    "author": "Steven S. Gubser",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "1a56164451837d66",
+    "title": "显微镜下的大明",
+    "author": "马伯庸",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "The Ming Dynasty under the Microscope",
+    "englishAuthor": "Ma Boyong"
+  },
+  {
+    "id": "14222553a41ffe06",
+    "title": "The Outrun",
+    "author": "Amy Liptrot",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "7f209e2f7853727c",
+    "title": "The Painted Veil",
+    "author": "W. Somerset Maugham",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "fbcdaaee8da4f3ac",
+    "title": "The Power of Full Engagement",
+    "author": "Jim Loehr and Tony Schwartz",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "cbc8b2b8a0212ea7",
+    "title": "The Real World: A Rules Lite Surrealist RPG",
+    "author": "Alley Faint and GPT-3",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "77ee3f77f4a4cdd5",
+    "title": "The Science and Ideology of Intelligence",
+    "author": "Ken Richardson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "8bf50181ce9f1e0c",
+    "title": "The Story of Earth",
+    "author": "Robert M. Hazen",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "dc890c3e3b2bfdeb",
+    "title": "历史的温度（第一至五册）",
+    "author": "张玮",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "The Temperature of History (Volumes 1–5)",
+    "englishAuthor": "Zhang Wei"
+  },
+  {
+    "id": "6bb2653eccdd2ce9",
+    "title": "The Vital Question",
+    "author": "Nick Lane",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "0b96dc93a5e8077a",
+    "title": "The Void",
+    "author": "Frank Close",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "e267e1ef7f26e545",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "03e44012fc32addb",
+    "title": "This Explains Everything",
+    "author": "John Brockman (editor)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "22f6c43299f910b0",
+    "title": "This Idea Must Die",
+    "author": "John Brockman (editor)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "bb836db27496ca53",
+    "title": "This Will Make You Smarter",
+    "author": "John Brockman (editor)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "b344a30aa34b82ce",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "99daf3e163322cfd",
+    "title": "秦制两千年",
+    "author": "谌旭彬",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "Two Thousand Years of the Qin System",
+    "englishAuthor": "Chen Xubin"
+  },
+  {
+    "id": "a4e5db1ac2485d72",
+    "title": "Upheaval",
+    "author": "Jared Diamond",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "41cd745dccae7df8",
+    "title": "What Should We Be Worried About?",
+    "author": "John Brockman (editor)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "8fde3b1fd83d2331",
+    "title": "What Smart Students Know",
+    "author": "Adam Robinson",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "bf8f33d14e017362",
+    "title": "What to Think About Machines That Think",
+    "author": "John Brockman (editor)",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "66bb4d5732595e03",
+    "title": "其实你不懂进化论",
+    "author": "史钧",
+    "language": "zh",
+    "year": 2023,
+    "englishTitle": "What You Don’t Know about Evolution",
+    "englishAuthor": "Shi Jun"
+  },
+  {
+    "id": "b4b16ec221efb6de",
+    "title": "女性たちの貧困",
+    "author": "NHK取材班",
+    "language": "ja",
+    "year": 2023,
+    "englishTitle": "Women in Poverty",
+    "englishAuthor": "NHK Reporting Team"
+  },
+  {
+    "id": "4feb8e300bb0fa83",
+    "title": "Wonderful Life",
+    "author": "Stephen Jay Gould",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "accfec6e197f244e",
+    "title": "Work, Consumerism and the New Poor",
+    "author": "Zygmunt Bauman",
+    "language": "en",
+    "year": 2023
+  },
+  {
+    "id": "7c2dfa2c13c130ff",
+    "title": "21 Lessons for the 21st Century",
+    "author": "Yuval Noah Harari",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "2f9d9166c11f111d",
+    "title": "A Song of Ice and Fire (Books 1–5)",
+    "author": "George R. R. Martin",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "660f5ea261aeb4e4",
+    "title": "Algorithms to Live By",
+    "author": "Brian Christian and Tom Griffiths",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "2dec1a3c403dab11",
+    "title": "All Quiet on the Western Front",
+    "author": "Erich Maria Remarque",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "e67d2d390d2c3488",
+    "title": "Back to Earth",
+    "author": "Nicole Stott",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "7ce5d3371c32df4d",
+    "title": "球状闪电",
+    "author": "刘慈欣",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Ball Lightning",
+    "englishAuthor": "Liu Cixin"
+  },
+  {
+    "id": "41def0bcab0f1a7a",
+    "title": "Blue",
+    "author": "葉真中顕",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "Blue",
+    "englishAuthor": "Aki Hamanaka"
+  },
+  {
+    "id": "6f184c0868493d9b",
+    "title": "Brain Food",
+    "author": "Lisa Mosconi",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "48a5d97fec2e93cc",
+    "title": "Brainscapes",
+    "author": "Rebecca Schwarzlose",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "c07b9ff8e34d0078",
+    "title": "Bright Galaxies, Dark Matter, and Beyond",
+    "author": "Ashley Jean Yeager",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "10b314bf8405a90e",
+    "title": "チェンソーマン（第一〜八巻）",
+    "author": "藤本タツキ",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "Chainsaw Man (Volumes 1–8)",
+    "englishAuthor": "Tatsuki Fujimoto"
+  },
+  {
+    "id": "ae0dab883252b804",
+    "title": "Childhood’s End",
+    "author": "Arthur C. Clarke",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "bfc47506d0b6ea60",
+    "title": "Code: The Hidden Language of Computer Hardware and Software",
+    "author": "Charles Petzold",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "38544e1f6dbf88ee",
+    "title": "往復書簡 限界から始まる",
+    "author": "上野千鶴子、鈴木涼美",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "Correspondence: Beginning at the Limits",
+    "englishAuthor": "Chizuko Ueno and Suzumi Suzuki"
+  },
+  {
+    "id": "a0a0facdaf9335ed",
+    "title": "Count Zero",
+    "author": "William Gibson",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "a0473903ff153158",
+    "title": "Creatures of Light and Darkness",
+    "author": "Roger Zelazny",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "6163c7a488ed30bc",
+    "title": "Do Androids Dream of Electric Sheep?",
+    "author": "Philip K. Dick",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "f8a5bfea6a8b786b",
+    "title": "Dopamine Nation",
+    "author": "Anna Lembke",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "d7014573b0645cf2",
+    "title": "Earthlight",
+    "author": "Arthur C. Clarke",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "4770cb47fe388735",
+    "title": "Endymion",
+    "author": "Dan Simmons",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "7ae8781058397049",
+    "title": "Existential Physics",
+    "author": "Sabine Hossenfelder",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "0ee3fd1318e9b7d5",
+    "title": "Fermat’s Last Theorem",
+    "author": "Simon Singh",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "60481b928466397e",
+    "title": "Flatland",
+    "author": "Edwin A. Abbott",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "d2602d8ed26be44d",
+    "title": "Forward the Foundation",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "f4688017a6ab3a36",
+    "title": "Foundation",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "b6e847618949d8e8",
+    "title": "Foundation and Earth",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "d355147b53f52f4a",
+    "title": "Foundation and Empire",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "ea3cc70ace0d45e3",
+    "title": "Foundation’s Edge",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "f0fd9df8e785f0d5",
+    "title": "From Gutenberg to Google",
+    "author": "Tom Wheeler",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "d7e9fcb8647fe424",
+    "title": "Gitanjali",
+    "author": "Rabindranath Tagore",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "5bfba29fc7eade4e",
+    "title": "Grasp",
+    "author": "Sanjay Sarma and Luke Yoquinto",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "5e2596ddc681ed91",
+    "title": "Great Maps",
+    "author": "Jerry Brotton",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "2f272aeb946b6b41",
+    "title": "Hyperion",
+    "author": "Dan Simmons",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "5d2ec2c27079be8e",
+    "title": "Hyperspace",
+    "author": "Michio Kaku",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "46e37d17d1664eaa",
+    "title": "I, Robot",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "07e594eb9097ae38",
+    "title": "图解LeetCode初级算法（Python版）",
+    "author": "胡松涛",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Illustrated LeetCode Algorithms in Python",
+    "englishAuthor": "Hu Songtao"
+  },
+  {
+    "id": "3b5ed33e8db24461",
+    "title": "Index, A History of the",
+    "author": "Dennis Duncan",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "0c9261b51625efff",
+    "title": "Jurassic Park",
+    "author": "Michael Crichton",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "3396c01e9142d377",
+    "title": "Liberty or Death: The French Revolution",
+    "author": "Peter McPhee",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "ed4aff9f7737c514",
+    "title": "Lord of Light",
+    "author": "Roger Zelazny",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "8339f2b2b5ecdbe7",
+    "title": "梅里雪山 十七人の友を探して",
+    "author": "小林尚礼",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "Meili Snow Mountain: Searching for Seventeen Friends",
+    "englishAuthor": "Naoyuki Kobayashi"
+  },
+  {
+    "id": "d852122a05eb24c0",
+    "title": "Moscow Diary / Berlin Chronicle",
+    "author": "Walter Benjamin",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "3f851f752cffeb88",
+    "title": "Neuromancer",
+    "author": "William Gibson",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "4d4138ae40f2c0ac",
+    "title": "老妓抄",
+    "author": "岡本かの子",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "Portrait of an Old Geisha",
+    "englishAuthor": "Kanoko Okamoto"
+  },
+  {
+    "id": "895c95534e6d89a2",
+    "title": "Prelude to Foundation",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "44c417cf34b5250c",
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "94f2007cf226aea3",
+    "title": "Psychology in Modules",
+    "author": "David G. Myers and C. Nathan DeWall",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "6100201d2bb8663d",
+    "title": "Python机器学习及实践：从零开始通往Kaggle竞赛之路",
+    "author": "范淼、李超",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Python Machine Learning in Practice: From Scratch to Kaggle Competitions",
+    "englishAuthor": "Fan Miao and Li Chao"
+  },
+  {
+    "id": "dae01781bf9fd8fd",
+    "title": "Robots and Empire",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "1d38bacdf1a4c3f6",
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "32548ed89a10bd38",
+    "title": "絶叫",
+    "author": "葉真中顕",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "Scream",
+    "englishAuthor": "Aki Hamanaka"
+  },
+  {
+    "id": "c0392e9c0ad049a8",
+    "title": "Second Foundation",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "54895c091d5f8213",
+    "title": "莫言经典作品（七册）",
+    "author": "莫言",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Selected Works of Mo Yan (seven-book collection)",
+    "englishAuthor": "Mo Yan"
+  },
+  {
+    "id": "fb96df0f0cc0242f",
+    "title": "Sex, Lies, and Brain Scans",
+    "author": "Barbara J. Sahakian and Julia Gottwald",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "a0ce311b4933e252",
+    "title": "Solaris",
+    "author": "Stanisław Lem",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "82e76b88d3693224",
+    "title": "Steppenwolf",
+    "author": "Hermann Hesse",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "625a635f177a86b8",
+    "title": "超新星纪元",
+    "author": "刘慈欣",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Supernova Era",
+    "englishAuthor": "Liu Cixin"
+  },
+  {
+    "id": "7be7c844a120bb55",
+    "title": "T: The Story of Testosterone, the Hormone That Dominates and Divides Us",
+    "author": "Carole Hooven",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "dee57e3765c0bc41",
+    "title": "可能性的艺术：比较政治学三十讲",
+    "author": "刘瑜",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "The Art of Possibility: Thirty Lectures on Comparative Politics",
+    "englishAuthor": "Liu Yu"
+  },
+  {
+    "id": "969931b6e2bdb48c",
+    "title": "气球人",
+    "author": "陈浩基",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "The Balloon Man",
+    "englishAuthor": "Chan Ho-kei"
+  },
+  {
+    "id": "5c7c83c65260e39f",
+    "title": "The Caves of Steel",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "f1343580788d3192",
+    "title": "容疑者Xの献身",
+    "author": "東野圭吾",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "The Devotion of Suspect X",
+    "englishAuthor": "Keigo Higashino"
+  },
+  {
+    "id": "2107dc656a42fcf2",
+    "title": "The Emperor of All Maladies",
+    "author": "Siddhartha Mukherjee",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "846cd08dfe2456b9",
+    "title": "The End of Eternity",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "c6e3176b103dad82",
+    "title": "The End of Everything (Astrophysically Speaking)",
+    "author": "Katie Mack",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "06438c698c62b641",
+    "title": "The Fall of Hyperion",
+    "author": "Dan Simmons",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "d9dd11914709ddd0",
+    "title": "The Genesis Machine",
+    "author": "Amy Webb and Andrew Hessel",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "443d7a506c667cdf",
+    "title": "The Gods Themselves",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "f175b451c080506c",
+    "title": "The Idea of the Brain",
+    "author": "Matthew Cobb",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "16e134b8b9bf20fb",
+    "title": "赤朽葉家の伝説",
+    "author": "桜庭一樹",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "The Legend of the Akakuchibas",
+    "englishAuthor": "Kazuki Sakuraba"
+  },
+  {
+    "id": "4537024d38dfbd9c",
+    "title": "The Lost World",
+    "author": "Michael Crichton",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "5365b01a1832b8b1",
+    "title": "酔歩する男",
+    "author": "小林泰三",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "The Man Who Walks Drunkenly",
+    "englishAuthor": "Yasumi Kobayashi"
+  },
+  {
+    "id": "d2cd1d8058432315",
+    "title": "The Molecule of More",
+    "author": "Daniel Z. Lieberman and Michael E. Long",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "4bb0477d23371a8e",
+    "title": "The Naked Sun",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "92ac8b03af2a8a7d",
+    "title": "The Nine Billion Names of God",
+    "author": "Arthur C. Clarke",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "c47be8667b2495fa",
+    "title": "The Rise of Endymion",
+    "author": "Dan Simmons",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "476647a7ca36f751",
+    "title": "大学之路（上册）",
+    "author": "吴军",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "The Road to University (Volume I)",
+    "englishAuthor": "Wu Jun"
+  },
+  {
+    "id": "ff2165635a912766",
+    "title": "The Robots of Dawn",
+    "author": "Isaac Asimov",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "828f95e12e7e4e47",
+    "title": "The Runaway Species",
+    "author": "Anthony Brandt and David Eagleman",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "b0cf400931788c99",
+    "title": "同姓同名",
+    "author": "下村敦史",
+    "language": "ja",
+    "year": 2022,
+    "englishTitle": "The Same Name",
+    "englishAuthor": "Atsushi Shimomura"
+  },
+  {
+    "id": "8c334a54d6a9a53a",
+    "title": "The Science of Rick and Morty",
+    "author": "Matt Brady",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "dd63bebfe33a422e",
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "77e5e4091719bfc0",
+    "title": "The Songs of Distant Earth",
+    "author": "Arthur C. Clarke",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "8553811760374210",
+    "title": "The Structure of Scientific Revolutions",
+    "author": "Thomas S. Kuhn",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "0560e02e6e5a89bd",
+    "title": "The Truce",
+    "author": "Primo Levi",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "94f7c74f71f4b5ff",
+    "title": "The Weight of the World (Volume I)",
+    "author": "Pierre Bourdieu and various contributors",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "2ecc7d8f9e2f3363",
+    "title": "它们的性",
+    "author": "王大可",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Their Sex Lives",
+    "englishAuthor": "Wang Dake"
+  },
+  {
+    "id": "0baf15037a04f9c5",
+    "title": "There’s a Lot of Shit in Nokcheon",
+    "author": "Lee Chang-dong",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "46c374b2e6488fca",
+    "title": "时间移民",
+    "author": "刘慈欣",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Time Migration",
+    "englishAuthor": "Liu Cixin"
+  },
+  {
+    "id": "9e84fbe4e4308833",
+    "title": "Token Economy",
+    "author": "Shermin Voshmgir",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "4865bdc2ab133d1f",
+    "title": "Travels in Central Asia: Kashmir, Little Tibet, and Central Asian Lands",
+    "author": "Bayard Taylor (compiler)",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "26bb7642e26c4632",
+    "title": "Ubik / Flow My Tears, the Policeman Said / The Minority Report / The Man in the High Castle",
+    "author": "Philip K. Dick",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "25de8fe38226129a",
+    "title": "Unashamed: Everything about the Fabulous Female Body",
+    "author": "Sheila de Liz",
+    "language": "en",
+    "year": 2022
+  },
+  {
+    "id": "40edef47788992be",
+    "title": "病人家属，请来一下",
+    "author": "王兴",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "Would the Patient’s Family Please Come Here?",
+    "englishAuthor": "Wang Xing"
+  },
+  {
+    "id": "72590107f97c8cc1",
+    "title": "你是你吃出来的",
+    "author": "夏萌",
+    "language": "zh",
+    "year": 2022,
+    "englishTitle": "You Are What You Eat",
+    "englishAuthor": "Xia Meng"
+  },
+  {
+    "id": "5f8c6f18007a7ba7",
+    "title": "A Life Decoded",
+    "author": "J. Craig Venter",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "95c6cfef098acb3c",
+    "title": "GitHub実践入門",
+    "author": "大塚弘記",
+    "language": "ja",
+    "year": 2021,
+    "englishTitle": "A Practical Introduction to GitHub",
+    "englishAuthor": "Hiroki Otsuka"
+  },
+  {
+    "id": "69020346265c59d6",
+    "title": "A Wild Child’s Guide to Endangered Animals",
+    "author": "Millie Marotta",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "3c44988040ab07de",
+    "title": "Python高手进阶之路（十册）",
+    "author": "多位作者",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Advanced Python Programming (10-book collection)",
+    "englishAuthor": "Various authors"
+  },
+  {
+    "id": "0ad127e119a42f5d",
+    "title": "小行星掉在下午",
+    "author": "沈大成",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "An Asteroid Falls in the Afternoon",
+    "englishAuthor": "Shen Dacheng"
+  },
+  {
+    "id": "13692ca27a894abf",
+    "title": "Ask a Science Teacher",
+    "author": "Larry Scheckel",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "0449db9c0868c1d7",
+    "title": "Astronomy and the Universe (six-book collection)",
+    "author": "Nirmala Nataraj, Bill Leatherbarrow, Leon Golub, Jay Pasachoff, James Trefil, Anne Rooney, and Giles Sparrow",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "58ad4926bb0627f8",
+    "title": "Born a Crime",
+    "author": "Trevor Noah",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "3d44a7b853815006",
+    "title": "Burning Paper",
+    "author": "Lee Chang-dong",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "203c24fd1907c618",
+    "title": "猫城记",
+    "author": "老舍",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Cat Country",
+    "englishAuthor": "Lao She"
+  },
+  {
+    "id": "e019e05f45e40404",
+    "title": "中信见识丛书精选套装（上）",
+    "author": "多位作者",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "CITIC Insights: Selected Works (Part I)",
+    "englishAuthor": "Various authors"
+  },
+  {
+    "id": "c3f4f7731b0110f0",
+    "title": "Data Structures and Algorithm Analysis in Java",
+    "author": "Mark Allen Weiss",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "849f547f8781cb7f",
+    "title": "Everyday One Motion メイキングブック",
+    "author": "Everyday One Motion 制作チーム",
+    "language": "ja",
+    "year": 2021,
+    "englishTitle": "Everyday One Motion: A Making-of Book",
+    "englishAuthor": "Everyday One Motion Collective"
+  },
+  {
+    "id": "23b7661a0839bd6b",
+    "title": "Gravity’s Rainbow",
+    "author": "Thomas Pynchon",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "c744f21304a79fba",
+    "title": "半小时漫画中国史（第一至四册）",
+    "author": "陈磊",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Half-Hour Comics: Chinese History (Volumes 1–4)",
+    "englishAuthor": "Chen Lei"
+  },
+  {
+    "id": "8d8f89f49c28a05b",
+    "title": "半小时漫画（十二册）",
+    "author": "陈磊、半小时漫画团队",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Half-Hour Comics: History, Economics, and Poetry (12-book collection)",
+    "englishAuthor": "Chen Lei and the Half-Hour Comics Team"
+  },
+  {
+    "id": "d283c36b24cf4c4d",
+    "title": "Homo Deus",
+    "author": "Yuval Noah Harari",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "988dcc8d38f25bdd",
+    "title": "How to Read a Book",
+    "author": "Mortimer J. Adler and Charles Van Doren",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "f250fb55ebfc552e",
+    "title": "Infinite Powers",
+    "author": "Steven Strogatz",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "5dbff20af6778b7c",
+    "title": "Inherit the Stars",
+    "author": "James P. Hogan",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "3fc6a69ce53151ed",
+    "title": "Introduction to Algorithms",
+    "author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "a3ac03050f70c56c",
+    "title": "Invent Your Own Computer Games with Python",
+    "author": "Al Sweigart",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "6b7b4af4786f4392",
+    "title": "笑场",
+    "author": "李诞",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Laughing on Stage",
+    "englishAuthor": "Li Dan"
+  },
+  {
+    "id": "87f120623c1333fb",
+    "title": "Lawrence in Arabia",
+    "author": "Scott Anderson",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "a04e5c8375f4eac4",
+    "title": "人生海海",
+    "author": "麦家",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Life Is a Vast Sea",
+    "englishAuthor": "Mai Jia"
+  },
+  {
+    "id": "48864685471857dd",
+    "title": "悪意",
+    "author": "東野圭吾",
+    "language": "ja",
+    "year": 2021,
+    "englishTitle": "Malice",
+    "englishAuthor": "Keigo Higashino"
+  },
+  {
+    "id": "3faf5e591c198501",
+    "title": "Mindset",
+    "author": "Carol S. Dweck",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "21869ec25c8fc745",
+    "title": "Past Mortems: Life and Death Behind Mortuary Doors",
+    "author": "Carla Valentine",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "2480c84d039f73b1",
+    "title": "Pictures Showing What Happens on Each Page of Thomas Pynchon’s Novel Gravity’s Rainbow",
+    "author": "Zak Smith",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "67c80dafbe7cc275",
+    "title": "Quackery: A Brief History of the Worst Ways to Cure Everything",
+    "author": "Lydia Kang and Nate Pedersen",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "d9d908084e5ed49e",
+    "title": "Second Nature",
+    "author": "Gerald M. Edelman",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "8810ef7d9261d2bd",
+    "title": "把自己作为方法：与项飙谈话",
+    "author": "项飙、吴琦",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Self as Method: Thinking through China and the World",
+    "englishAuthor": "Xiang Biao and Wu Qi"
+  },
+  {
+    "id": "99e264e31c094f9a",
+    "title": "新中国七十年长篇小说典藏",
+    "author": "多位作者",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "Seventy Years of Chinese Novels: A Collection",
+    "englishAuthor": "Various authors"
+  },
+  {
+    "id": "ab444647c23e14e0",
+    "title": "Stray Birds",
+    "author": "Rabindranath Tagore",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "c61d636851a2aab5",
+    "title": "TED Books: The Power of Ideas (11-book collection)",
+    "author": "Various authors",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "b3a0d820b2144117",
+    "title": "TED Books: Young Lives (five-book collection)",
+    "author": "Various authors",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "4325d35fa13f71ad",
+    "title": "The Astonishing Hypothesis",
+    "author": "Francis Crick",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "b4b676a4d13836f9",
+    "title": "The Astronomy Book",
+    "author": "Jim Bell",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "4d19992949c5e36a",
+    "title": "The Biology Book",
+    "author": "Michael C. Gerald and Gloria E. Gerald",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "512921b6c20f892e",
+    "title": "The Chemistry Book",
+    "author": "Derek B. Lowe",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "1c8be959ba78701c",
+    "title": "The Complete Book of Intelligence Tests",
+    "author": "Philip Carter",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "93ff79fc290e8544",
+    "title": "The Diary of a Bookseller",
+    "author": "Shaun Bythell",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "91efcf6edb021437",
+    "title": "The Drowned and the Saved",
+    "author": "Primo Levi",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "55eec1b03d6948be",
+    "title": "The Engineering Book",
+    "author": "Marshall Brain",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "af884580d5a1de70",
+    "title": "The Forgotten Soldier",
+    "author": "Guy Sajer",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "da10a4d14b5ec06f",
+    "title": "The Math Book",
+    "author": "Clifford A. Pickover",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "c40133a34959cfb3",
+    "title": "The Medical Book",
+    "author": "Clifford A. Pickover",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "3397a5af712c11ed",
+    "title": "The Phantom Atlas",
+    "author": "Edward Brooke-Hitching",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "18660d7bb8852a70",
+    "title": "The Psychology Book",
+    "author": "Wade E. Pickren",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "9df3a81eeecf842b",
+    "title": "The Sky Atlas",
+    "author": "Edward Brooke-Hitching",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "1bfaf449bd607d1e",
+    "title": "The Universe in Your Hand",
+    "author": "Christophe Galfard",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "a2c38be71d1f14f4",
+    "title": "Theatre of the World: The Maps That Made History",
+    "author": "Thomas Reinertsen Berg",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "f1751921f0026c25",
+    "title": "这里是中国",
+    "author": "星球研究所、中国青藏高原研究会",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "This Is China",
+    "englishAuthor": "Institute for Planets and the China Society on Tibetan Plateau"
+  },
+  {
+    "id": "f596516f2c2c4e43",
+    "title": "这里是中国2：百年重塑山河",
+    "author": "星球研究所",
+    "language": "zh",
+    "year": 2021,
+    "englishTitle": "This Is China 2: A Century of Transformation",
+    "englishAuthor": "Institute for Planets"
+  },
+  {
+    "id": "dde6b76471089aa9",
+    "title": "Ulysses",
+    "author": "James Joyce",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "b8d49d14e0567162",
+    "title": "Why We Get Sick",
+    "author": "Randolph M. Nesse and George C. Williams",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "45e3314de0acfb68",
+    "title": "Wider Than the Sky",
+    "author": "Gerald M. Edelman",
+    "language": "en",
+    "year": 2021
+  },
+  {
+    "id": "60c1cb181cedff24",
+    "title": "A History of the Human Brain",
+    "author": "Bret Stetka",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "c65e2204981c27b5",
+    "title": "Animal Farm",
+    "author": "George Orwell",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "f553a50f653ade98",
+    "title": "Around the World in 80 Trees",
+    "author": "Jonathan Drori",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "4748b91e4740e09d",
+    "title": "Behave",
+    "author": "Robert M. Sapolsky",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "777b01b446b95f8f",
+    "title": "Duel Without End: Mankind’s Battle with Microbes",
+    "author": "Stig S. Frøland",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "7b3df13ffbad9a59",
+    "title": "葬送のフリーレン（第7〜8巻）",
+    "author": "山田鐘人、アベツカサ",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Frieren: Beyond Journey’s End (Volumes 7–8)",
+    "englishAuthor": "Kanehito Yamada and Tsukasa Abe"
+  },
+  {
+    "id": "dc49fb68d2e71e67",
+    "title": "Georg Cantor: His Mathematics and Philosophy of the Infinite",
+    "author": "Joseph Warren Dauben",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "ed677437ba55c8a8",
+    "title": "さよなら絵梨",
+    "author": "藤本タツキ",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Goodbye, Eri",
+    "englishAuthor": "Tatsuki Fujimoto"
+  },
+  {
+    "id": "60e37f436a3f3526",
+    "title": "ハイキュー!!（第33・34・37巻）",
+    "author": "古舘春一",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Haikyu!! (Volumes 33, 34, and 37)",
+    "englishAuthor": "Haruichi Furudate"
+  },
+  {
+    "id": "b0f871a805d1f194",
+    "title": "アルゴリズム図鑑",
+    "author": "石田保輝、宮崎修一",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Illustrated Algorithms",
+    "englishAuthor": "Moriteru Ishida and Shuichi Miyazaki"
+  },
+  {
+    "id": "806b563843ec37e9",
+    "title": "在南方",
+    "author": "张惠雯",
+    "language": "zh",
+    "year": null,
+    "englishTitle": "In the South",
+    "englishAuthor": "Zhang Huiwen"
+  },
+  {
+    "id": "6da7c205c4fcfc7b",
+    "title": "海辺のカフカ",
+    "author": "村上春樹",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Kafka on the Shore",
+    "englishAuthor": "Haruki Murakami"
+  },
+  {
+    "id": "b421d2f36576b39c",
+    "title": "成瀬は天下を取りにいく",
+    "author": "宮島未奈",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Naruse Is Going to Take Over the World",
+    "englishAuthor": "Mina Miyajima"
+  },
+  {
+    "id": "b628e602f25ee4ae",
+    "title": "One Palestine, Complete",
+    "author": "Tom Segev",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "c781bafd8a7a9677",
+    "title": "俺たちの箱根駅伝",
+    "author": "池井戸潤",
+    "language": "ja",
+    "year": null,
+    "englishTitle": "Our Hakone Ekiden",
+    "englishAuthor": "Jun Ikeido"
+  },
+  {
+    "id": "89578db1460c395a",
+    "title": "Schrödinger’s Cat: Groundbreaking Experiments in Science",
+    "author": "Adam Hart-Davis",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "f9a2d298a076ce98",
+    "title": "Spectrums: Our Mind-boggling Universe from Infinitesimal to Infinity",
+    "author": "David Blatner",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "b08937c0144e6bc1",
+    "title": "The Ministry of Time",
+    "author": "Kaliane Bradley",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "205120bf33f40dc5",
+    "title": "The Narrow Road to the Deep North",
+    "author": "Richard Flanagan",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "325fcb8a0487db7e",
+    "title": "The Overstory",
+    "author": "Richard Powers",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "137b340f7deb8aa3",
+    "title": "了不起的我：自我发展的心理学",
+    "author": "陈海贤",
+    "language": "zh",
+    "year": null,
+    "englishTitle": "The Remarkable Self: The Psychology of Self-Development",
+    "englishAuthor": "Chen Haixian"
+  },
+  {
+    "id": "ceb2e0cc4fc1c5eb",
+    "title": "三体",
+    "author": "刘慈欣",
+    "language": "zh",
+    "year": null,
+    "englishTitle": "The Three-Body Problem",
+    "englishAuthor": "Liu Cixin"
+  },
+  {
+    "id": "af768de98bc2519f",
+    "title": "This Fleeting World: A Short History of Humanity",
+    "author": "David Christian",
+    "language": "en",
+    "year": null
+  },
+  {
+    "id": "17911ec2ff6148bc",
+    "title": "To VE-Day Through German Eyes: The Final Defeat of Nazi Germany",
+    "author": "Jonathan Trigg",
+    "language": "en",
+    "year": null
+  },
+  {
+    "title": "君のクイズ",
+    "author": "小川哲",
+    "language": "ja",
+    "englishTitle": "Your Quiz",
+    "englishAuthor": "Satoshi Ogawa",
+    "year": null,
+    "id": "1bfb985f29c6a8c2"
+  }
+]

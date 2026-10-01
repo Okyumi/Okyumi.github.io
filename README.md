@@ -26,9 +26,9 @@ Update `content/site.json`. The profile image uses your GitHub avatar URL. Add p
 
 ## Edit the reading list
 
-Add book metadata to `content/books.json`. Each entry has a stable work `id`, `title`, `author`, `language`, and `year`. For a Japanese or Chinese original, keep its original title and author, and add `englishTitle` and optionally `englishAuthor`. English originals use their original English title and author, even when the downloaded edition was translated. The `year` is the earliest download year; repeated work IDs are grouped under the earliest year automatically. The page shows years only, with newest years first and titles alphabetically within each year.
+Add book metadata to `content/books.json`. Each entry has a stable work `id`, `title`, `author`, `language`, and `year`. For a Japanese or Chinese original, keep its original title and author, and add `englishTitle` and optionally `englishAuthor`. English originals use their original English title and author, even when the downloaded edition was translated. The `year` is the earliest known download year (use `null` when no reading year is available); repeated work IDs are grouped under the earliest year automatically. The page shows years only, with newest years first and titles alphabetically within each year.
 
-Do not include account details, private download URLs, or full download dates in the public data. The list is currently empty pending access to the download history.
+Do not include account details, private download URLs, or full download dates in the public data. The reading list combines verified download-history metadata with additional books from backup metadata and personal additions. Backup upload timestamps are not treated as reading dates. Undated books appear in a separate section. Titles that cannot be reliably identified are held out until clarified.
 
 ## Build locally
 
