@@ -3,6 +3,7 @@ title: "Life Save Point [ver. 25.09.21]"
 date: "2025-09-17"
 source: "https://omoriyumi.com/blog/2025/09/17/life-save-point/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/08/46946c98-b2e5-4df8-a1fd-b84f15032ec4.jpeg"
 ---
 
 I’ll cut you a deal, Chie says to the mice. I’ll come back and see you this evening if you get on with learning to fly. You can’t keep clinging to the bars of the cage for the rest of the time you have, which isn’t long I must tell you. You’re going to crash into the Atlantic Ocean in a couple of months, and if you survive that you’ll then be analyzed in a lab and swiftly sacrificed to science. Got to let go, might as well do it now. You’ll like it without gravity, you’ll stop being afraid. **Life is short (yours especially). Let go, be bold.** [Sep 21 2025]

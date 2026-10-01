@@ -3,6 +3,7 @@ title: "Can Deep Learning Replace the Traditional Laws of Physics?"
 date: "2024-11-15"
 source: "https://omoriyumi.com/blog/2024/11/15/can-deep-learning-replace-the-traditional-laws-of-physics/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/03/image-10.png"
 ---
 
 Context:My capstone mentor brought up this question during a talk regarding recent AI breakthrough addressing complex system.

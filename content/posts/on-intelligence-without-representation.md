@@ -3,6 +3,7 @@ title: "On \"Intelligence without Representation\""
 date: "2025-09-21"
 source: "https://omoriyumi.com/blog/2025/09/21/on-intelligence-without-representation/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/11/21.jpeg"
 ---
 
 I would like to provide a definition for the intelligence (this is a very personal one, not rigorous/precise enough, but let’s put it here to lay the foundation for the discussion):

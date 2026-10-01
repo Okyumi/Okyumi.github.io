@@ -3,6 +3,7 @@ title: "Why Does the Cycle of Life Demand Dominion Over Cells and Sentience?"
 date: "2023-09-16"
 source: "https://omoriyumi.com/blog/2023/09/16/do-we-no-longer-need-to-use-animals-in-our-pursuit-of-understanding-human-behavior-with-the-advent-of-neuroimaging-techniques/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2023/09/image.png"
 ---
 
 Sep 16, 2023

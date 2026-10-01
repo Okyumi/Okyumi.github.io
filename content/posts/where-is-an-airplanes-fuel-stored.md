@@ -3,6 +3,8 @@ title: "Where Is an Airplane's Fuel Stored? | Crash Course on Airbus A380"
 date: "2025-08-02"
 source: "https://omoriyumi.com/blog/2025/08/02/where-is-an-airplanes-fuel-stored-crash-course-on-airbus-a380/"
 featured: true
+excerpt: "The reason fuel is stored inside the wings can largely be divided into two main points.\n\n\nThe first reason is simply convenience. The fuel tanks are located near the engines, and when the engines draw fuel, it can be delivered in a very short pipeline. For example, if the fuel tanks were placed far away, the fuel would have to be sent through long pipes, and if the pipes broke or connections loosened, all of the fuel could leak out instantly. If that happened, operating the aircraft would become extremely difficult."
+cover: "https://omoriyumi.com/wp-content/uploads/2025/08/The-Airbus-A380-is-a-wide-body-aircraft-and-is-the%E2%80%A6.jpeg"
 ---
 
 <p>Why can an airplane, a massive machine weighing hundreds of tons and made of metal, fly in the sky? In this article, we will use the largest passenger aircraft in history, the Airbus A380, as an example to start a crash course about airplanes. 🙂</p>

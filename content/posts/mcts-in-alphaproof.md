@@ -3,6 +3,7 @@ title: "MCTS in AlphaProof | Is RL a Viable Path Towards AGI?"
 date: "2025-04-13"
 source: "https://omoriyumi.com/blog/2025/04/13/mtcs-in-alphaproof-is-rl-a-viable-path-towards-agi-esa-es-la-fuerza-de-la-vida/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2024/07/Join-the-dots-Collage.jpeg"
 ---
 
 context: A podcast about the AlphaProof

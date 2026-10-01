@@ -2,7 +2,7 @@
 title: "Infinity"
 date: "2023-01-23"
 source: "https://omoriyumi.com/blog/2023/01/23/infinity/"
-featured: true
+featured: false
 ---
 
 From my understanding, in calculus, the concept of infinity mostly commonly relates to potential infinity; the idea that a sequence or series of numbers can be extended indefinitely, but there is no actual limit or endpoint to that sequence. The concept of limits allows us to understand how a function behaves as its input approaches a certain value, even if we can’t get to that value exactly.

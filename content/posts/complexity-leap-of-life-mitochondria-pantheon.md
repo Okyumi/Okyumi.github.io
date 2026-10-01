@@ -3,6 +3,7 @@ title: "A Leap of Faith in the Complexity of Life: Mitochondria | Pantheon"
 date: "2025-11-17"
 source: "https://omoriyumi.com/blog/2025/11/17/complexity-leap-of-life-mitochondria-pantheon/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/11/23.jpeg"
 ---
 
 Recently I’ve been reading these three books, Power, Sex, Suicide: Mitochondria and the Meaning of Life by Nick Lane; Cosmos by Carl Sagan; and Mendel’s Demon Mark Ridley.

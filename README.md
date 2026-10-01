@@ -1,6 +1,6 @@
 # Yumi Omori's personal website
 
-A quiet research homepage and a chronological featured-writing archive, built for GitHub Pages. All articles are real pages, readable without JavaScript. The blog reading layout follows the typography and dimensions of seohong.me: Source Sans 3, 18px body type, a 690px column, and 1.42857143 line height. The accent is a slightly deeper blue: `#3568bf`.
+A quiet research homepage and a chronological personal blog, built for GitHub Pages. All articles are real pages, readable without JavaScript. The blog reading layout follows the typography and dimensions of seohong.me: Source Sans 3, 18px body type, a 690px column, and 1.42857143 line height. The accent is a slightly deeper blue: `#3568bf`.
 
 ## Add a blog post
 
@@ -10,18 +10,19 @@ Create **one Markdown file** in `content/posts/`, for example `your-post.md`:
 ---
 title: "Your post title"
 date: "2026-09-30"
-excerpt: "A short preview of your post."
+excerpt: "Your authored excerpt."
 featured: true
+cover: "assets/my-cover.jpg"
 ---
 
 Write your article here in Markdown.
 ```
 
-Commit it to `main` and it appears automatically. The filename becomes the address, and the date places it in the timeline. No separate index needs editing. The preview, reading page, previous/next navigation, and sitemap update together. The optional `excerpt` can be omitted to use the opening text. An optional `cover` points to a file in `public/assets/`, such as `"assets/my-cover.jpg"`. No cover means a clean text-only row. Set `featured` to `false` to exclude a draft from the build.
+Commit it to `main` and it appears automatically. The filename becomes the address, and the date places it in the timeline. No separate index needs editing. The preview, reading page, previous/next navigation, and sitemap update together. Use `excerpt` for the full authored summary; the build does not truncate it or invent a summary when it is missing. Each published entry should have a `cover`, either a path in `public/assets/` or an absolute image URL. Set `featured` to `false` to exclude a draft from the build.
 
 ## Edit the homepage
 
-Update `content/site.json`. Replace `public/assets/profile.jpeg` to change your photo. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty.
+Update `content/site.json`. The profile image uses your GitHub avatar URL. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty.
 
 ## Build locally
 

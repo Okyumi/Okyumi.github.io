@@ -3,6 +3,7 @@ title: "Why We Cannot Hear Gravitational Fields?"
 date: "2023-10-03"
 source: "https://omoriyumi.com/blog/2023/10/03/why-we-cannot-hear-gravitational-fields/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/03/dynamics_gravity-002-2744487906.png"
 ---
 
 Oct 3, 2023

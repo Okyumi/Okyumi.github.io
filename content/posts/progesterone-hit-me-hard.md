@@ -2,7 +2,7 @@
 title: "progesterone hit me hard."
 date: "2026-02-10"
 source: "https://omoriyumi.com/blog/2026/02/10/progesterone-hit-me-hard%e3%80%82/"
-featured: true
+featured: false
 ---
 
 Just writing a little.

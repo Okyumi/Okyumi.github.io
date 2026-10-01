@@ -3,6 +3,7 @@ title: "Leave the Door to the Unknown Ajar"
 date: "2025-04-03"
 source: "https://omoriyumi.com/blog/2025/04/03/leave-the-door-to-the-unknown-ajar/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/04/image.png"
 ---
 
 At the heart of Bayesian inference lies a deceptively simple idea: we update our beliefs—our

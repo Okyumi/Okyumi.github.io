@@ -2,7 +2,7 @@
 title: "Thoughts on Another Truth of the Universe"
 date: "2024-07-12"
 source: "https://omoriyumi.com/blog/2024/07/12/thoughts-on-%e5%ae%87%e5%ae%99%e7%9a%84%e5%8f%a6%e4%b8%80%e7%a7%8d%e7%9c%9f%e7%9b%b8-%ef%bd%9canother-truth-of-the-universe-9-10/"
-featured: true
+featured: false
 ---
 
 Many concepts I’ve encountered and pondered in recent years seemed to connect seamlessly as I read this book—it was like a series of revelations, each unlocking the next. By the time I finished, I felt genuinely exhilarated. If I had to summarize the book in one sentence, it would probably be Philip W. Anderson’s famous 1972 *Science* declaration in condensed matter physics:

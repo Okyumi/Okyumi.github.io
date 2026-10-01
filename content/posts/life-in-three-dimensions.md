@@ -3,6 +3,7 @@ title: "Life in Three Dimensions | Non-linear Brain | Ting Irie"
 date: "2025-04-20"
 source: "https://omoriyumi.com/blog/2025/04/20/life-in-three-dimensions-non-linear-brain-ting-irie/"
 featured: true
+cover: "https://omoriyumi.com/wp-content/uploads/2025/06/62f69a78-435f-44f2-9ab8-f0ea5ebcecd8.jpeg"
 ---
 
 Recently I’ve been reading a book called *life in three dimensions*. By the way, it is definitely worth reading. The Author proposed a new concept in the book, “psychologically rich life”. According to him, a psychologically rich life is a life filled with diverse, unusual, interesting experiences that change your perspective; a life with twists and turns; a dramatic, eventful life instead of a simple and straightforward one; a life with multiplicity and complexity; a life with lots of stops, detours, and turning points; a life that feels like a long, winding hike rather than many laps of the same racing circuit. This reminds me of a quote from mit “A well-designed life is a life that’s generative – it is constantly creative, productive, changing, evolving, and there is always the possibility of surprise.” I found myself quite relatable to many of the ideas in the book. Anyways, highly recommend it.
