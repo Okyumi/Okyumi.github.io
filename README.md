@@ -24,6 +24,12 @@ Commit it to `main` and it appears automatically. The filename becomes the addre
 
 Update `content/site.json`. The profile image uses your GitHub avatar URL. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty.
 
+## Edit the reading list
+
+Add book metadata to `content/books.json`. Each entry has a stable work `id`, `title`, `author`, `language`, and `year`. For a Japanese or Chinese original, keep its original title and author, and add `englishTitle` and optionally `englishAuthor`. English originals use their original English title and author, even when the downloaded edition was translated. The `year` is the earliest download year; repeated work IDs are grouped under the earliest year automatically. The page shows years only, with newest years first and titles alphabetically within each year.
+
+Do not include account details, private download URLs, or full download dates in the public data. The list is currently empty pending access to the download history.
+
 ## Build locally
 
 Node 20 or newer is sufficient. No dependency installation is needed.
