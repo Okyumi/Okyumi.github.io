@@ -4683,5 +4683,13 @@
     "englishTitle": "Kanji Proficiency Test: Practice Questions by Frequency",
     "category": "languages",
     "metadataStatus": "author-unconfirmed"
+  },
+  {
+    "id": "at-the-existentialist-cafe-sarah-bakewell",
+    "title": "At the Existentialist Café",
+    "author": "Sarah Bakewell",
+    "language": "en",
+    "year": 2026,
+    "category": "philosophy"
   }
 ]
