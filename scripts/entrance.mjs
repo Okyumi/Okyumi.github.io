@@ -1,5 +1,5 @@
 // The entrance: a two-line cover and a playful Bayesian detour.
-// These pages load only entrance.css (plus fonts), so the existing pages and site.css stay untouched.
+// Both pages load the shared site.css and site.js, plus entrance.css for their own layout.
 
 // Formula on the detour, pre-rendered once with KaTeX 0.16.11 (the version the blog already uses):
 //   \hat{\theta}_{\mathrm{MAP}} = \operatorname*{arg\,max}_{\theta}\; p(\theta \mid \mathrm{CV}) =
@@ -16,7 +16,7 @@ const bellCurve = (() => {
   return `<svg viewBox="0 0 36 36" width="36" height="36" focusable="false"><path d="${line} L30 25 L6 25 Z" fill="currentColor" opacity=".14"/><path d="${line}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 9.6 V25" stroke="currentColor" stroke-width="1" stroke-dasharray="1.5 2" opacity=".55"/></svg>`;
 })();
 
-export async function writeEntrance({write, site, esc}) {
+export async function writeEntrance({write, site, esc, menuHand, fontLinks}) {
   const pageHead = ({title, description, base, canonical, detour = false}) => `<!doctype html>
 <html lang="en">
 <head>
@@ -27,24 +27,11 @@ export async function writeEntrance({write, site, esc}) {
   <meta name="theme-color" content="#ffffff">${detour ? '\n  <meta name="robots" content="noindex, follow">' : ''}
   <link rel="canonical" href="${esc(site.origin + canonical)}">
   <link rel="icon" type="image/svg+xml" href="${base}assets/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap">${detour ? `
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&amp;display=swap">
+${fontLinks(detour ? ['mono', 'display'] : ['mono'], '  ')}${detour ? `
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">` : ''}
+  <link rel="stylesheet" href="${base}assets/site.css">
   <link rel="stylesheet" href="${base}assets/entrance.css">
-  <script>
-    // Morph only between the two entrance pages; skip quietly when leaving for the rest of the site.
-    addEventListener('pageswap', event => {
-      const transition = event.viewTransition;
-      if (!transition) return;
-      transition.ready.catch(() => {});
-      const root = new URL('${base || './'}', location.href).pathname;
-      const to = event.activation && new URL(event.activation.entry.url).pathname;
-      if (![root, root + 'index.html', root + 'personal/hello/', root + 'personal/hello/index.html'].includes(to)) transition.skipTransition();
-    });
-  </script>
+  <script src="${base}assets/site.js" defer></script>
 </head>`;
 
   await write('index.html', pageHead({
@@ -52,12 +39,13 @@ export async function writeEntrance({write, site, esc}) {
     description: `${site.name}: research in deep reinforcement learning, and a personal blog.`,
     base: '', canonical: '/'
   }) + `
-<body class="cover-page">
+<body class="cover-page game-cursor">
   <main class="cover">
     <h1 class="sr-only">${esc(site.name)}</h1>
     <nav class="cover-choices" aria-label="Personal or Research">
-      <a class="cover-link cover-personal" href="personal/hello/">Personal<span class="cover-arrow" aria-hidden="true">↗</span></a>
-      <a class="cover-link cover-research" href="research/">Research<span class="cover-arrow" aria-hidden="true">↗</span></a>
+      <a class="cover-link cover-personal" href="personal/hello/" data-personal-gate data-personal-direct="personal/">Personal</a>
+      <a class="cover-link cover-research" href="research/">Research</a>
+      <span class="menu-hand" aria-hidden="true">${menuHand}</span>
     </nav>
   </main>
 </body>
@@ -102,7 +90,8 @@ export async function writeEntrance({write, site, esc}) {
     <div class="chat-log" id="chat-log" role="log">
       <p class="bubble" data-message="1">Ahh, ok, you got me there.</p>
       <p class="bubble" data-message="2">Are you sure you want to visit Yumi’s Personal? You have <b class="countdown"><span class="count">10</span> <span class="unit">seconds</span></b> to decide.</p>
-      <p class="bubble bubble-late" data-message="3" hidden>Time’s up. I’ll treat your silence as weak evidence for Research.</p>
+      <p class="bubble" data-message="bonus" hidden>Fine, <b class="countdown"><span class="bonus-count">5</span> bonus <span class="bonus-unit">seconds</span></b>, as a treat.</p>
+      <p class="bubble" data-message="final" hidden>Time’s up. Your silence is now strong evidence for Research. Taking you there…</p>
       <p class="typing" aria-hidden="true" hidden><span></span><span></span><span></span></p>
     </div>
     <nav class="chat-replies" aria-label="Your reply">

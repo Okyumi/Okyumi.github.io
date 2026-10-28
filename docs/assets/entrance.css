@@ -1,52 +1,5 @@
-/* Entrance pages only: the cover (/) and the Bayesian detour (/personal/hello/). */
-:root {
-  color-scheme: light;
-  --paper: #fff;
-  --ink: #20201e;
-  --blue: #284ed1;
-  --blue-dark: #19399f;
-  --blue-wash: #eef2fe;
-  --muted: #676863;
-  --rule: rgb(32 32 30 / 12%);
-  --bubble: #f1f1ee;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-  --font-display: 'Cabinet Grotesk', 'Arial Black', 'Helvetica Neue', sans-serif;
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --ease-in: cubic-bezier(.4, 0, 1, 1);
-  --interactive: 180ms var(--ease-out);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition { navigation: auto; }
-}
-
-* { box-sizing: border-box; }
-html { min-height: 100%; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font: 400 16px/1.8 var(--font-mono);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-a { color: inherit; text-decoration: none; }
-button { font: inherit; color: inherit; }
-a, button { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; border-radius: 2px; }
-::selection { background: #d9e2ff; color: var(--ink); }
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
+/* Entrance pages only: the cover (/) and the Bayesian detour (/personal/hello/).
+   Tokens, base styles and shared pieces (back link, personal choice, kbd, view transitions) live in site.css. */
 /* Cover: two words, letter-spaced with CSS (not literal spaces) so they stay readable. */
 .cover {
   display: grid;
@@ -57,6 +10,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 .cover-choices {
   --track: .24em;
+  position: relative;
   display: grid;
   justify-items: start;
   gap: 10px;
@@ -77,42 +31,38 @@ a, button { -webkit-tap-highlight-color: transparent; }
   animation: settle 760ms var(--ease-out) both;
 }
 .cover-research { animation-delay: 90ms; }
-.cover-arrow {
-  position: absolute;
-  top: 9px;
-  left: calc(100% + 10px);
-  letter-spacing: 0;
-  opacity: 0;
-  transform: translate(-6px, 5px);
-  transition: opacity var(--interactive), transform 260ms var(--ease-out);
-}
-/* Each word breathes out on hover; the extra width is absorbed by the margin, so nothing else moves. */
-.cover-link:hover, .cover-link:focus-visible {
+/* Each word breathes out on hover; the extra width is absorbed by the margin, so nothing else moves.
+   Once the menu script is running, the selected word (mouse or keys) is the one that breathes. */
+.cover-choices:not(.has-pointer) .cover-link:is(:hover, :focus-visible), .cover-link.is-current {
   color: var(--ink);
   letter-spacing: .32em;
   margin-right: calc(-1 * var(--track) - 8 * (.32em - var(--track)));
 }
-.cover-link:hover .cover-arrow, .cover-link:focus-visible .cover-arrow { opacity: 1; transform: none; }
-.cover-choices:has(.cover-link:hover) .cover-link:not(:hover) { color: #7d8fd4; }
+.cover-choices:not(.has-pointer):has(.cover-link:hover) .cover-link:not(:hover),
+.cover-choices.has-pointer:has(.cover-link:hover) .cover-link:not(.is-current) { color: #7d8fd4; }
 .cover-link:active { color: var(--blue-dark); }
 .cover-link:focus-visible { outline: none; text-decoration: underline 2px var(--blue); text-underline-offset: 10px; }
 @keyframes settle { from { opacity: 0; transform: translateY(6px); } }
+/* Title-screen menu pointer: hidden until you hover a word or press a key, then it jumps between the two. */
+.menu-hand {
+  position: absolute;
+  top: 0;
+  left: -66px;
+  width: 40px;
+  height: 26px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(var(--hand-y, 0px) - 50%));
+  transition: transform 140ms var(--ease-out), opacity 160ms var(--ease-out);
+}
+.menu-hand svg { display: block; width: 40px; height: 26px; }
+.cover-choices.has-pointer .menu-hand { opacity: 1; }
+.cover-choices.has-pointer .menu-hand svg { animation: hand-bob 900ms steps(1) infinite; }
+.cover-choices.no-glide .menu-hand { transition: none; }
 
 /* Detour: a short argument with a very loud conclusion. */
 .detour-shell { width: min(1040px, calc(100% - 96px)); margin-inline: auto; }
 .detour-header { padding-top: 26px; }
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  color: var(--muted);
-  font-size: 13px;
-  transition: color var(--interactive);
-}
-.back-link span { transition: transform var(--interactive); }
-.back-link:hover { color: var(--blue); }
-.back-link:hover span { transform: translateX(-4px); }
 .detour-main {
   display: flex;
   flex-direction: column;
@@ -153,19 +103,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   padding-top: 22px;
   border-top: 1px solid var(--rule);
 }
-.personal-choice {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--ink);
-  font-size: 16px;
-  text-decoration: underline;
-  text-decoration-color: rgb(32 32 30 / 35%);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 6px;
-  transition: color var(--interactive), text-decoration-color var(--interactive);
-}
-.personal-choice:hover { color: var(--blue); text-decoration-color: currentColor; }
+.detour-choices .personal-choice { font-size: 16px; }
 .research-choice {
   display: inline-flex;
   align-items: baseline;
@@ -187,7 +125,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
 ::view-transition-group(research-word), ::view-transition-group(personal-word) { animation-duration: 560ms; animation-timing-function: var(--ease-out); }
 ::view-transition-old(research-word), ::view-transition-old(personal-word) { animation-duration: 180ms; }
 ::view-transition-new(research-word), ::view-transition-new(personal-word) { animation-duration: 380ms; }
-::view-transition-old(root), ::view-transition-new(root) { animation-duration: 260ms; }
 
 /* Conversation window. */
 .chat {
@@ -325,6 +262,8 @@ html.chat-open { overflow: hidden; }
 .reply:active { transform: scale(.98); }
 .reply-yes { font-weight: 600; letter-spacing: .01em; }
 .chat.is-late .reply-no { border-color: var(--blue); background: var(--blue-wash); }
+.chat.is-bonus .chat-timer span { animation: timer-blink 560ms steps(1) 3; }
+@keyframes timer-blink { 50% { opacity: 0; } }
 .chat.is-late .reply-no:hover { background: var(--blue); }
 
 @media (max-width: 720px) {
@@ -339,7 +278,7 @@ html.chat-open { overflow: hidden; }
   .punchline-arrow { font-size: .42em; }
   .detour-aside { font-size: 15px; }
   .detour-choices { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 40px; padding-top: 16px; }
-  .personal-choice { font-size: 15px; }
+  .detour-choices .personal-choice { font-size: 15px; }
   .research-choice { align-self: flex-end; font-size: 34px; }
 }
 @media (max-width: 520px) {
@@ -374,7 +313,4 @@ html.chat-open { overflow: hidden; }
 @media (max-height: 560px) and (min-width: 721px) {
   .detour-main { padding-block: 24px 56px; }
   .detour-choices { margin-top: 36px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

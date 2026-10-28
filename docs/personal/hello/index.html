@@ -11,22 +11,14 @@
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&amp;display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../../assets/site.css">
   <link rel="stylesheet" href="../../assets/entrance.css">
-  <script>
-    // Morph only between the two entrance pages; skip quietly when leaving for the rest of the site.
-    addEventListener('pageswap', event => {
-      const transition = event.viewTransition;
-      if (!transition) return;
-      transition.ready.catch(() => {});
-      const root = new URL('../../', location.href).pathname;
-      const to = event.activation && new URL(event.activation.entry.url).pathname;
-      if (![root, root + 'index.html', root + 'personal/hello/', root + 'personal/hello/index.html'].includes(to)) transition.skipTransition();
-    });
-  </script>
+  <script src="../../assets/site.js" defer></script>
 </head>
 <body class="detour-page">
   <div class="detour-shell">
@@ -61,7 +53,8 @@
     <div class="chat-log" id="chat-log" role="log">
       <p class="bubble" data-message="1">Ahh, ok, you got me there.</p>
       <p class="bubble" data-message="2">Are you sure you want to visit Yumi’s Personal? You have <b class="countdown"><span class="count">10</span> <span class="unit">seconds</span></b> to decide.</p>
-      <p class="bubble bubble-late" data-message="3" hidden>Time’s up. I’ll treat your silence as weak evidence for Research.</p>
+      <p class="bubble" data-message="bonus" hidden>Fine, <b class="countdown"><span class="bonus-count">5</span> bonus <span class="bonus-unit">seconds</span></b>, as a treat.</p>
+      <p class="bubble" data-message="final" hidden>Time’s up. Your silence is now strong evidence for Research. Taking you there…</p>
       <p class="typing" aria-hidden="true" hidden><span></span><span></span><span></span></p>
     </div>
     <nav class="chat-replies" aria-label="Your reply">

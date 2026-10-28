@@ -1,4 +1,41 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MCTS in AlphaProof | Is RL a Viable Path Towards AGI? · Yumi Omori</title><meta name="description" content="I was thinking, specifically in language/or the symbol systems, if we want to achieve superhuman intelligence, we actually only need two stages. 1) let the machine understand the language to communicate (and this is already achieved). 2) let it self-play with one of itself or multiple of itself against the ground truth. and that’s it. and to make the convergence faster, it would be good to make sure that it’s also capable do the following in the middle of the process (in a very abstract way): the system could abstractly transfer its current knowledge to the subsequent generation, metaphorically &quot;dying&quot; to allow the new generation an accelerated learning process. The new generation’s ability should be lower bounded by the previous generation. Typically, during the early lifecycle, explorative behaviors dominate, whereas towards the end, exploration should decrease to near zero."><link rel="canonical" href="https://okyumi.github.io/blog/mcts-in-alphaproof/"><meta name="theme-color" content="#3568bf"><link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"><link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.querySelector('.article-body'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],throwOnError:false})"></script></head><body class="reading-page"><a class="skip-link" href="#article">Skip to article</a><main class="reading-main" id="article"><article><header class="article-header"><h1>MCTS in AlphaProof | Is RL a Viable Path Towards AGI?</h1><ul class="article-meta"><li><a href="../../">Yumi Omori</a></li><li><time datetime="2025-04-13">April 2025</time></li></ul></header><div class="article-body"><p>context: A podcast about the AlphaProof</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCTS in AlphaProof | Is RL a Viable Path Towards AGI? · Yumi Omori</title>
+<meta name="description" content="I was thinking, specifically in language/or the symbol systems, if we want to achieve superhuman intelligence, we actually only need two stages. 1) let the machine understand the language to communicate (and this is already achieved). 2) let it self-play with one of itself or multiple of itself against the ground truth. and that’s it. and to make the convergence faster, it would be good to make sure that it’s also capable do the following in the middle of the process (in a very abstract way): the system could abstractly transfer its current knowledge to the subsequent generation, metaphorically &quot;dying&quot; to allow the new generation an accelerated learning process. The new generation’s ability should be lower bounded by the previous generation. Typically, during the early lifecycle, explorative behaviors dominate, whereas towards the end, exploration should decrease to near zero.">
+<link rel="canonical" href="https://okyumi.github.io/blog/mcts-in-alphaproof/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&amp;display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@400,401,600,601&amp;display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="../../assets/site.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.querySelector('.article-body'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+</head>
+<body class="reading-page"><a class="skip-link" href="#article">Skip to article</a>
+<div class="reading-progress" aria-hidden="true" hidden><span></span></div>
+<div class="shell">
+<header class="site-header">
+<a class="wordmark" href="../../">Yumi Omori</a>
+<nav class="main-nav" aria-label="Main navigation">
+<a href="../../research/">Research</a>
+<a href="../../personal/" aria-current="page">Personal</a>
+</nav>
+</header>
+<main class="reading-main" id="article">
+<article>
+<header class="article-header"><h1 style="view-transition-name: post-mcts-in-alphaproof">MCTS in AlphaProof | Is RL a Viable Path Towards AGI?</h1><ul class="article-meta"><li><a href="../../">Yumi Omori</a></li><li><time datetime="2025-04-13">April 2025</time></li><li>7 min read</li></ul></header>
+<div class="article-body"><p>context: A podcast about the AlphaProof</p>
 <p>AlphaProof uses MCTS to explore the space of proof steps. Each state in the search tree is a partial proof state (the current goals and context in Lean), and each edge is a possible next step (a tactic application or theorem to use).</p>
 <p>The action space is Lean’s tactic library, when an action is chosen, Lean checks it and returns a new state, so this state becomes a child node in the search tree.</p>
 <p>When MCTS simulates a sequence of steps (by following the policy and occasionally exploring off-policy moves), it either reaches a terminal state or a preset search depth. A terminal state means either a complete proof was found or a dead-end. At a non-terminal leaf, the AlphaProof network’s value function provides an evaluation of how solvable the remaining state looks. This value along with the eventual outcome of a search path is backed up the tree to update the confidence in each intermediate action.</p>
@@ -35,4 +72,10 @@
 <p>The ending left me feeling heart-broken, but I very much liked it. La guerra es cruel. The film doesn’t try to fix that, it just shows it.</p>
 <p>hopefully we can all be like Sisyphus in our own lives. The wind may blow away a leaf, but it cannot blow away a butterfly.</p>
 <p>Esa es la fuerza de la vida.</p>
-</div></article><nav class="post-navigation" aria-label="Article navigation"><a class="previous" href="../leave-the-door-to-the-unknown-ajar/" rel="prev"><span class="nav-label">Previous post</span><span class="nav-title">Leave the Door to the Unknown Ajar</span></a><a class="next" href="../life-in-three-dimensions/" rel="next"><span class="nav-label">Next post</span><span class="nav-title">Life in Three Dimensions | Non-linear Brain | Ting Irie</span></a></nav><a class="back-to-blog" href="../../personal/#month-2025-04">Back to blog</a></main></body></html>
+</div>
+</article>
+<nav class="post-navigation" aria-label="Article navigation"><a class="previous" href="../leave-the-door-to-the-unknown-ajar/" rel="prev"><span class="nav-label"><kbd aria-hidden="true">←</kbd> Previous post</span><span class="nav-title" style="view-transition-name: post-leave-the-door-to-the-unknown-ajar">Leave the Door to the Unknown Ajar</span></a><a class="next" href="../life-in-three-dimensions/" rel="next"><span class="nav-label">Next post <kbd aria-hidden="true">→</kbd></span><span class="nav-title" style="view-transition-name: post-life-in-three-dimensions">Life in Three Dimensions | Non-linear Brain | Ting Irie</span></a></nav>
+<a class="back-to-blog" href="../../personal/#month-2025-04"><span aria-hidden="true">↶</span> Back to blog</a>
+</main>
+<div class="site-footer"></div>
+</div></body></html>
