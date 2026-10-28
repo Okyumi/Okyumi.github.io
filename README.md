@@ -1,6 +1,6 @@
 # Yumi Omori's personal website
 
-A quiet research homepage and a chronological personal blog, built for GitHub Pages. All articles are real pages, readable without JavaScript. The blog reading layout follows the typography and dimensions of seohong.me: Source Sans 3, 18px body type, a 690px column, and 1.42857143 line height. The accent is a slightly deeper blue: `#3568bf`.
+A two-line Personal / Research entrance, a quiet research page, and a chronological personal blog, built for GitHub Pages. All articles are real pages, readable without JavaScript. The blog reading layout follows the typography and dimensions of seohong.me: Source Sans 3, 18px body type, a 690px column, and 1.42857143 line height. The accent is a slightly deeper blue: `#3568bf`.
 
 ## Add a blog post
 
@@ -20,9 +20,13 @@ Write your article here in Markdown.
 
 Commit it to `main` and it appears automatically. The filename becomes the address, and the date places it in the timeline. No separate index needs editing. The preview, reading page, previous/next navigation, and sitemap update together. Use `excerpt` for the full authored summary; the build does not truncate it or invent a summary when it is missing. Each published entry should have a `cover`, either a path in `public/assets/` or an absolute image URL. Set `featured` to `false` to exclude a draft from the build.
 
-## Edit the homepage
+## Entrance and research page
 
-Update `content/site.json`. The profile image uses your GitHub avatar URL. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty.
+The cover at `/` shows only Personal and Research, set in letter-spaced JetBrains Mono. Research goes to `/research/`, which retains the previous homepage's content and styling. Personal opens `/personal/hello/`: a playful Bayesian detour with oversized Cabinet Grotesk typography and a confirmation conversation. The ten-second countdown pauses in a hidden tab and reveals a joke at zero; it never redirects visitors or disables either choice. Without JavaScript, the personal link goes straight to `/personal/`.
+
+Edit the entrance copy in `scripts/entrance.mjs`, its isolated styles in `public/assets/entrance.css`, and dialog behavior in `public/assets/entrance.js`. These pages do not load or modify `site.css`. The detour is excluded from the sitemap and marked `noindex`. Existing personal, travel, reading and article URLs are unchanged; their Research navigation points to `/research/`. The wordmark and article author still link to `/`, now the cover.
+
+To edit research content, update `content/site.json`. The profile image uses your GitHub avatar URL. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty.
 
 ## Edit the reading list
 
