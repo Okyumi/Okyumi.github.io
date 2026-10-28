@@ -1,6 +1,6 @@
 # Yumi Omori's personal website
 
-A quiet research homepage and a chronological personal blog, built for GitHub Pages. All articles are real pages, readable without JavaScript. The blog reading layout follows the typography and dimensions of seohong.me: Source Sans 3, 18px body type, a 690px column, and 1.42857143 line height. The accent is a slightly deeper blue: `#3568bf`.
+A two-choice entrance, quiet research page, and chronological personal blog, built for GitHub Pages. All articles are real pages, readable without JavaScript. The blog reading layout follows the typography and dimensions of seohong.me: Source Sans 3, 18px body type, a 690px column, and 1.42857143 line height. The accent is a slightly deeper blue: `#3568bf`.
 
 ## Add a blog post
 
@@ -20,7 +20,13 @@ Write your article here in Markdown.
 
 Commit it to `main` and it appears automatically. The filename becomes the address, and the date places it in the timeline. No separate index needs editing. The preview, reading page, previous/next navigation, and sitemap update together. Use `excerpt` for the full authored summary; the build does not truncate it or invent a summary when it is missing. Each published entry should have a `cover`, either a path in `public/assets/` or an absolute image URL. Set `featured` to `false` to exclude a draft from the build.
 
-## Edit the homepage
+## Entrance and navigation
+
+The homepage has only two choices. Research opens `/research/`; Personal opens the playful `/personal/hello/` detour. Its Personal link opens a native conversation dialog with a ten-second countdown. The choices remain available after the countdown, and Escape or the close button returns to the detour. Without JavaScript, the link goes straight to the blog.
+
+Copy and markup are in `scripts/entrance.mjs`; the isolated styles and dialog behavior are in `public/assets/entrance.css` and `public/assets/entrance.js`. The detour is excluded from the sitemap and marked noindex. The existing `/personal/`, `/read/`, `/travel/`, and article URLs remain directly accessible.
+
+## Edit the research page
 
 Update `content/site.json`. The profile image uses your GitHub avatar URL. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty.
 
@@ -50,3 +56,4 @@ This repository is intended to be named `Okyumi.github.io` under the `Okyumi` ac
 Posts were imported from Yumi's public `featured-blogs` repository and the current featured sections of omoriyumi.com. The most recent essay, “The Ships of Theseus Rebuilt at Different Rates,” was taken from the original website. The English versions are retained; duplicate Chinese translations are omitted, and the remaining Chinese/Japanese passages are translated into English. Repository-only navigation is replaced with website navigation. Content provenance is recorded in each article’s metadata.
 
 The Markdown parser is Marked 17.0.5 (MIT), included in `scripts/vendor/` with its license. Fonts are loaded from Google Fonts and mathematical typesetting from the versioned KaTeX CDN.
+
