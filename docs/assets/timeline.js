@@ -57,7 +57,9 @@ addEventListener('scroll', () => {
   }
 }, {passive: true});
 addEventListener('resize', update);
-addEventListener('hashchange', () => { if (location.hash) activate(location.hash.slice(1)); });
-if (location.hash) activate(location.hash.slice(1));
+// Only hashes that belong to the track (#writing, for example, is not a marker).
+const marked = () => links.some(link => link.hash === location.hash);
+addEventListener('hashchange', () => { if (marked()) activate(location.hash.slice(1)); });
+if (marked()) activate(location.hash.slice(1));
 else update();
 setTimeout(update, 1200);

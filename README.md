@@ -2,7 +2,7 @@
 
 A two-line Personal / Research entrance, a research page, and a chronological personal blog, built for GitHub Pages. All articles are real pages, readable without JavaScript.
 
-Every page shares one design (`public/assets/site.css`): white paper, ink text (`#20201e`) and one blue (`#284ed1`) for anything you can press. JetBrains Mono is used for interface and short text, Cabinet Grotesk for titles, and Switzer for long reading text (articles, blog excerpts, the travel guide); articles are set at 18px in a 680px column. A few small game touches sit on top: blog months are save points, the reading list is an inventory, the 404 page is a game-over screen with a Respawn button, articles have a reading-progress bar, and there is one hidden cheat code. Everything works with a mouse, touch or Tab; the keyboard shortcuts are optional and listed under **controls** (press `?`). Animations stop when the visitor prefers reduced motion.
+Every page shares one design (`public/assets/site.css`): white paper, ink text (`#20201e`) and one blue (`#284ed1`) for anything you can press. JetBrains Mono is used for interface and short text, Cabinet Grotesk for titles, and Source Serif 4 for long reading text (articles, blog excerpts, the travel guide). Articles are set at 20px (18px on phones) in a centered 680px column, and their images widen to 880px. A few small game touches sit on top: blog months are save points, every article ends with a "Level complete" panel that leads to the previous and next level, the travel sections get passport stamps, the reading list is an inventory, the games page is a set of save files, the 404 page is a game-over screen with a Respawn button, articles have a reading-progress bar, and there is one hidden cheat code. Everything works with a mouse, touch or Tab; the keyboard shortcuts are optional and listed under **controls** (press `?`). Animations stop when the visitor prefers reduced motion.
 
 ## Add a blog post
 
@@ -32,6 +32,18 @@ Edit the entrance copy in `scripts/entrance.mjs`, its extra styles in `public/as
 
 To edit research content, update `content/site.json`. The profile image uses your GitHub avatar URL. Add papers to `content/papers.json` using `title`, `authors`, `venue`, and optional `url` fields. The initial papers list is intentionally empty; until it has entries, "Here are my works:" ends in a blinking cursor.
 
+## Personal pages
+
+`/personal/` opens with one sentence that doubles as the menu: "I travel, read, write a lot. I also play a lot of video games." Each blue verb is a door (travel → `/travel/`, read → `/read/`, write → the writing list below, play → `/games/`). Pointing at a verb or focusing it with Tab lifts it, the pixel hand points at it, and the line underneath says what is inside; with a verb focused, ← / → move to the next one. The notes live in the `doors` object in `scripts/build.mjs`; the travel and reading counts in them are filled in automatically. The writing list below shows every post as a card, and the whole card is the link. Every personal page (writing, reading, travel, games) has the same small tab row under the header.
+
+The travel counter is set by one sentence at the top of `content/travel.html` ("I’ve visited 138 places in 45 countries."); change the numbers there and the big counter and the note on the personal page follow. The games page is the `saveFiles` list in `scripts/build.mjs`: a title, a status, one line, and an optional meter and link for each save file.
+
+## Dino arena (research page)
+
+The research page ends with a two-lane Dino game. The visitor plays the top lane (Space or ↑ to jump, ↓ to duck, or tap and swipe down on a phone; the keys only work while the game has focus). In the lane underneath, a Double DQN agent learns the same game from scratch in a Web Worker on the visitor's device. Training starts when the arena scrolls into view (with reduced motion, it waits for the Start training button), pauses when the arena is off screen or the tab is hidden, and stops once an attempt reaches 1,000 points. Every crash adds a row to the attempts list; after the solve, the visitor can race the trained agent. Nothing is sent anywhere or stored on the device.
+
+The game rules and the learner (a small network, replay buffer, Adam) are in `public/assets/dino-core.js`, which both the page and the worker use; drawing, controls and the attempts list are in `public/assets/dino.js`; the markup and the pre-rendered formula are in `scripts/arena.mjs`. The hyperparameters are the `DEFAULTS` in `dino-core.js`. In a test browser, `window.render_game_to_text()` returns the current state and `window.advanceTime(ms)` steps the game. Without JavaScript the arena is hidden and the rest of the page is unchanged.
+
 ## Edit the reading list
 
 Add book metadata to `content/books.json`. Each entry has a stable work `id`, `title`, `author`, `language`, `category`, and `year`. For a Japanese or Chinese original, keep its original title and author, and add `englishTitle` and optionally `englishAuthor`. English originals use their original English title and author, even when the downloaded edition was translated. A confirmed title with an unconfirmed author may use `author: null` and `metadataStatus: "author-unconfirmed"`; do not guess the author or edition.
@@ -57,4 +69,4 @@ This repository is intended to be named `Okyumi.github.io` under the `Okyumi` ac
 
 Posts were imported from Yumi's public `featured-blogs` repository and the current featured sections of omoriyumi.com. The most recent essay, “The Ships of Theseus Rebuilt at Different Rates,” was taken from the original website. The English versions are retained; duplicate Chinese translations are omitted, and the remaining Chinese/Japanese passages are translated into English. Repository-only navigation is replaced with website navigation. Content provenance is recorded in each article’s metadata.
 
-The Markdown parser is Marked 17.0.5 (MIT), included in `scripts/vendor/` with its license. JetBrains Mono is loaded from Google Fonts, Cabinet Grotesk and Switzer from Fontshare, and mathematical typesetting from the versioned KaTeX CDN.
+The Markdown parser is Marked 17.0.5 (MIT), included in `scripts/vendor/` with its license. JetBrains Mono and Source Serif 4 are loaded from Google Fonts, Cabinet Grotesk from Fontshare, and mathematical typesetting from the versioned KaTeX CDN.

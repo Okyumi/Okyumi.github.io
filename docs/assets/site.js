@@ -76,6 +76,48 @@
     describe(['Enter'], 'select');
   }
 
+  /* Personal: the opening sentence is the menu. Pointing at a verb (or focusing it) lifts it, and the line
+     underneath says what's behind it. With a verb focused, ← / → move to the next one. */
+  const sentence = $('.doors-sentence');
+  if (sentence) {
+    const doors = $$('.door', sentence);
+    const hint = $('.door-hint');
+    const note = $('.door-note');
+    const resting = note.innerHTML;
+    let active = null;
+    let timer = 0;
+    const show = door => {
+      window.clearTimeout(timer);
+      if (door === active) return;
+      active = door;
+      doors.forEach(item => item.classList.toggle('is-active', item === door));
+      hint.classList.toggle('is-peeking', Boolean(door));
+      if (door) note.textContent = door.dataset.note;
+      else note.innerHTML = resting;
+      note.classList.remove('is-new');
+      void note.offsetWidth;
+      note.classList.add('is-new');
+    };
+    // A short grace period, so the line doesn't flicker back while the mouse crosses the commas.
+    const rest = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        if (!doors.includes(document.activeElement)) show(null);
+      }, 450);
+    };
+    doors.forEach((door, i) => {
+      door.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(door); });
+      door.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch') rest(); });
+      door.addEventListener('focus', () => show(door));
+      door.addEventListener('blur', rest);
+      door.addEventListener('keydown', event => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        doors[(i + (event.key === 'ArrowRight' ? 1 : -1) + doors.length) % doors.length].focus();
+      });
+    });
+  }
+
   /* Personal: step through the entries with j / k; the hand points at the selected one. */
   const cards = $$('.post-card');
   if (cards.length) {
@@ -88,7 +130,7 @@
         if (index < 0) index = cards.length - 1;
       }
       const card = cards[Math.max(0, Math.min(cards.length - 1, index))];
-      $('h3 a', card).focus({preventScroll: true});
+      $('.card-link', card).focus({preventScroll: true});
       card.scrollIntoView({block: 'center', behavior: moving() ? 'smooth' : 'auto'});
     };
     bind(['j'], () => step(1));
@@ -109,6 +151,16 @@
   if (back) {
     bind(['b'], () => back.click());
     describe(['b'], back.classList.contains('back-to-blog') ? 'back to the blog' : 'back to writing');
+  }
+  // "Level complete": the marker pops once when you reach the end of a post.
+  const level = $('.level-complete');
+  if (level && 'IntersectionObserver' in window) {
+    const seen = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      level.classList.add('is-reached');
+      seen.disconnect();
+    }, {threshold: .6});
+    seen.observe(level);
   }
   const progress = $('.reading-progress');
   const article = $('.article-body');
@@ -146,6 +198,29 @@
     bind(['k'], () => go(-1));
     describe(['j', 'k'], track.classList.contains('book-years') ? 'next / previous year' : 'next / previous waypoint');
   }
+  // Travel: the score counts up on arrival.
+  const counts = $$('[data-count]');
+  if (counts.length && moving()) {
+    const start = performance.now();
+    const duration = 1300;
+    // Hold each number's final width while it counts, so the labels beside it stay still.
+    counts.forEach(el => { el.style.minWidth = `${el.getBoundingClientRect().width}px`; });
+    const tickCounts = now => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - (1 - t) ** 4;
+      counts.forEach(el => { el.textContent = String(Math.round(Number(el.dataset.count) * eased)); });
+      if (t < 1) window.requestAnimationFrame(tickCounts);
+      else counts.forEach(el => { el.style.minWidth = ''; });
+    };
+    window.requestAnimationFrame(tickCounts);
+  }
+
+  // Research: the Dino arena's keys work while the game has focus (dino.js handles them).
+  if ($('.arena-canvas')) {
+    describe(['Space', '↑'], 'jump (click the game first)');
+    describe(['↓'], 'duck');
+  }
+
   const search = $('#book-search');
   if (search) {
     bind(['/'], event => {
