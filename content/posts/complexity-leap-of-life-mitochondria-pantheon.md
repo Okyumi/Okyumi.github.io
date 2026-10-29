@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2025/11/17/complexity-leap-of-life-mitochond
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/11/23.jpeg"
 excerpt: "In his brilliant book Power, Sex, Suicide: Mitochondria and the Meaning of Life, Nick Lane argues that the single most revolutionary event in the history of life on Earth was not the origin of life itself, but something that happened roughly two billion years later: the moment one bacterium engulfed another and, instead of digesting it, struck up an intimate partnership. That engulfed bacterium became the mitochondrion, the power plant of every complex cell. ||  When the first cancer cell appeared, it thought it had found the secret to immortality. At first, it just wanted to live forever."
+quotes: ["The staircase of complexity has awfully long landings between steps.","If there is one thing humans are best at, it is not cherishing life, but wasting it.","But when I am born as a descendant into a world where my ancestors will always exist, that would be a terrifying thing."]
 ---
 
 Recently I’ve been reading these three books, Power, Sex, Suicide: Mitochondria and the Meaning of Life by Nick Lane; Cosmos by Carl Sagan; and Mendel’s Demon Mark Ridley.

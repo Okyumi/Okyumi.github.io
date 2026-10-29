@@ -59,6 +59,12 @@ for (const p of meta) {
   const words = text(body).split(/\s+/).length;
   posts.push({...p, body, html: externalLinks(html), readingTime: Math.max(1, Math.ceil(words / 220)), excerpt: p.excerpt || ''});
 }
+// The lines that come up when you point at a post on Writing. Each one is copied word for word from the post.
+for (const p of posts) {
+  p.quotes = Array.isArray(p.quotes) ? p.quotes : [];
+  const words = text(p.body);
+  for (const quote of p.quotes) if (!words.includes(text(quote))) throw new Error(`Quote not in ${p.file}: ${quote}`);
+}
 posts.sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 
 /* Output folder: public/ is copied as is, then every page is written. */
@@ -189,7 +195,7 @@ const starred = title => {
   const at = title.trimEnd().lastIndexOf(' ');
   return `${esc(title.slice(0, at + 1))}<span class="nowrap">${esc(title.slice(at + 1))}<span class="card-star" aria-hidden="true"></span></span>`;
 };
-const cards = m => posts.filter(p => p.date.startsWith(m)).map(p => `<article class="post-card${p.cover ? ' has-cover' : ''}"><span class="pointer-hand" aria-hidden="true"></span>
+const cards = m => posts.filter(p => p.date.startsWith(m)).map(p => `<article class="post-card${p.cover ? ' has-cover' : ''}"${p.quotes.length ? ` data-quotes="${esc(JSON.stringify(p.quotes))}"` : ''}><span class="pointer-hand" aria-hidden="true"></span>
 ${p.cover ? `<span class="card-cover"><img class="post-cover" src="${asset(p.cover, '../')}" alt="" loading="lazy" decoding="async" width="144" height="144"></span>` : ''}
 <div class="card-copy"><p class="card-date"><time datetime="${p.date}">${date(p.date, {month: 'long', day: 'numeric', year: 'numeric'})}</time></p>
 <h2 class="card-title"${vt('post-' + p.slug)}><a class="card-link" href="../${href(p)}">${starred(p.title)}</a></h2>

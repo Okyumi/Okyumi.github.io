@@ -59,6 +59,21 @@ export const pointDown = [
   '.....o.....'
 ];
 
+// The portrait of "Yumi's posterior" on the Bayesian detour: a bell curve, with a dashed line at its peak.
+export const bell = [
+  '........bbb........',
+  '.......blllb.......',
+  '.......blwlb.......',
+  '......blllllb......',
+  '......bllwllb......',
+  '.....blllllllb.....',
+  '....bllllwllllb....',
+  '....blllllllllb....',
+  '..bblllllwlllllbb..',
+  'bblllllllllllllllbb',
+  'ooooooooooooooooooo'
+];
+
 // Icons on the game buttons. Used as CSS masks, so they take the button's text colour.
 export const icons = {
   play: [

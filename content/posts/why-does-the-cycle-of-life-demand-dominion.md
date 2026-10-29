@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2023/09/16/do-we-no-longer-need-to-use-anima
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2023/09/image.png"
 excerpt: "But perhaps it is also worth acknowledging that, whether we like it or not, we are all complicit in this cycle of life and death. We kill insects in our daily lives, we shed and destroy countless cells within our own bodies every second, and we consume other living things to sustain ourselves. Life is, in some ways, an ongoing paradox—both miraculous and cruel."
+quotes: ["What truly distinguishes humans from other animals? Is intelligence alone enough to grant us dominion over their lives?","This is not to dismiss critiques of anthropocentrism; in fact, we should constantly question how much of our worldview is shaped by it.","Justifying animal experimentation purely through the “greater good” can sometimes feel too detached, too clinical."]
 ---
 
 Sep 16, 2023

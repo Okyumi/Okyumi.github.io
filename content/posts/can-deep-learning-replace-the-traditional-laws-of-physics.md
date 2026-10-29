@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2024/11/15/can-deep-learning-replace-the-tra
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/03/image-10.png"
 excerpt: "complexity itself can sometimes lead to the emergence of simple, fundamental patterns. For example, in topological materials, we observe remarkably robust and simple phenomena. In the quantum Hall effect, the system's conductivity remains quantized and independent of its shape. Similarly, in topological insulators, surface electrons behave as if they are massless, with quantized conductivity unaffected by the material’s physical form. This behavior mirrors that of a topological object, whose properties are determined not by its shape but by its topological structure. For instance, a torus retains its topological properties regardless of how it is reshaped, as long as its defining hole remains. Such \"topological robustness\" exemplifies resilience that supports anti-reductionist principles."
+quotes: ["But unlike other religions, science stands apart by constantly encouraging self-questioning and skepticism.","Perhaps these particles are not truly fundamental, but are instead stable, emergent entities from a more intricate underlying structure.","In this way, deep learning feels somewhat anti-curiosity—it offers solutions but doesn’t seek to understand or question why."]
 ---
 
 Context:My capstone mentor brought up this question during a talk regarding recent AI breakthrough addressing complex system.

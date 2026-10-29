@@ -126,31 +126,35 @@
 ::view-transition-old(research-word), ::view-transition-old(personal-word) { animation-duration: 180ms; }
 ::view-transition-new(research-word), ::view-transition-new(personal-word) { animation-duration: 380ms; }
 
-/* Conversation window. */
+/* Conversation window: a game dialogue. A game window (double ink frame, hard light blue shadow) with a pixel
+   portrait, a ten-cell clock, lines that type out with a blue caret, and the two answers as a menu with the
+   pointing hand (entrance.js). */
 .chat {
   --chat-top: clamp(16px, 15vh, 150px);
-  width: min(452px, calc(100% - 32px));
+  width: min(460px, calc(100% - 32px));
   max-width: none;
-  /* Top-anchored, so the window never jumps as messages arrive; keep its bottom inside the viewport. */
-  max-height: calc(100vh - var(--chat-top) - 16px);
-  max-height: calc(100svh - var(--chat-top) - 16px);
+  /* Top-anchored, so the window never jumps as lines arrive; keep its bottom inside the viewport. */
+  max-height: calc(100vh - var(--chat-top) - 24px);
+  max-height: calc(100svh - var(--chat-top) - 24px);
   margin: var(--chat-top) auto auto;
   padding: 0;
   overflow: auto;
-  border: 0;
-  border-radius: 24px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
   background: var(--paper);
   color: var(--ink);
-  box-shadow: 0 0 0 1px rgb(32 32 30 / 8%), 0 30px 80px -18px rgb(20 24 40 / 32%), 0 4px 14px rgb(20 24 40 / 6%);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--ink), 8px 8px 0 var(--pop-shadow);
   opacity: 0;
-  transform: translateY(14px) scale(.98);
-  transition: opacity 180ms var(--ease-in), transform 180ms var(--ease-in), overlay 180ms allow-discrete, display 180ms allow-discrete;
+  transform: translateY(10px);
+  transition: opacity 150ms var(--ease-in), transform 150ms var(--ease-in), overlay 150ms allow-discrete, display 150ms allow-discrete;
 }
 .chat[open] {
   opacity: 1;
   transform: none;
-  transition: opacity 280ms var(--ease-out), transform 420ms var(--ease-out), overlay 280ms allow-discrete, display 280ms allow-discrete;
+  transition: opacity 200ms var(--ease-out), transform 260ms var(--ease-out), overlay 200ms allow-discrete, display 200ms allow-discrete;
 }
+/* The window takes the focus when it opens; the frame already shows where you are. */
+.chat:focus-visible { outline: none; }
 .chat::backdrop {
   background: rgb(250 250 248 / 0%);
   -webkit-backdrop-filter: blur(0);
@@ -159,99 +163,91 @@
 }
 .chat[open]::backdrop { background: rgb(246 246 243 / 62%); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 @starting-style {
-  .chat[open] { opacity: 0; transform: translateY(14px) scale(.98); }
+  .chat[open] { opacity: 0; transform: translateY(10px); }
   .chat[open]::backdrop { background: rgb(250 250 248 / 0%); backdrop-filter: blur(0); }
 }
 html.chat-open { overflow: hidden; }
 .chat-header {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 12px;
-  padding: 14px 12px 14px 18px;
+  gap: 14px;
+  padding: 18px 16px 14px 20px;
 }
-.chat-avatar {
+.chat-portrait {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
   background: var(--blue-wash);
-  color: var(--blue);
 }
-.chat-name { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.35; }
-.chat-status { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.35; }
-.chat-close { flex: none; }
-.chat-timer { height: 2px; background: var(--rule); }
-.chat-timer span { display: block; height: 100%; background: var(--blue); transform-origin: left; }
+.chat-portrait svg { display: block; margin-top: 4px; }
+.chat-name { margin: 0; font-size: 14px; font-weight: 700; line-height: 1.4; }
+.chat-status { margin: 2px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+/* 44px to tap, though it looks smaller. */
+.chat-close { position: relative; flex: none; }
+.chat-close::after { content: ''; position: absolute; inset: -5px; }
+/* The clock: one cell a second, ink for the ten seconds, blue for the bonus five. */
+.chat-timer { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; height: 8px; margin: 0 20px; }
+.chat-timer i { border-radius: 1px; background: #e5e6e2; }
+.chat-timer i.is-on { background: var(--ink); }
+.chat.is-bonus .chat-timer i.is-on { background: var(--blue); }
+.chat.is-bonus .chat-timer { animation: timer-blink 560ms steps(1) 3; }
+@keyframes timer-blink { 50% { opacity: 0; } }
+.chat.is-again .chat-timer { display: none; }
 .chat-log {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 5px;
-  min-height: 148px;
-  padding: 22px 18px 16px;
+  gap: 8px;
+  min-height: 102px;
+  padding: 18px 20px 6px;
 }
-.bubble {
-  max-width: 86%;
-  margin: 0;
-  padding: 10px 15px 11px;
-  border-radius: 20px;
-  background: var(--bubble);
-  font-size: 14px;
-  line-height: 1.6;
-  animation: bubble-in 320ms var(--ease-out) both;
-  transform-origin: 0 100%;
-}
-.bubble:not(:has(~ .bubble:not([hidden]))) { border-bottom-left-radius: 6px; }
-.countdown { color: var(--blue); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.typing {
-  display: inline-flex;
-  gap: 5px;
-  margin: 0;
-  padding: 15px 16px;
-  border-radius: 20px 20px 20px 6px;
-  background: var(--bubble);
-  animation: bubble-in 240ms var(--ease-out) both;
-  transform-origin: 0 100%;
-}
-.typing[hidden], .bubble[hidden] { display: none; }
-.typing span { width: 6px; height: 6px; border-radius: 50%; background: #9c9d98; animation: typing 1s ease-in-out infinite; }
-.typing span:nth-child(2) { animation-delay: .15s; }
-.typing span:nth-child(3) { animation-delay: .3s; }
-@keyframes typing { 0%, 60%, 100% { transform: none; opacity: .45; } 30% { transform: translateY(-3px); opacity: 1; } }
-@keyframes bubble-in { from { opacity: 0; transform: translateY(6px) scale(.96); } }
+.chat.is-again .chat-log { padding-top: 6px; padding-bottom: 18px; }
+.chat-line { margin: 0; font-size: 14px; line-height: 1.65; text-wrap: pretty; }
+.chat-line[hidden] { display: none; }
+/* Earlier lines step back once a newer one is up. */
+.chat-line:has(~ .chat-line:not([hidden])) { color: var(--muted); }
+.countdown { color: var(--blue); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chat-line:has(~ .chat-line:not([hidden])) .countdown { color: inherit; }
+/* While a line types out, the rest of it is already laid out, just not shown; the caret takes no room,
+   so nothing moves. */
+.type-rest { color: transparent; }
+.chat-caret { position: relative; display: inline-block; width: 0; height: 1.1em; vertical-align: -.2em; }
+.chat-caret::before { content: ''; position: absolute; top: 0; left: 2px; width: 8px; height: 100%; background: var(--blue); animation: caret 1s steps(1) infinite; }
+/* The answers: a game menu. The hand points at the chosen one; ↑ / ↓ move it, Enter picks. */
 .chat-replies {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 7px;
-  padding: 4px 18px 20px;
+  display: grid;
+  gap: 2px;
+  margin: 12px 20px 0;
+  padding: 12px 0 16px;
+  background: repeating-linear-gradient(90deg, var(--rule-strong) 0 2px, transparent 2px 6px) top / 100% 2px no-repeat;
 }
 .chat:not(.is-ready) .chat-replies { display: none; }
-.chat.is-ready .chat-replies { animation: bubble-in 360ms 60ms var(--ease-out) both; }
+.chat.is-ready .chat-replies { animation: replies-in 220ms var(--ease-out) both; }
+@keyframes replies-in { from { opacity: 0; transform: translateY(4px); } }
 .reply {
-  max-width: 86%;
-  padding: 10px 15px 11px;
-  border: 1px solid rgb(40 78 209 / 32%);
-  border-radius: 20px 20px 6px 20px;
-  color: var(--blue);
-  font-size: 13.5px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 8px 10px 0;
+  border-radius: 3px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.55;
-  text-align: left;
-  transition: background var(--interactive), color var(--interactive), border-color var(--interactive), transform var(--interactive);
 }
-@media (hover: hover) {
-  .reply:hover { border-color: var(--blue); background: var(--blue); color: #fff; }
-}
-.reply:active { transform: scale(.98); }
-.reply-yes { font-weight: 600; letter-spacing: .01em; }
-.chat.is-late .reply-no { border-color: var(--blue); background: var(--blue-wash); }
-.chat.is-bonus .chat-timer span { animation: timer-blink 560ms steps(1) 3; }
-@keyframes timer-blink { 50% { opacity: 0; } }
-@media (hover: hover) {
-  .chat.is-late .reply-no:hover { background: var(--blue); }
+.reply-hand { width: 40px; height: 26px; margin-top: -2px; background: url(pixel-hand.svg) center / 40px 26px no-repeat; opacity: 0; }
+.reply.is-current { color: var(--blue); }
+.reply.is-current .reply-hand { opacity: 1; animation: hand-bob 900ms steps(1) infinite; }
+.reply:active .reply-text { position: relative; top: 1px; }
+.reply:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+.reply-yes { letter-spacing: .01em; }
+@media (prefers-reduced-motion: reduce) {
+  .reply.is-current .reply-hand, .chat-caret::before { animation: none; }
 }
 
 @media (max-width: 720px) {
@@ -271,19 +267,20 @@ html.chat-open { overflow: hidden; }
 }
 @media (max-width: 520px) {
   .chat {
-    width: calc(100% - 16px);
-    max-height: calc(100svh - 16px);
-    margin: auto auto 8px;
-    border-radius: 22px;
-    transform: translateY(32px);
+    width: calc(100% - 20px);
+    max-height: calc(100svh - 20px);
+    margin: auto auto 12px;
+    box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--ink), 4px 4px 0 var(--pop-shadow);
+    transform: translateY(24px);
   }
   .chat[open] { transform: none; }
-  @starting-style { .chat[open] { transform: translateY(32px); } }
-  .chat-header { padding: 12px 10px 12px 16px; }
-  .chat-log { min-height: 132px; padding: 20px 14px 14px; }
-  .chat-replies { padding: 4px 14px 16px; }
-  .bubble, .reply { max-width: 90%; }
-  .reply { font-size: 13px; }
+  @starting-style { .chat[open] { transform: translateY(24px); } }
+  .chat-header { gap: 12px; padding: 14px 12px 12px 16px; }
+  .chat-timer { margin-inline: 16px; }
+  .chat-log { min-height: 96px; padding: 16px 16px 4px; }
+  .chat-line { font-size: 13.5px; }
+  .chat-replies { margin-inline: 16px; padding-bottom: 12px; }
+  .reply { gap: 6px; font-size: 13.5px; }
 }
 @media (max-width: 360px) {
   .cover { padding-inline: 28px; }
@@ -294,9 +291,10 @@ html.chat-open { overflow: hidden; }
 /* Short landscape screens: a wider, tighter window so the whole conversation fits. */
 @media (max-height: 520px) and (min-width: 521px) {
   .chat { --chat-top: 10px; width: min(600px, calc(100% - 32px)); }
-  .chat-header { padding-block: 9px; }
-  .chat-log { min-height: 0; padding-block: 14px 10px; }
-  .chat-replies { padding-bottom: 14px; }
+  .chat-header { padding-block: 10px 8px; }
+  .chat-log { min-height: 0; padding-block: 10px 4px; }
+  .chat-replies { margin-top: 6px; padding-block: 6px 8px; }
+  .reply { min-height: 40px; padding-block: 8px; }
 }
 @media (max-height: 560px) and (min-width: 721px) {
   .detour-main { padding-block: 24px 56px; }

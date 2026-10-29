@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2025/04/13/mtcs-in-alphaproof-is-rl-a-viable
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2024/07/Join-the-dots-Collage.jpeg"
 excerpt: "I was thinking, specifically in language/or the symbol systems, if we want to achieve superhuman intelligence, we actually only need two stages. 1) let the machine understand the language to communicate (and this is already achieved). 2) let it self-play with one of itself or multiple of itself against the ground truth. and that’s it. and to make the convergence faster, it would be good to make sure that it’s also capable do the following in the middle of the process (in a very abstract way): the system could abstractly transfer its current knowledge to the subsequent generation, metaphorically \"dying\" to allow the new generation an accelerated learning process. The new generation’s ability should be lower bounded by the previous generation. Typically, during the early lifecycle, explorative behaviors dominate, whereas towards the end, exploration should decrease to near zero."
+quotes: ["LLMs can exhibit high intelligence without conscious awareness of sentences.","Humans invented intersubjective concepts like countries, religions, and motherlands to bring people a sense of belonging and purpose.","The wind may blow away a leaf, but it cannot blow away a butterfly."]
 ---
 
 context: A podcast about the AlphaProof

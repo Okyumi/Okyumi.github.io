@@ -125,7 +125,12 @@
       }
       const card = cards[Math.max(0, Math.min(cards.length - 1, index))];
       $('.card-link', card).focus({preventScroll: true});
-      card.scrollIntoView({block: 'center', behavior: moving() ? 'smooth' : 'auto'});
+      // Centred, or for an entry taller than the screen, its top a little way down: either way with room above
+      // it for the line from the post (say windows, below).
+      const top = card.getBoundingClientRect().top + window.scrollY;
+      const room = 132;
+      const spare = window.innerHeight - card.offsetHeight;
+      window.scrollTo({top: top - (spare >= 2 * room ? spare / 2 : room), behavior: moving() ? 'smooth' : 'auto'});
     };
     bind(['j'], () => step(1));
     bind(['k'], () => step(-1));
@@ -134,14 +139,15 @@
   }
 
   /* Say windows. Pointing at a word (travel, read, write, played on Personal; the research field on Research),
-     a book on Reading or a cover on Games opens a small game window above it that types a few lines about it,
-     with a pixel arrow pointing down at it. Mouse, trackpad and keyboard focus; on touch, a tap on a book, a
-     cover or a word that isn't a link. The window is decoration: everything in it is on the page or in the
-     word's description. */
+     a book on Reading, a cover on Games or a post on Writing opens a small game window above it that types a few
+     lines about it, with a pixel arrow pointing down at it. Mouse, trackpad and keyboard focus; on touch, a tap on
+     a book, a cover or a word that isn't a link. The window is decoration: everything in it is on the page, in
+     the word's description or in the post. */
   const words = $$('[data-say]');
   const shelves = $('.book-shelves');
   const covers = $$('.game-tile');
-  if (words.length || shelves || covers.length) {
+  const postList = $('.post-list');
+  if (words.length || shelves || covers.length || postList) {
     const say = document.createElement('div');
     say.className = 'say';
     say.hidden = true;
@@ -151,6 +157,7 @@
     const box = $('.say-box', say);
     let current = null;
     let hideTimer = 0;
+    let waiting = 0;
 
     // Lines typed one after another; the rest of each line is laid out from the start (see typeInto).
     const typeLines = (lines, perTick, tick) => {
@@ -204,7 +211,25 @@
       range.selectNodeContents(el);
       return range.getClientRects()[0]?.width || el.offsetWidth;
     };
+    // A post: the window sits just above the entry, lined up with its title. It never covers the entry itself:
+    // with no room above it on screen (an entry at the top of the screen, or one being read further down), it
+    // stays away (false).
+    const placeOverPost = card => {
+      const at = spot(card);
+      const y = at.y - box.offsetHeight - 2;
+      if (y < window.scrollY + 10) return false;
+      const titleX = spot($('.card-title', card)).x;
+      const left = window.scrollX + 12;
+      const right = window.scrollX + document.documentElement.clientWidth - 12;
+      const x = Math.max(left, Math.min(titleX - 17, right - box.offsetWidth));
+      say.classList.remove('is-below');
+      say.style.setProperty('--box-x', `${x}px`);
+      say.style.setProperty('--box-y', `${y}px`);
+      say.style.setProperty('--arrow-x', `${Math.min(titleX + 26, x + box.offsetWidth - 24)}px`);
+      say.style.setProperty('--arrow-y', `${y + box.offsetHeight + 3}px`);
+    };
     const place = target => {
+      if (target.classList.contains('post-card')) return placeOverPost(target);
       const at = spot(target);
       let center = at.x + at.width / 2;
       if (target.classList.contains('book')) {
@@ -263,7 +288,14 @@
       }
       return lines;
     };
+    // A post says one of its lines, and the next one each time you come back to it (counted in show()).
+    const turns = new WeakMap();
+    const quoteFor = card => {
+      const quotes = JSON.parse(card.dataset.quotes);
+      return `“${quotes[(turns.get(card) || 0) % quotes.length]}”`;
+    };
     const linesFor = target => {
+      if (target.classList.contains('post-card')) return {kind: 'quote', lines: [{text: quoteFor(target), cls: 'say-quote'}], perTick: 2, tick: 16};
       if (target.classList.contains('book')) return {kind: 'book', lines: bookLines(target), perTick: 3, tick: 16};
       if (target.classList.contains('game-tile')) {
         return {kind: 'game', lines: [{text: target.dataset.name, cls: 'say-title'}, {text: target.dataset.meta, cls: 'say-meta'}], perTick: 2, tick: 16};
@@ -281,13 +313,15 @@
       say.dataset.kind = kind;
       say.hidden = false;
       typeLines(lines, perTick, tick); // every line is laid out in full from the first frame, so it can be placed now
-      place(target);
+      if (place(target) === false) { hideNow(); return; }
+      if (kind === 'quote') turns.set(target, (turns.get(target) || 0) + 1);
       box.style.animation = 'none';
       void box.offsetWidth;
       box.style.animation = '';
     };
     const hideNow = () => {
       window.clearTimeout(hideTimer);
+      window.clearTimeout(waiting);
       window.clearTimeout(typing.get(box));
       say.hidden = true;
       current?.classList.remove('is-said');
@@ -334,6 +368,51 @@
       });
       host.addEventListener('focusout', event => { if (targetIn(event.target) === current) hide(); });
     }
+    // Posts: the window waits for the pointer to settle on an entry, so scrolling past or crossing the list
+    // doesn't flash one up on every post. Once one is up, the next comes up quickly. A click goes to the post.
+    if (postList) {
+      const postIn = el => el instanceof Element ? el.closest('.post-card[data-quotes]') : null;
+      const keyFocused = card => !!card.querySelector(':focus-visible');
+      postList.addEventListener('pointerover', event => {
+        const card = postIn(event.target);
+        if (!card || event.pointerType === 'touch') return;
+        if (card === current && !say.hidden) { window.clearTimeout(hideTimer); return; }
+        window.clearTimeout(waiting);
+        waiting = window.setTimeout(() => show(card), say.hidden ? 260 : 90);
+      });
+      postList.addEventListener('pointerout', event => {
+        const card = postIn(event.target);
+        if (!card || event.pointerType === 'touch' || card.contains(event.relatedTarget)) return;
+        window.clearTimeout(waiting);
+        if (card === current && !keyFocused(card)) hide();
+      });
+      postList.addEventListener('focusin', event => {
+        const card = postIn(event.target);
+        if (card && event.target.matches(':focus-visible')) { window.clearTimeout(waiting); show(card); }
+      });
+      postList.addEventListener('focusout', event => { if (postIn(event.target) === current) hide(); });
+      postList.addEventListener('click', event => { if (postIn(event.target)) hideNow(); });
+      // When a scroll comes to rest (j / k glide to the next post), the window goes back over its post, steps
+      // away if there is no room for it any more, or comes up for the post under the pointer or the keyboard.
+      const canHover = window.matchMedia('(hover: hover)');
+      const wanted = () => {
+        const focused = postIn(document.activeElement);
+        if (focused && keyFocused(focused)) return focused;
+        return canHover.matches ? postList.querySelector('.post-card[data-quotes]:hover') : null;
+      };
+      let settle = 0;
+      window.addEventListener('scroll', () => {
+        window.clearTimeout(settle);
+        settle = window.setTimeout(() => {
+          if (current && !say.hidden) {
+            if (current.classList.contains('post-card') && place(current) === false) hideNow();
+            return;
+          }
+          const card = wanted();
+          if (card) show(card);
+        }, 120);
+      }, {passive: true});
+    }
     // A tap anywhere else closes a window opened by a tap.
     document.addEventListener('pointerdown', event => {
       if (current && event.pointerType === 'touch' && !current.contains(event.target)) hideNow();
@@ -341,7 +420,7 @@
     $('#book-search')?.addEventListener('input', hideNow);
     for (const radio of $$('.theme-chips input')) radio.addEventListener('change', hideNow);
     window.addEventListener('keydown', event => { if (event.key === 'Escape' && current) hideNow(); });
-    window.addEventListener('resize', () => { if (current) place(current); });
+    window.addEventListener('resize', () => { if (current && place(current) === false) hideNow(); });
     window.addEventListener('pagehide', hideNow);
   }
 

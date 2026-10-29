@@ -40,29 +40,28 @@
     </main>
   </div>
 
-  <dialog class="chat" id="personal-chat" tabindex="-1" aria-labelledby="chat-name" aria-describedby="chat-log">
+  <dialog class="chat" id="personal-chat" tabindex="-1" autofocus aria-labelledby="chat-name" aria-describedby="chat-log">
     <header class="chat-header">
-      <span class="chat-avatar" aria-hidden="true"><svg viewBox="0 0 36 36" width="36" height="36" focusable="false"><path d="M6.00 24.83 L6.60 24.74 L7.20 24.61 L7.80 24.42 L8.40 24.16 L9.00 23.81 L9.60 23.35 L10.20 22.76 L10.80 22.03 L11.40 21.15 L12.00 20.13 L12.60 18.97 L13.20 17.70 L13.80 16.36 L14.40 15.00 L15.00 13.68 L15.60 12.47 L16.20 11.44 L16.80 10.66 L17.40 10.17 L18.00 10.00 L18.60 10.17 L19.20 10.66 L19.80 11.44 L20.40 12.47 L21.00 13.68 L21.60 15.00 L22.20 16.36 L22.80 17.70 L23.40 18.97 L24.00 20.13 L24.60 21.15 L25.20 22.03 L25.80 22.76 L26.40 23.35 L27.00 23.81 L27.60 24.16 L28.20 24.42 L28.80 24.61 L29.40 24.74 L30.00 24.83 L30 25 L6 25 Z" fill="currentColor" opacity=".14"/><path d="M6.00 24.83 L6.60 24.74 L7.20 24.61 L7.80 24.42 L8.40 24.16 L9.00 23.81 L9.60 23.35 L10.20 22.76 L10.80 22.03 L11.40 21.15 L12.00 20.13 L12.60 18.97 L13.20 17.70 L13.80 16.36 L14.40 15.00 L15.00 13.68 L15.60 12.47 L16.20 11.44 L16.80 10.66 L17.40 10.17 L18.00 10.00 L18.60 10.17 L19.20 10.66 L19.80 11.44 L20.40 12.47 L21.00 13.68 L21.60 15.00 L22.20 16.36 L22.80 17.70 L23.40 18.97 L24.00 20.13 L24.60 21.15 L25.20 22.03 L25.80 22.76 L26.40 23.35 L27.00 23.81 L27.60 24.16 L28.20 24.42 L28.80 24.61 L29.40 24.74 L30.00 24.83" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 9.6 V25" stroke="currentColor" stroke-width="1" stroke-dasharray="1.5 2" opacity=".55"/></svg></span>
+      <span class="chat-portrait" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 11" width="38" height="22" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="8" y="0" width="3" height="1" fill="#284ed1"/><rect x="7" y="1" width="1" height="1" fill="#284ed1"/><rect x="8" y="1" width="3" height="1" fill="#8ea4ef"/><rect x="11" y="1" width="1" height="1" fill="#284ed1"/><rect x="7" y="2" width="1" height="1" fill="#284ed1"/><rect x="8" y="2" width="1" height="1" fill="#8ea4ef"/><rect x="9" y="2" width="1" height="1" fill="#ffffff"/><rect x="10" y="2" width="1" height="1" fill="#8ea4ef"/><rect x="11" y="2" width="1" height="1" fill="#284ed1"/><rect x="6" y="3" width="1" height="1" fill="#284ed1"/><rect x="7" y="3" width="5" height="1" fill="#8ea4ef"/><rect x="12" y="3" width="1" height="1" fill="#284ed1"/><rect x="6" y="4" width="1" height="1" fill="#284ed1"/><rect x="7" y="4" width="2" height="1" fill="#8ea4ef"/><rect x="9" y="4" width="1" height="1" fill="#ffffff"/><rect x="10" y="4" width="2" height="1" fill="#8ea4ef"/><rect x="12" y="4" width="1" height="1" fill="#284ed1"/><rect x="5" y="5" width="1" height="1" fill="#284ed1"/><rect x="6" y="5" width="7" height="1" fill="#8ea4ef"/><rect x="13" y="5" width="1" height="1" fill="#284ed1"/><rect x="4" y="6" width="1" height="1" fill="#284ed1"/><rect x="5" y="6" width="4" height="1" fill="#8ea4ef"/><rect x="9" y="6" width="1" height="1" fill="#ffffff"/><rect x="10" y="6" width="4" height="1" fill="#8ea4ef"/><rect x="14" y="6" width="1" height="1" fill="#284ed1"/><rect x="4" y="7" width="1" height="1" fill="#284ed1"/><rect x="5" y="7" width="9" height="1" fill="#8ea4ef"/><rect x="14" y="7" width="1" height="1" fill="#284ed1"/><rect x="2" y="8" width="2" height="1" fill="#284ed1"/><rect x="4" y="8" width="5" height="1" fill="#8ea4ef"/><rect x="9" y="8" width="1" height="1" fill="#ffffff"/><rect x="10" y="8" width="5" height="1" fill="#8ea4ef"/><rect x="15" y="8" width="2" height="1" fill="#284ed1"/><rect x="0" y="9" width="2" height="1" fill="#284ed1"/><rect x="2" y="9" width="15" height="1" fill="#8ea4ef"/><rect x="17" y="9" width="2" height="1" fill="#284ed1"/><rect x="0" y="10" width="19" height="1" fill="#20201e"/></svg></span>
       <div class="chat-who">
         <p class="chat-name" id="chat-name">Yumi’s posterior</p>
         <p class="chat-status" aria-hidden="true">updated just now</p>
       </div>
-      <button class="game-button is-small is-square chat-close" type="button" data-icon="close" aria-label="Close" title="Close (Esc)" autofocus><span class="icon" aria-hidden="true"></span></button>
+      <button class="game-button is-small is-square chat-close" type="button" data-icon="close" aria-label="Close" title="Close (Esc)"><span class="icon" aria-hidden="true"></span></button>
     </header>
-    <div class="chat-timer" aria-hidden="true"><span></span></div>
+    <div class="chat-timer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="chat-log" id="chat-log" role="log">
-      <p class="bubble" data-message="1">Ahh, ok, you got me there.</p>
-      <p class="bubble" data-message="2">Are you sure you want to visit Yumi’s Personal? You have <b class="countdown"><span class="count">10</span> <span class="unit">seconds</span></b> to decide.</p>
-      <p class="bubble" data-message="bonus" hidden>Fine, <b class="countdown"><span class="bonus-count">5</span> bonus <span class="bonus-unit">seconds</span></b>, as a treat.</p>
-      <p class="bubble" data-message="final" hidden>Time’s up. Your silence is now strong evidence for Research. Taking you there…</p>
-      <p class="bubble" data-message="again-1" hidden>Wow, it’s you again.</p>
-      <p class="bubble" data-message="again-2" hidden>I guess you really tried to get into Yumi’s Personal.</p>
-      <p class="bubble" data-message="again-3" hidden>Okay, I’ll give you a free pass.</p>
-      <p class="typing" aria-hidden="true" hidden><span></span><span></span><span></span></p>
+      <p class="chat-line" data-message="1">Ahh, ok, you got me there.</p>
+      <p class="chat-line" data-message="2">Are you sure you want to visit Yumi’s Personal? You have <b class="countdown"><span class="count">10</span> <span class="unit">seconds</span></b> to decide.</p>
+      <p class="chat-line" data-message="bonus" hidden>Fine, <b class="countdown"><span class="bonus-count">5</span> bonus <span class="bonus-unit">seconds</span></b>, as a treat.</p>
+      <p class="chat-line" data-message="final" hidden>Time’s up. Your silence is now strong evidence for Research. Taking you there…</p>
+      <p class="chat-line" data-message="again-1" hidden>Wow, it’s you again.</p>
+      <p class="chat-line" data-message="again-2" hidden>I guess you really tried to get into Yumi’s Personal.</p>
+      <p class="chat-line" data-message="again-3" hidden>Okay, I’ll give you a free pass.</p>
     </div>
     <nav class="chat-replies" aria-label="Your reply">
-      <a class="reply reply-yes" href="../">Yes, I AM SURE</a>
-      <a class="reply reply-no" href="../../research/" data-bonus-text="No, I just want to check on this PhD applicant full of potential, who I’d absolutely love to work with">No, I just want to check on a potential PhD applicant</a>
+      <a class="reply reply-yes" href="../"><span class="reply-hand" aria-hidden="true"></span><span class="reply-text">Yes, I AM SURE</span></a>
+      <a class="reply reply-no" href="../../research/" data-bonus-text="No, I just want to check on this PhD applicant full of potential, who I’d absolutely love to work with"><span class="reply-hand" aria-hidden="true"></span><span class="reply-text">No, I just want to check on a potential PhD applicant</span></a>
     </nav>
   </dialog>
   <script src="../../assets/entrance.js" defer></script>

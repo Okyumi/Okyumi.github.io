@@ -4,6 +4,8 @@
 // First time: 10 seconds to decide. At zero: "Fine, 5 bonus seconds, as a treat.", and the No reply gets
 // its longer wording. At zero again, the silence counts as evidence and the visitor is taken to Research.
 // Closing the window or answering stops everything.
+// It plays like a game dialogue: each line types out with a caret, the clock is a row of ten cells, and the two
+// answers are a menu with the pointing hand (↑ / ↓ move it, Enter picks; in the bonus round it slides to No).
 // Second time (same tab): "Wow, it's you again." No question this time, just a free pass straight to
 // Personal; from then on every Personal link skips the detour (site.js). The state lives in window.name:
 // this tab only, never stored on the device or sent anywhere.
@@ -29,12 +31,18 @@
   const [first, second, bonus, final] = ['1', '2', 'bonus', 'final'].map(name => $(`[data-message="${name}"]`));
   const again = ['again-1', 'again-2', 'again-3'].map(name => $(`[data-message="${name}"]`));
   const messages = [first, second, bonus, final, ...again];
-  const typing = $('.typing');
+  const log = $('.chat-log');
   const status = $('.chat-status');
-  const bar = $('.chat-timer span');
+  const cells = [...chat.querySelectorAll('.chat-timer i')];
+  const replies = $('.chat-replies');
   const yes = $('.reply-yes');
   const no = $('.reply-no');
-  const noText = {first: no.textContent, bonus: no.dataset.bonusText || no.textContent};
+  const options = [yes, no];
+  const noLabel = no.querySelector('.reply-text');
+  const noText = {first: noLabel.textContent, bonus: no.dataset.bonusText || noLabel.textContent};
+  const caret = document.createElement('span');
+  caret.className = 'chat-caret';
+  caret.setAttribute('aria-hidden', 'true');
   const counters = {
     first: {count: $('.count'), unit: $('.unit'), duration: 10_000},
     bonus: {count: $('.bonus-count'), unit: $('.bonus-unit'), duration: 5_000}
@@ -52,27 +60,107 @@
   let destination = '';
   let pressedOutside = false;
 
+  let job = null;         // the line being typed
+  let selected = 0;       // the answer the hand points at
+
   const later = (ms, fn) => steps.push(window.setTimeout(fn, reducedMotion.matches ? 0 : ms));
   const stopClock = () => { window.cancelAnimationFrame(frame); frame = 0; };
+
+  // A line types out two letters at a time. All of it is laid out from the start (the rest is transparent),
+  // so nothing reflows; the log is marked busy meanwhile, so screen readers read each line once, whole.
+  const settle = () => {
+    if (!job) return;
+    for (const part of job) { part.node.data = part.full; part.rest.remove(); }
+    job = null;
+    log.removeAttribute('aria-busy');
+  };
+  const typeOut = (line, done) => {
+    settle();
+    line.hidden = false;
+    if (reducedMotion.matches) { caret.remove(); done(); return; }
+    const walker = document.createTreeWalker(line, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) nodes.push(node);
+    const parts = nodes.map(node => {
+      const rest = document.createElement('span');
+      rest.className = 'type-rest';
+      node.after(rest);
+      return {node, rest, full: node.data};
+    });
+    job = parts;
+    log.setAttribute('aria-busy', 'true');
+    const total = parts.reduce((n, part) => n + part.full.length, 0);
+    let shown = 0;
+    const step = () => {
+      let left = shown;
+      let placed = false;
+      for (const part of parts) {
+        const k = Math.max(0, Math.min(part.full.length, left));
+        left -= part.full.length;
+        part.node.data = part.full.slice(0, k);
+        part.rest.textContent = part.full.slice(k);
+        if (!placed && k < part.full.length) { part.rest.before(caret); placed = true; }
+      }
+      if (shown >= total) {
+        settle();
+        line.append(caret);
+        done();
+        return;
+      }
+      shown += 2;
+      steps.push(window.setTimeout(step, 24));
+    };
+    step();
+  };
+  // Lines one after another, with a short pause between them.
+  const sayInTurn = (lines, done) => {
+    const [line, ...rest] = lines;
+    typeOut(line, () => (rest.length ? later(340, () => sayInTurn(rest, done)) : done()));
+  };
+
   const stopAll = () => {
     steps.forEach(window.clearTimeout);
     steps = [];
+    settle();
     window.clearTimeout(redirect);
     redirect = 0;
     redirectWaiting = false;
     stopClock();
   };
   const setTyping = on => {
-    typing.hidden = !on;
+    if (!on) caret.remove();
     status.textContent = on ? 'typing…' : 'updated just now';
   };
 
+  // The menu of answers.
+  const select = (index, focus = false) => {
+    selected = (index + options.length) % options.length;
+    options.forEach((option, i) => option.classList.toggle('is-current', i === selected));
+    if (focus) options[selected].focus();
+  };
+  options.forEach((option, i) => {
+    option.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') select(i); });
+    option.addEventListener('focus', () => select(i));
+  });
+  chat.addEventListener('keydown', event => {
+    if (!chat.classList.contains('is-ready') || event.altKey || event.metaKey || event.ctrlKey) return;
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      select(selected + (event.key === 'ArrowDown' ? 1 : -1), true);
+    } else if (event.key === 'Enter' && event.target === chat) {
+      event.preventDefault();
+      options[selected].click();
+    }
+  });
+
+  // Only what changed is written, so the count is announced once a second at most.
   const render = () => {
-    const {count, unit, duration} = counters[round];
+    const {count, unit} = counters[round];
     const seconds = Math.ceil(remaining / 1000);
-    count.textContent = String(seconds);
-    unit.textContent = seconds === 1 ? 'second' : 'seconds';
-    bar.style.transform = `scaleX(${remaining / duration})`;
+    if (count.textContent !== String(seconds)) count.textContent = String(seconds);
+    const word = seconds === 1 ? 'second' : 'seconds';
+    if (unit.textContent !== word) unit.textContent = word;
+    cells.forEach((cell, i) => cell.classList.toggle('is-on', i < seconds));
   };
   const tick = now => {
     remaining = Math.max(0, remaining - (now - last));
@@ -92,18 +180,21 @@
     frame = window.requestAnimationFrame(tick);
   };
 
-  // Out of time once: five more seconds, as a treat, and a longer No.
+  // Out of time once: five more seconds, as a treat, and a longer No, which the hand slides to (unless you are
+  // already pointing at or focused on an answer).
   const bonusRound = () => {
     setTyping(true);
-    later(900, () => {
-      setTyping(false);
+    later(600, () => {
       round = 'bonus';
       remaining = counters.bonus.duration;
       render();
-      bonus.hidden = false;
-      no.textContent = noText.bonus;
+      noLabel.textContent = noText.bonus;
       chat.classList.add('is-bonus', 'is-late');
-      startClock();
+      if (!replies.matches(':hover') && !options.includes(document.activeElement)) select(1);
+      typeOut(bonus, () => {
+        setTyping(false);
+        startClock();
+      });
     });
   };
 
@@ -121,19 +212,20 @@
   const timeUp = () => {
     round = 'over';
     setTyping(true);
-    later(900, () => {
-      setTyping(false);
-      final.hidden = false;
+    later(600, () => typeOut(final, () => {
       status.textContent = 'redirecting…';
       go(no.href);
-    });
+    }));
   };
 
   const show = () => {
     messages.forEach(message => { message.hidden = true; });
     chat.classList.remove('is-ready', 'is-late', 'is-bonus', 'is-again');
+    select(0);
     setTyping(true);
     chat.showModal();
+    // The window itself takes the focus (not the close button), so Enter picks the answer the hand points at.
+    chat.focus({preventScroll: true});
     document.documentElement.classList.add('chat-open');
   };
   // First time through: the question, with the clock.
@@ -143,34 +235,27 @@
     remaining = counters.first.duration;
     counters.bonus.count.textContent = '5';
     counters.bonus.unit.textContent = 'seconds';
-    no.textContent = noText.first;
+    noLabel.textContent = noText.first;
     render();
     show();
-    later(650, () => { first.hidden = false; });
-    later(1450, () => {
+    later(420, () => sayInTurn([first, second], () => {
       setTyping(false);
-      second.hidden = false;
       chat.classList.add('is-ready');
       startClock();
-    });
+    }));
   };
   // Second time: no question, no clock, just the free pass.
   const openAgain = () => {
     stopAll();
     round = 'again';
-    bar.style.transform = 'scaleX(0)';
     show();
     chat.classList.add('is-again');
-    later(650, () => { again[0].hidden = false; });
-    later(1650, () => { again[1].hidden = false; });
-    later(2750, () => {
-      setTyping(false);
-      again[2].hidden = false;
+    later(420, () => sayInTurn(again, () => {
       remember(FREE);
       syncTrigger();
       status.textContent = 'redirecting…';
       go(trigger.href);
-    });
+    }));
   };
 
   const syncTrigger = () => {

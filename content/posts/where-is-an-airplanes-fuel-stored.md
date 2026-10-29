@@ -4,6 +4,7 @@ date: "2025-08-02"
 source: "https://omoriyumi.com/blog/2025/08/02/where-is-an-airplanes-fuel-stored-crash-course-on-airbus-a380/"
 featured: true
 excerpt: "The reason fuel is stored inside the wings can largely be divided into two main points.\n\n\nThe first reason is simply convenience. The fuel tanks are located near the engines, and when the engines draw fuel, it can be delivered in a very short pipeline. For example, if the fuel tanks were placed far away, the fuel would have to be sent through long pipes, and if the pipes broke or connections loosened, all of the fuel could leak out instantly. If that happened, operating the aircraft would become extremely difficult."
+quotes: ["Why can an airplane, a massive machine weighing hundreds of tons and made of metal, fly in the sky?","If you look at the engine from the front, you’ll notice a difference: the Trent 900 rotates clockwise, while the GP7000 rotates counterclockwise.","“Monocoque” is a French word that means “egg shell.”"]
 cover: "https://omoriyumi.com/wp-content/uploads/2025/08/The-Airbus-A380-is-a-wide-body-aircraft-and-is-the%E2%80%A6.jpeg"
 ---
 

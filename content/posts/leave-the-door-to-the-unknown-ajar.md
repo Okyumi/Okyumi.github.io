@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2025/04/03/leave-the-door-to-the-unknown-aja
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/04/image.png"
 excerpt: "In 1934, Karl Popper proposed that every scientific theory must be falsifiable. Since then, falsifiability has become a central criterion in modern scientific thought. However, from a Bayesian point of view, falsification is itself a probabilistic event. This implies that truth is not a fixed, absolute entity, but rather a distribution of beliefs that are continuously updated as new evidence is introduced."
+quotes: ["For human beings, reason isn’t a tool to eliminate bias entirely (good luck with that), but rather a way to treat bias as an adjustable parameter.","Stay open to the unfamiliar. Invite the unknown in for tea. And do it consistently.","Progress doesn’t come from locking the door on uncertainty. It comes from leaving it just slightly ajar."]
 ---
 
 At the heart of Bayesian inference lies a deceptively simple idea: we update our beliefs—our

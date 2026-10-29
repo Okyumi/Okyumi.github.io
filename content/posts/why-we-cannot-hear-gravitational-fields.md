@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2023/10/03/why-we-cannot-hear-gravitational-
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/03/dynamics_gravity-002-2744487906.png"
 excerpt: "What if we could hear gravitational fields? Would Earth's pull translate into a hum, a low murmur, or chaotic static? What if randomness itself was heard as music? If time could be smelled, what would tomorrow taste like? What would the past feel like, beyond memory? The very fact that we struggle to conceptualize these experiences is proof of the constraints imposed by our physiology."
+quotes: ["Our perception is an astonishingly small keyhole through which we experience an unfathomably vast world.","If we could perceive a wider spectrum of light, would we ever see darkness? Would the night sky, in a symphony of cosmic radiation, glow brighter than daylight?","In a sense, every scientific breakthrough is like growing a new pair of eyes, new ears, new skin—granting us access to worlds we were never meant to see."]
 ---
 
 Oct 3, 2023

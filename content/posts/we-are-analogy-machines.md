@@ -5,6 +5,7 @@ source: "https://omoriyumi.com/blog/2025/05/01/2429/"
 featured: true
 cover: "https://omoriyumi.com/wp-content/uploads/2025/05/IMG_6218.jpg"
 excerpt: "Consider a hypothetical chimpanzee A capable of arithmetic up to multiplication versus one (B) limited to simple addition: though we might label the former (A) “exceptional”, perhaps “scientist in chimpanzee”, this incremental advancement doesn’t represent a qualitative leap in intelligence. Similarly, while scientists may specialize in pushing knowledge boundaries through rigorous training, their cognitive architecture remains bounded by the same genetic constraints as all humans.\n\n\nI would say my critique here ties to a broader perspective articulated in Nick Bostrom’s Superintelligence: human intelligence occupies a narrow band on the spectrum of possible cognitive capacities. If artificial intelligence reaches human-level general intelligence, it could rapidly surpass our cognitive limits, entering the vastly larger domain of superintelligence."
+quotes: ["we’re not logic engines, we’re analogy machines.","Humans might grow attached to AI, even fall in love with it, not because the machine reciprocates emotion, but because we project meaning onto it.","What makes people stand out is usually the contrast, like the ones who seem tough but are actually soft, or the ones who look fragile but are tougher than they seem."]
 ---
 
 Geofferry Hinton in his talk at the university of Toronto says:
