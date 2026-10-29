@@ -79,7 +79,8 @@ for (const [name, sprite] of Object.entries(icons)) await write(`assets/icon-${n
 const menuHand = toSVG(hand);
 
 /* Shared page parts. */
-// JetBrains Mono everywhere, Source Serif 4 for the articles (blog posts), Fraunces for the post titles on the writing page.
+// JetBrains Mono everywhere, Source Serif 4 for the text of the articles (blog posts), Fraunces for post titles
+// (in the writing list and at the top of each article).
 // Cabinet Grotesk is used once, for the punchline on the Bayesian detour; only that page contacts Fontshare.
 const googleFonts = {
   mono: 'family=JetBrains+Mono:wght@400;500;600;700',
@@ -114,7 +115,7 @@ ${fontLinks(fonts)}
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="${base}assets/site.js"></script>${math ? '\n' + mathHead : ''}${extra ? '\n' + extra : ''}
 </head>`;
-const articleFonts = ['mono', 'text'];
+const articleFonts = ['mono', 'text', 'title'];
 // Links in running text are bold blue words that pop out when you point at them (.pop-link in site.css).
 // Long ones stay inline so they can wrap, and lift instead of tilting.
 // Short words tilt and grow; longer names tilt less (is-mid); long ones stay inline and only lift (is-long).

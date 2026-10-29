@@ -1,7 +1,7 @@
 /* Yumi Omori: styles shared by every page.
    White paper, ink text, and one blue for anything you can press.
    JetBrains Mono everywhere except the articles, which are set in Source Serif 4.
-   Post titles on the writing page are set in Fraunces.
+   Post titles, in the writing list and at the top of each article, are set in Fraunces.
    The cover and the Bayesian detour add entrance.css on top of this file. */
 :root {
   color-scheme: light;
@@ -649,8 +649,9 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
 .article-header h1 {
   max-width: 100%;
   margin: 0;
-  font: 600 clamp(26px, 2.6vw, 30px)/1.25 var(--font-text);
-  letter-spacing: -.005em;
+  font: 600 clamp(26px, 2.6vw, 30px)/1.25 var(--font-title);
+  font-variation-settings: 'opsz' 40, 'SOFT' 50;
+  letter-spacing: -.01em;
   overflow-wrap: break-word;
   text-wrap: balance;
 }
