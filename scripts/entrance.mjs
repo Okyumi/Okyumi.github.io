@@ -84,7 +84,7 @@ ${fontLinks(detour ? ['mono', 'display'] : ['mono'], '  ')}${detour ? `
         <p class="chat-name" id="chat-name">Yumi’s posterior</p>
         <p class="chat-status" aria-hidden="true">updated just now</p>
       </div>
-      <button class="chat-close" type="button" aria-label="Close" title="Close (Esc)" autofocus><span aria-hidden="true">×</span></button>
+      <button class="game-button is-small is-square chat-close" type="button" data-icon="close" aria-label="Close" title="Close (Esc)" autofocus><span class="icon" aria-hidden="true"></span></button>
     </header>
     <div class="chat-timer" aria-hidden="true"><span></span></div>
     <div class="chat-log" id="chat-log" role="log">

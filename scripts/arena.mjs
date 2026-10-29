@@ -21,26 +21,27 @@ const primer = [
   `<p>To keep exploring, it acts <span class="no-break">${m('\\varepsilon')}-greedily</span>: a random action with probability ${m('\\varepsilon')}, otherwise the action with the highest ${m('Q_\\theta')}, and ${m('\\varepsilon')} shrinks as it learns.</p>`
 ].join('\n');
 const choice = (answer, label) => `<button type="button" class="learn-choice" data-answer="${answer}" aria-pressed="false" aria-controls="learn-${answer}"><span class="menu-hand" aria-hidden="true"></span>${label}</button>`;
-const toggle = (id, label) => `<button type="button" class="game-toggle" aria-expanded="false" aria-controls="${id}"><span class="toggle-arrow" aria-hidden="true"></span>${label}</button>`;
+const toggle = (id, label) => `<button type="button" class="game-button is-small game-toggle" data-icon="down" aria-expanded="false" aria-controls="${id}"><span class="icon" aria-hidden="true"></span>${label}</button>`;
+const button = (action, icon, label, extra = '') => `<button type="button" class="game-button" data-action="${action}" data-icon="${icon}"${extra}><span class="icon" aria-hidden="true"></span><span class="label">${label}</span></button>`;
 
 // Hidden without JavaScript (the game needs it). The top row is the visitor's game; dino.js adds one row
 // per DQN attempt to the list underneath, in order.
 export const arenaHTML = `<section class="arena" id="dino-arena" aria-labelledby="arena-heading">
-<div class="arena-top">
-<h2 class="arena-heading" id="arena-heading">Dino arena</h2>
+<h2 class="sr-only" id="arena-heading">Dino arena</h2>
+<div class="arena-bar">
+<div class="arena-buttons">
+${button('train', 'play', 'Start training')}
+${button('speed', 'fast', 'Fast-forward 3×', ' aria-pressed="true"')}
+${button('again', 'play', 'Train again', ' hidden')}
+</div>
 <p class="arena-status" data-hud aria-hidden="true"></p>
 </div>
-<div class="arena-bar">
-<p class="arena-keys">${keysHint}</p>
-<div class="arena-buttons">
-<button type="button" class="arena-button" data-action="train">Start training</button>
-<button type="button" class="arena-button" data-action="speed" aria-pressed="true">Fast-forward 3×</button>
-<button type="button" class="arena-button" data-action="again" hidden>Train again</button>
-</div>
-</div>
 <div class="arena-more">
+<div class="arena-toggles">
 ${toggle('score-box', 'Score box')}
 ${toggle('how-it-learns', 'How it learns?')}
+</div>
+<p class="arena-keys">${keysHint}</p>
 </div>
 <div class="game-window score-box" id="score-box" hidden>
 <ol class="score-list" data-score-list aria-label="DQN attempts"></ol>

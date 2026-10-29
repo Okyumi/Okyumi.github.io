@@ -489,7 +489,9 @@
   const syncButtons = () => {
     const done = phase === 'solved';
     ui.train.hidden = done;
-    ui.train.textContent = phase === 'idle' ? 'Start training' : userPaused ? 'Resume training' : 'Pause training';
+    const running = phase !== 'idle' && !userPaused;
+    ui.train.querySelector('.label').textContent = phase === 'idle' ? 'Start training' : userPaused ? 'Resume training' : 'Pause training';
+    ui.train.dataset.icon = running ? 'pause' : 'play';
     ui.speed.hidden = done;
     ui.speed.setAttribute('aria-pressed', String(fastForward));
     ui.again.hidden = !done;

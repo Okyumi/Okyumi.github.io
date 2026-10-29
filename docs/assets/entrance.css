@@ -181,22 +181,7 @@ html.chat-open { overflow: hidden; }
 }
 .chat-name { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.35; }
 .chat-status { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.35; }
-.chat-close {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--muted);
-  font-size: 24px;
-  line-height: 1;
-  transition: background var(--interactive), color var(--interactive), transform var(--interactive);
-}
-.chat-close:hover { background: var(--bubble); color: var(--ink); }
-.chat-close:active { transform: scale(.94); }
+.chat-close { flex: none; }
 .chat-timer { height: 2px; background: var(--rule); }
 .chat-timer span { display: block; height: 100%; background: var(--blue); transform-origin: left; }
 .chat-log {

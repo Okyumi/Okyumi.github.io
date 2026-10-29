@@ -59,6 +59,64 @@ export const pointDown = [
   '.....o.....'
 ];
 
+// Icons on the game buttons. Used as CSS masks, so they take the button's text colour.
+export const icons = {
+  play: [
+    'o...',
+    'oo..',
+    'ooo.',
+    'oooo',
+    'ooo.',
+    'oo..',
+    'o...'
+  ],
+  pause: [
+    'oo..oo',
+    'oo..oo',
+    'oo..oo',
+    'oo..oo',
+    'oo..oo',
+    'oo..oo',
+    'oo..oo'
+  ],
+  fast: [
+    'o...o...',
+    'oo..oo..',
+    'ooo.ooo.',
+    'oooooooo',
+    'ooo.ooo.',
+    'oo..oo..',
+    'o...o...'
+  ],
+  close: [
+    'oo...oo',
+    'ooo.ooo',
+    '.ooooo.',
+    '..ooo..',
+    '.ooooo.',
+    'ooo.ooo',
+    'oo...oo'
+  ],
+  down: [
+    'ooooooo',
+    '.ooooo.',
+    '..ooo..',
+    '...o...'
+  ],
+  // The star on a post you have read, like a cleared level.
+  star: [
+    '....o....',
+    '...ooo...',
+    '...ooo...',
+    'ooooooooo',
+    '.ooooooo.',
+    '..ooooo..',
+    '..ooooo..',
+    '.ooo.ooo.',
+    '.oo...oo.'
+  ]
+};
+
 const rows = sprite => sprite.map(row => row.padEnd(Math.max(...sprite.map(r => r.length)), '.'));
 const size = sprite => ({width: Math.max(...sprite.map(r => r.length)), height: sprite.length});
 

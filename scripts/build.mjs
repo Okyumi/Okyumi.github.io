@@ -5,7 +5,7 @@ import {marked} from './vendor/marked.mjs';
 import {readingList, bookCategories} from './reading-list.mjs';
 import {writeEntrance} from './entrance.mjs';
 import {arenaHTML} from './arena.mjs';
-import {arrow, hand, pointDown, toPNG, toSVG} from './pixel-art.mjs';
+import {arrow, hand, icons, pointDown, toPNG, toSVG} from './pixel-art.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'docs');
@@ -75,6 +75,7 @@ await write('assets/cursor.png', toPNG(arrow, 2));
 await write('assets/cursor@2x.png', toPNG(arrow, 4));
 await write('assets/pixel-hand.svg', toSVG(hand));
 await write('assets/pixel-down.svg', toSVG(pointDown));
+for (const [name, sprite] of Object.entries(icons)) await write(`assets/icon-${name}.svg`, toSVG(sprite));
 const menuHand = toSVG(hand);
 
 /* Shared page parts. */
@@ -146,6 +147,11 @@ ${p.authors ? `<p class="paper-authors">${esc(p.authors)}</p>` : ''}
 ${p.venue ? `<p>${esc(p.venue)}</p>` : ''}
 ${p.url ? `<p class="paper-links"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a></p>` : ''}
 </div></li>`).join('\n');
+// The research field pops like the words on Personal, and its window says what most of the work is about.
+const field = 'Deep Reinforcement Learning';
+const fieldSay = 'In most of my past work, I focused on sparse-reward settings.';
+const fieldIntro = esc(site.introduction).replace(`${field}.`, `<span class="nowrap"><button type="button" class="pop-link is-mid is-phrase" data-say="${esc(fieldSay)}" aria-describedby="say-field">${field}</button>.</span>`);
+const fieldSayHTML = fieldIntro.includes('data-say') ? `<div hidden><span id="say-field">${esc(fieldSay)}</span></div>` : '';
 const arenaHead = `<script defer src="../assets/dino-core.js"></script>
 <script defer src="../assets/dino.js"></script>`;
 await write('research/index.html', head({title: 'Research · Yumi Omori', description: site.introduction, base: '../', canonical: '/research/', extra: arenaHead}) + `
@@ -154,7 +160,7 @@ await write('research/index.html', head({title: 'Research · Yumi Omori', descri
 ${header('research', '../', true)}
 <main id="main">
 <div class="research-hero">
-<div>${pageTitle('Research')}<p class="lede">${esc(site.title)} ${esc(site.introduction)} ${esc(site.note)}</p>
+<div>${pageTitle('Research')}<p class="lede">${esc(site.title)} ${fieldIntro} ${esc(site.note)}</p>${fieldSayHTML}
 <h2 class="works-heading" id="works-heading">Here are my works:${papers.length ? '' : '<span class="works-caret" aria-hidden="true"></span>'}</h2></div>
 <img class="profile" src="${esc(site.photo)}" alt="Yumi Omori" width="148" height="148" decoding="async">
 </div>
@@ -174,10 +180,17 @@ const asset = (p, base) => /^https?:\/\//.test(p) ? esc(p) : base + esc(p);
 // Each entry is one big link (the title's link stretches over the card). Excerpts are shown in full.
 const excerptHTML = p => (p.excerpt || '').split(/\n\s*\n/).map(part => part.trim()).filter(Boolean)
   .map(part => `<p class="excerpt">${esc(part)}</p>`).join('\n');
+// A post you have read gets a blue pixel star after its title, like a cleared level. The star is there on every
+// card and only takes a colour on :visited (the browser's own history; nothing is stored), so it is kept with
+// the last word to never wrap alone.
+const starred = title => {
+  const at = title.trimEnd().lastIndexOf(' ');
+  return `${esc(title.slice(0, at + 1))}<span class="nowrap">${esc(title.slice(at + 1))}<span class="card-star" aria-hidden="true"></span></span>`;
+};
 const cards = m => posts.filter(p => p.date.startsWith(m)).map(p => `<article class="post-card${p.cover ? ' has-cover' : ''}"><span class="pointer-hand" aria-hidden="true"></span>
 ${p.cover ? `<span class="card-cover"><img class="post-cover" src="${asset(p.cover, '../')}" alt="" loading="lazy" decoding="async" width="144" height="144"></span>` : ''}
 <div class="card-copy"><p class="card-date"><time datetime="${p.date}">${date(p.date, {month: 'long', day: 'numeric', year: 'numeric'})}</time></p>
-<h2 class="card-title"${vt('post-' + p.slug)}><a class="card-link" href="../${href(p)}">${esc(p.title)}</a></h2>
+<h2 class="card-title"${vt('post-' + p.slug)}><a class="card-link" href="../${href(p)}">${starred(p.title)}</a></h2>
 ${excerptHTML(p)}</div>
 </article>`).join('\n');
 const timeline = months.map((m, i) => `<a class="timeline-link" href="#${monthId(m)}"${i === 0 ? ' aria-current="true"' : ''}><span>${date(m + '-01', {month: 'short', year: 'numeric'})}</span><span class="tick" aria-hidden="true"></span></a>`).join('\n');
@@ -192,7 +205,7 @@ const sayings = {
 };
 const pop = (path, word) => `<a class="pop-link" href="${path}"${sayings[word] ? ` data-say="${esc(sayings[word])}" aria-describedby="say-${word}"` : ''}>${word}</a>`;
 const sayHTML = Object.entries(sayings).filter(([, line]) => line).map(([word, line]) => `<span id="say-${word}">${esc(line)}</span>`).join('');
-await write('personal/index.html', head({title: 'Personal · Yumi Omori', description: 'I travel, read, write a lot. I also played a lot of video games. Below is a subset of the things I write.', base: '../', canonical: '/personal/'}) + `
+await write('personal/index.html', head({title: 'Personal · Yumi Omori', description: 'I travel, read, write a lot. I also played a lot of video games. Below is a subset of the things I write.', base: '../', canonical: '/personal/', fonts: ['mono', 'text']}) + `
 <body class="personal-page"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 ${header('personal', '../')}
@@ -278,7 +291,7 @@ ${bookCategories.map(category => {
   return entries.length ? `<section class="book-category" data-category="${category.id}" aria-labelledby="category-${year}-${category.id}"><div class="category-heading"><h3 id="category-${year}-${category.id}">${esc(category.label)}</h3>${category.description ? `<span class="category-description">${esc(category.description)}</span>` : ''}<span class="category-count">${entries.length}</span></div><ul class="book-list">${entries.map(bookHTML).join('')}</ul></section>` : '';
 }).join('')}
 </section>`;
-const chip = (value, label, count, checked = false) => `<label class="chip"><input type="radio" name="theme" value="${value}"${checked ? ' checked' : ''}><span>${esc(label)}</span><span class="chip-count">${count}</span></label>`;
+const chip = (value, label, count, checked = false) => `<label class="game-button is-small chip"><input type="radio" name="theme" value="${value}"${checked ? ' checked' : ''}><span>${esc(label)}</span><span class="chip-count">${count}</span></label>`;
 await write('read/index.html', head({title: 'Reading · Yumi Omori', description: 'My reading list, organized by year.', base: '../', canonical: '/read/'}) + `
 <body class="library-page"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell library-shell">
@@ -294,7 +307,7 @@ ${pageTitle('Reading list')}
 <div class="archive-layout library-layout">
 <div class="book-shelves">
 ${bookYears.map(shelfHTML).join('\n')}
-<div class="books-empty" hidden><p>No books match your search.</p><button type="button" class="reset-search pop-link">Show all books</button></div>
+<div class="books-empty" hidden><p>No books match your search.</p><button type="button" class="game-button is-small reset-search">Show all books</button></div>
 </div>
 <nav class="timeline book-years" aria-label="Browse books by year">
 ${bookYears.map(({year}, i) => `<a class="timeline-link" href="#year-${year}"${i === 0 ? ' aria-current="true"' : ''}><span>${year ?? 'Undated'}</span><span class="tick" aria-hidden="true"></span></a>`).join('\n')}
@@ -312,7 +325,36 @@ const games = [
   {title: 'The Legend of Zelda: Tears of the Kingdom', note: '100% completion'},
   {title: 'I Wanna Be The Guy', note: `I built ${iwannaGym}, an RL environment with exact I Wanna fangame physics: 5.8M steps/s C core, PufferLib-ready, goal-conditioned (HER/GCRL) support, 10 levels.`}
 ];
-await write('games/index.html', head({title: 'Games · Yumi Omori', description: 'Final Fantasy XIV, The Legend of Zelda: Tears of the Kingdom and I Wanna Be The Guy.', base: '../', canonical: '/games/'}) + `
+// The shelf: more games I play, in the order of my list. Each cover opens a small window with the name, the
+// studio and the year (site.js); the cover's alt text and a hidden line say the same.
+const gameShelf = [
+  ['final-fantasy-xvi', 'Final Fantasy XVI', 'Square Enix', 2023],
+  ['like-a-dragon-gaiden', 'Like a Dragon Gaiden: The Man Who Erased His Name', 'Ryu Ga Gotoku Studio', 2023],
+  ['elden-ring', 'Elden Ring', 'FromSoftware', 2022],
+  ['the-last-of-us-remastered', 'The Last of Us Remastered', 'Naughty Dog', 2014],
+  ['sekiro', 'Sekiro: Shadows Die Twice', 'FromSoftware', 2019],
+  ['resident-evil-4', 'Resident Evil 4', 'Capcom', 2023],
+  ['dark-souls-iii', 'Dark Souls III', 'FromSoftware', 2016],
+  ['death-stranding', 'Death Stranding Director’s Cut', 'Kojima Productions', 2021],
+  ['the-witcher-3', 'The Witcher 3: Wild Hunt', 'CD Projekt Red', 2015],
+  ['final-fantasy-xiv', 'Final Fantasy XIV', 'Square Enix', 2013],
+  ['ori', 'Ori and the Blind Forest', 'Moon Studios', 2015],
+  ['the-last-of-us-part-ii', 'The Last of Us Part II', 'Naughty Dog', 2020],
+  ['baldurs-gate-3', 'Baldur’s Gate 3', 'Larian Studios', 2023],
+  ['skyrim', 'The Elder Scrolls V: Skyrim', 'Bethesda Game Studios', 2011],
+  ['cyberpunk-2077', 'Cyberpunk 2077', 'CD Projekt Red', 2020],
+  ['breath-of-the-wild', 'The Legend of Zelda: Breath of the Wild', 'Nintendo', 2017],
+  ['red-dead-redemption-2', 'Red Dead Redemption 2', 'Rockstar Games', 2018],
+  ['dying-light-2', 'Dying Light 2 Stay Human', 'Techland', 2022],
+  ['world-of-warcraft-midnight', 'World of Warcraft: Midnight', 'Blizzard Entertainment', 2026],
+  ['terraria', 'Terraria', 'Re-Logic', 2011],
+  ['cytus-ii', 'Cytus II', 'Rayark', 2018],
+  ['animal-crossing', 'Animal Crossing: New Horizons', 'Nintendo', 2020],
+  ['persona-5-royal', 'Persona 5 Royal', 'Atlus', 2019],
+  ['spider-man', 'Marvel’s Spider-Man Remastered', 'Insomniac Games', 2020]
+];
+const gameShelfHTML = gameShelf.map(([slug, name, studio, year]) => `<li class="game-tile" tabindex="0" data-name="${esc(name)}" data-meta="${esc(studio)} · ${year}"><img src="../assets/games/${slug}.webp" alt="${esc(name)}" width="300" height="450" loading="lazy" decoding="async"><span class="sr-only">${esc(studio)}, ${year}</span></li>`).join('\n');
+await write('games/index.html', head({title: 'Games · Yumi Omori', description: 'Final Fantasy XIV, Tears of the Kingdom, I Wanna Be The Guy and more games I play.', base: '../', canonical: '/games/'}) + `
 <body class="games-body"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 ${header('personal', '../')}
@@ -321,6 +363,9 @@ ${personalTabs('games', '../')}
 ${pageTitle('Games')}
 <ul class="game-list">
 ${games.map(g => `<li class="game"><h2 class="game-title">${esc(g.title)}</h2><p class="game-note">${g.note}</p></li>`).join('\n')}
+</ul>
+<ul class="game-shelf" aria-label="More games I play">
+${gameShelfHTML}
 </ul>
 </main>
 ${footer}
@@ -336,7 +381,7 @@ await write('404.html', head({title: 'Page not found · Yumi Omori', description
 <p class="gameover-copy">You fell off the map. This page doesn’t exist, or it moved.</p>
 <p class="continue" aria-hidden="true" hidden>Continue? <span class="continue-count">9</span></p>
 <div class="gameover-actions">
-<a class="respawn" href="/">Respawn <kbd aria-hidden="true">Enter</kbd></a>
+<a class="game-button is-primary respawn" href="/">Respawn <kbd aria-hidden="true">Enter</kbd></a>
 <nav class="gameover-paths" aria-label="Other paths"><a href="/research/">Research</a><a href="/personal/">Personal</a></nav>
 </div>
 </main>

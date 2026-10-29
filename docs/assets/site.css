@@ -74,19 +74,22 @@ img { max-width: 100%; }
   font-size: 13px;
 }
 .skip-link:focus { top: 12px; }
+/* Keycaps, the same kind of key as the game buttons. A key on the page goes down while you hold it (site.js). */
 kbd {
   display: inline-grid;
   place-items: center;
   min-width: 22px;
-  height: 22px;
+  height: 21px;
   padding: 0 6px;
-  border: 1px solid var(--rule-strong);
-  border-bottom-width: 2px;
-  border-radius: 6px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
   background: var(--paper);
   color: var(--ink);
-  font: 500 11px/1 var(--font-mono);
+  font: 600 11px/1 var(--font-mono);
+  box-shadow: 0 2px 0 var(--ink);
+  vertical-align: 1px;
 }
+kbd.is-down { background: var(--blue-wash); color: var(--blue); box-shadow: none; transform: translateY(2px); }
 
 /* The pixel arrow from the cover is the mouse cursor on every page, over links, buttons and the game too
    (mouse and trackpad only). */
@@ -199,15 +202,20 @@ kbd {
 @media (hover: hover) and (pointer: fine) {
   .pop-link:hover { transform: translateY(-.07em) rotate(-3deg) scale(1.16); text-shadow: var(--pop-lift) var(--pop-lift) 0 var(--pop-shadow); }
   .pop-link.is-mid:hover { transform: translateY(-.06em) rotate(-1.5deg) scale(1.07); }
+  .pop-link.is-phrase:hover { transform: translateY(-.08em) rotate(-1deg) scale(1.025); }
   .pop-link.is-long:hover { top: -.09em; text-shadow: var(--pop-lift) var(--pop-lift) 0 var(--pop-shadow); }
 }
 .pop-link:focus-visible, .pop-link.is-said { transform: translateY(-.07em) rotate(-3deg) scale(1.16); text-shadow: var(--pop-lift) var(--pop-lift) 0 var(--pop-shadow); }
 .pop-link:focus-visible { outline-offset: 5px; }
-.pop-link.is-mid:focus-visible { transform: translateY(-.06em) rotate(-1.5deg) scale(1.07); }
-.pop-link.is-long:focus-visible { top: -.09em; transform: none; text-shadow: var(--pop-lift) var(--pop-lift) 0 var(--pop-shadow); }
+.pop-link.is-mid:focus-visible, .pop-link.is-mid.is-said { transform: translateY(-.06em) rotate(-1.5deg) scale(1.07); }
+/* A whole phrase that pops (the research field) tilts and grows less, so it stays clear of its neighbours. */
+.pop-link.is-phrase:focus-visible, .pop-link.is-phrase.is-said { transform: translateY(-.08em) rotate(-1deg) scale(1.025); }
+.pop-link.is-long:focus-visible, .pop-link.is-long.is-said { top: -.09em; transform: none; text-shadow: var(--pop-lift) var(--pop-lift) 0 var(--pop-shadow); }
 .pop-link:active { transform: translateY(-.02em) rotate(-1deg) scale(1.06); transition-duration: 90ms; }
 .pop-link.is-long:active { top: 0; transform: none; }
+.pop-link.is-phrase:active { transform: translateY(-.02em) rotate(-.5deg) scale(1.01); }
 button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-weight: 700; color: var(--blue); }
+.nowrap { white-space: nowrap; }
 
 /* Typing (site.js): the part of the line still to come is laid out but not shown. */
 .type-rest { color: transparent; }
@@ -230,8 +238,100 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   pointer-events: none;
 }
 
-/* Personal: pointing at travel, read, write or played shows a line about it in a small window above the
-   word, typed out, with a pixel arrow pointing down at the word (site.js). Mouse, trackpad and keyboard. */
+/* Game buttons: every button on the site. A white key in a 2px ink frame, standing on a hard ink edge.
+   Pointing at one lifts it and lights it up; pressing pushes it down onto its edge, in two pixel steps.
+   A button that is switched on (Fast-forward, an open window, the chosen theme) stays pushed in, in blue.
+   Icons are pixel sprites (scripts/pixel-art.mjs) used as masks, so they take the text colour. */
+.game-button {
+  --edge: 4px;
+  --face: var(--paper);
+  --frame: var(--ink);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 40px;
+  margin: 0 0 var(--edge);
+  padding: 0 16px 0 14px;
+  border: 2px solid var(--frame);
+  border-radius: 4px;
+  background: var(--face);
+  color: var(--ink);
+  font: 600 12.5px/1.2 var(--font-mono);
+  letter-spacing: .01em;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: inset 0 -3px 0 rgb(32 32 30 / 8%), 0 var(--edge) 0 var(--frame);
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 100ms steps(2, end), box-shadow 100ms steps(2, end), background-color 80ms linear, color 80ms linear;
+}
+.game-button .icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+[data-icon='play'] { --icon: url(icon-play.svg); }
+[data-icon='pause'] { --icon: url(icon-pause.svg); }
+[data-icon='fast'] { --icon: url(icon-fast.svg); }
+[data-icon='close'] { --icon: url(icon-close.svg); }
+[data-icon='down'] { --icon: url(icon-down.svg); }
+[data-icon='play'] .icon { width: 8px; }
+[data-icon='pause'] .icon { width: 12px; }
+[data-icon='fast'] .icon { width: 16px; }
+[data-icon='down'] .icon { width: 14px; height: 8px; transform: rotate(-90deg); transition: transform 100ms steps(2, end); }
+[data-icon='down'][aria-expanded='true'] .icon { transform: none; }
+@media (hover: hover) and (pointer: fine) {
+  .game-button:hover {
+    --face: var(--blue-wash);
+    color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: inset 0 -3px 0 rgb(40 78 209 / 10%), 0 calc(var(--edge) + 2px) 0 var(--frame);
+  }
+  .game-button:hover .icon { animation: icon-nudge 520ms steps(1) infinite; }
+}
+@keyframes icon-nudge { 50% { translate: 1px 0; } }
+.game-button:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+/* Switched on: pushed halfway in, blue. */
+.game-button[aria-pressed='true'], .game-button[aria-expanded='true'], .game-button:has(input:checked) {
+  --face: var(--blue);
+  --frame: var(--ink);
+  color: var(--paper);
+  transform: translateY(calc(var(--edge) / 2));
+  box-shadow: inset 0 3px 0 rgb(0 0 0 / 16%), 0 calc(var(--edge) / 2) 0 var(--frame);
+}
+@media (hover: hover) and (pointer: fine) {
+  .game-button[aria-pressed='true']:hover, .game-button[aria-expanded='true']:hover, .game-button:has(input:checked):hover {
+    --face: var(--blue-dark);
+    color: var(--paper);
+    transform: translateY(calc(var(--edge) / 2 - 1px));
+    box-shadow: inset 0 3px 0 rgb(0 0 0 / 16%), 0 calc(var(--edge) / 2 + 1px) 0 var(--frame);
+  }
+  .game-button[aria-pressed='true']:hover .icon, .game-button[aria-expanded='true']:hover .icon { animation: none; }
+}
+.game-button.is-primary { --face: var(--blue); color: var(--paper); }
+@media (hover: hover) and (pointer: fine) {
+  .game-button.is-primary:hover { --face: var(--blue-dark); color: var(--paper); box-shadow: inset 0 -3px 0 rgb(0 0 0 / 14%), 0 calc(var(--edge) + 2px) 0 var(--frame); }
+}
+.game-button.is-small { --edge: 3px; gap: 8px; min-height: 34px; padding: 0 12px 0 11px; font-size: 12px; }
+.game-button.is-square { width: 38px; min-height: 38px; padding: 0; }
+.game-button.is-square .icon { width: 12px; height: 12px; }
+.game-button kbd { transition: none; }
+/* Pressed: all the way down onto the edge (last, so it wins over every hover). */
+.game-button:active, .game-button:active:hover, .game-button:has(input:checked):active, .game-button.is-down {
+  transform: translateY(var(--edge));
+  box-shadow: inset 0 3px 0 rgb(32 32 30 / 12%), 0 0 0 var(--frame);
+  transition-duration: 0s;
+}
+.game-button:active .icon, .game-button.is-down .icon { animation: none; }
+
+/* Say windows: pointing at a word (Personal, Research), a book or a game cover shows a small game window
+   above it, typed out, with a pixel arrow pointing down at it (site.js). Mouse, trackpad and keyboard
+   focus; on touch, a tap. */
 .personal-intro { position: relative; }
 .say { position: absolute; inset: 0 auto auto 0; z-index: 8; pointer-events: none; }
 .say[hidden] { display: none !important; }
@@ -240,7 +340,7 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   left: var(--box-x, 0);
   top: var(--box-y, 0);
   width: max-content;
-  max-width: min(58ch, calc(100vw - var(--gutter) - 16px));
+  max-width: min(70ch, calc(100vw - var(--gutter) - 16px));
   margin: 0;
   padding: 9px 15px 10px;
   color: var(--ink);
@@ -263,6 +363,18 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
 }
 .say.is-below .say-arrow { transform: rotate(180deg); animation-name: arrow-bob-up; }
 @media (max-width: 480px) { .say-box { padding: 8px 11px 9px; font-size: 12px; } }
+@media (max-width: 480px) {
+  .arena-bar { align-items: stretch; }
+  .arena-buttons { gap: 8px; }
+  .arena-buttons .game-button { flex: 1 1 auto; gap: 8px; padding: 0 9px; font-size: 12px; }
+}
+/* Books and covers: a few lines, the name first. */
+.say[data-kind='book'] .say-box, .say[data-kind='game'] .say-box { max-width: min(46ch, calc(100vw - 24px)); padding: 10px 15px 11px; }
+.say-line { display: block; }
+.say-title { font-weight: 700; }
+.say-sub { color: var(--muted); }
+.say-meta { margin-top: 6px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .08em; line-height: 1.6; text-transform: uppercase; }
+.say-also { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.55; }
 @keyframes say-in { from { opacity: 0; transform: translateY(4px); } }
 @keyframes arrow-bob { 50% { translate: 0 3px; } }
 @keyframes arrow-bob-up { 50% { translate: 0 -3px; } }
@@ -460,27 +572,25 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   border-radius: 22px;
   --hand-top: 45px;
 }
-.post-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: var(--blue-wash);
-  opacity: 0;
-  transform: scale(.985);
-  transition: opacity 200ms var(--ease-out), transform 320ms var(--ease-out);
+/* Pointing at an entry takes its cover off the shelf like a game cartridge: it lifts and tilts, with an ink
+   frame and a light blue shadow, and the title turns blue. */
+.card-cover {
+  display: block;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--bubble);
+  transform-origin: 50% 85%;
+  transition: transform 320ms var(--spring), box-shadow 200ms var(--ease-out);
 }
-.post-card:hover::before, .post-card:focus-within::before { opacity: 1; transform: none; }
-.card-cover { display: block; overflow: hidden; border-radius: 14px; background: var(--bubble); }
+.post-card:hover .card-cover, .post-card:focus-within .card-cover { transform: translateY(-5px) rotate(-2.5deg); box-shadow: 0 0 0 2px var(--ink), 6px 6px 0 2px var(--pop-shadow); }
+.post-card:active .card-cover { transform: translateY(-2px) rotate(-1deg); transition-duration: 90ms; }
 .post-cover {
   display: block;
   width: 144px;
   height: 144px;
   object-fit: cover;
-  transition: transform 520ms var(--ease-out);
 }
-.post-card:hover .post-cover { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) { .post-card:hover .card-cover, .post-card:focus-within .card-cover, .post-card:active .card-cover { transform: none; } }
 .card-copy { min-width: 0; }
 .post-card:not(.has-cover) { grid-template-columns: minmax(0, 1fr); }
 .post-card:not(.has-cover) > * { grid-column: 1 / -1; }
@@ -494,11 +604,24 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
 .card-title {
   max-width: 100%;
   margin: 0 0 8px;
-  font: 600 16px/1.5 var(--font-mono);
+  font: 600 21px/1.3 var(--font-text);
+  letter-spacing: -.005em;
   overflow-wrap: break-word;
   text-wrap: pretty;
 }
 .card-link { color: var(--ink); transition: color var(--interactive); }
+/* The cleared star: paper on paper until the post has been read (only colours can change on :visited). */
+.card-star {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-left: .4em;
+  vertical-align: .05em;
+  background-color: var(--paper);
+  -webkit-mask: url(icon-star.svg) center / contain no-repeat;
+  mask: url(icon-star.svg) center / contain no-repeat;
+}
+.card-link:visited .card-star { background-color: var(--blue); }
 .card-link::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: 22px; }
 .post-card:hover .card-link { color: var(--blue); }
 .card-link:focus-visible { outline-offset: 4px; }
@@ -713,15 +836,17 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   align-items: center;
   gap: 12px;
   min-width: 0;
-  min-height: 52px;
-  padding: 0 10px 0 18px;
-  border: 1px solid var(--rule-strong);
-  border-radius: 16px;
+  min-height: 50px;
+  padding: 0 12px 0 18px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
   background: var(--paper);
-  transition: border-color var(--interactive), box-shadow var(--interactive);
+  box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px rgb(32 32 30 / 14%);
+  transition: box-shadow 100ms steps(2, end);
 }
+/* The search field is a game text box: a double frame, and the light blue shadow while you type. */
 .book-search::before { content: '>'; color: var(--blue); font-size: 15px; font-weight: 600; }
-.book-search:focus-within { border-color: var(--blue); box-shadow: 0 0 0 4px var(--blue-wash); }
+.book-search:focus-within { box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--ink), 4px 4px 0 var(--pop-shadow); }
 .book-search input {
   flex: 1;
   min-width: 0;
@@ -737,30 +862,15 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
 .book-search kbd { transition: opacity var(--interactive); }
 .book-search:focus-within kbd { opacity: 0; }
 #book-results { flex: none; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.theme-chips { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; margin: 14px 0 0; padding: 0; border: 0; }
-.chip {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 36px;
-  padding: 0 13px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  color: var(--ink);
-  font-size: 12.5px;
-  line-height: 1;
-  white-space: nowrap;
-  user-select: none;
-  transition: background var(--interactive), border-color var(--interactive), color var(--interactive);
-}
+.theme-chips { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; margin: 16px 0 0; padding: 0; border: 0; }
+/* Theme chips are small game buttons (a radio input over each); the chosen one stays pushed in. */
+.chip { font-weight: 500; }
 .chip input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; }
 .chip-count { color: var(--muted); font-variant-numeric: tabular-nums; }
-.chip:hover { border-color: var(--blue); color: var(--blue); }
-.chip:has(input:checked) { border-color: var(--blue); background: var(--blue); color: var(--paper); }
-.chip:has(input:checked) .chip-count { color: rgb(255 255 255 / 78%); }
-.chip:has(input:focus-visible) { outline: 2px solid var(--blue); outline-offset: 3px; }
-.chip.is-empty:not(:has(input:checked)) { color: var(--muted); border-style: dashed; }
+.game-button:hover .chip-count { color: inherit; opacity: .72; }
+.chip:has(input:checked) .chip-count { color: rgb(255 255 255 / 78%); opacity: 1; }
+.chip:has(input:focus-visible) { outline: 2px solid var(--blue); outline-offset: 4px; }
+.chip.is-empty:not(:has(input:checked)) { --frame: var(--rule-strong); color: var(--muted); border-style: dashed; }
 .library-layout { margin-top: 48px; }
 .book-shelves { min-width: 0; }
 .book-year { scroll-margin-top: 24px; }
@@ -787,6 +897,8 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   margin: 0;
   padding: 0 0 14px 17px;
   break-inside: avoid;
+  transform-origin: 0 40%;
+  transition: transform 180ms var(--ease-out);
 }
 /* Each title is an item slot. */
 .book::before {
@@ -799,20 +911,16 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   border: 1.5px solid var(--rule-strong);
   transition: background var(--interactive), border-color var(--interactive);
 }
-.book:hover::before { border-color: var(--blue); background: var(--blue); }
+/* Pointing at a book (or tapping it) pops it out of the shelf and opens its window (site.js). */
+.book:hover::before, .book.is-said::before { border-color: var(--blue); background: var(--blue); }
+.book.is-said { z-index: 1; transform: translateY(-3px) rotate(-1.2deg) scale(1.035); }
+.book.is-said .book-title { color: var(--blue); text-shadow: 2px 2px 0 var(--pop-shadow); }
+.book.is-said::before { transform: rotate(45deg); transition: transform 160ms steps(2, end), background var(--interactive), border-color var(--interactive); }
+@media (prefers-reduced-motion: reduce) { .book.is-said, .book.is-said::before { transform: none; } }
 .book-title { margin: 0; font-size: 13.5px; line-height: 1.5; overflow-wrap: break-word; }
 .book-translation, .book-author { margin: 2px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; overflow-wrap: break-word; }
 .books-empty { padding: 32px 0 120px; }
-.books-empty p { margin: 0 0 6px; }
-.reset-search {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0;
-  border: 0;
-  background: none;
-  font-size: 13px;
-}
+.books-empty p { margin: 0 0 14px; }
 .library-layout + .books-back { margin-top: 40px; }
 
 /* Games: a plain list. */
@@ -820,15 +928,50 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
 .game { padding: 16px 0 18px; border-bottom: 1px solid var(--rule); }
 .game-title { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; text-wrap: pretty; }
 .game-note { margin: 4px 0 0; color: var(--prose); font-size: 14px; line-height: 1.7; text-wrap: pretty; }
+/* The shelf: covers of more games I play. Pointing at one (or tapping it) takes it off the shelf, with an ink
+   frame and a light blue shadow, and opens its window (site.js). */
+.game-shelf {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 16px 14px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.game-tile {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  background: var(--rule);
+  transform-origin: 50% 85%;
+  transition: transform 320ms var(--spring), box-shadow 200ms var(--ease-out);
+}
+.game-tile img { display: block; width: 100%; height: 100%; border-radius: 4px; object-fit: cover; }
+/* A hairline keeps the light covers off the page. */
+.game-tile::after { content: ''; position: absolute; inset: 0; border-radius: 4px; box-shadow: inset 0 0 0 1px rgb(32 32 30 / .14); pointer-events: none; }
+.game-tile:focus-visible { outline-offset: 5px; }
+.game-tile.is-said, .game-tile:focus-visible { z-index: 1; transform: translateY(-6px) rotate(-2deg) scale(1.05); box-shadow: 0 0 0 2px var(--ink), 6px 6px 0 2px var(--pop-shadow); }
+@media (hover: hover) and (pointer: fine) {
+  .game-tile:hover { z-index: 1; transform: translateY(-6px) rotate(-2deg) scale(1.05); box-shadow: 0 0 0 2px var(--ink), 6px 6px 0 2px var(--pop-shadow); }
+}
+.game-tile:nth-child(even).is-said, .game-tile:nth-child(even):focus-visible { transform: translateY(-6px) rotate(2deg) scale(1.05); }
+@media (hover: hover) and (pointer: fine) { .game-tile:nth-child(even):hover { transform: translateY(-6px) rotate(2deg) scale(1.05); } }
+@media (prefers-reduced-motion: reduce) {
+  .game-tile.is-said, .game-tile:focus-visible, .game-tile:hover, .game-tile:nth-child(even).is-said, .game-tile:nth-child(even):hover, .game-tile:nth-child(even):focus-visible { transform: none; }
+}
+@media (max-width: 900px) { .game-shelf { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .game-shelf { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 12px; margin-top: 40px; } }
+@media (max-width: 480px) { .game-shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* Research: the Dino arena, as wide as the text above it. Your row on top; every DQN attempt
    gets its own row underneath, in order. */
 html:not(.js) .arena { display: none; }
 .arena { max-width: 68ch; margin-top: 64px; scroll-margin-top: 20px; }
-.arena-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 20px; }
-.arena-heading { margin: 0; font: inherit; }
-.arena-status { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; font-variant-numeric: tabular-nums; }
-.arena-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; margin-top: 10px; }
+/* Controls: the training buttons with the HUD line on the right, then the two window toggles with the keys. */
+.arena-bar, .arena-more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
+.arena-more { margin-top: 8px; }
+.arena-buttons, .arena-toggles { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.arena-status { margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.6; font-variant-numeric: tabular-nums; }
 .arena-keys { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
 .arena-keys kbd { margin: 0 2px; }
 .keys-touch { display: none; }
@@ -836,25 +979,6 @@ html:not(.js) .arena { display: none; }
   .keys-desktop { display: none; }
   .keys-touch { display: inline; }
 }
-.arena-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
-.arena-button {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--rule-strong);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 12.5px;
-  line-height: 1.2;
-  white-space: nowrap;
-  transition: border-color var(--interactive), background var(--interactive), color var(--interactive), transform var(--interactive);
-}
-.arena-button:hover { border-color: var(--blue); color: var(--blue); }
-.arena-button:active { transform: scale(.97); }
-.arena-button:focus-visible { outline-offset: 3px; }
-.arena-button[aria-pressed='true'] { border-color: var(--blue); background: var(--blue-wash); color: var(--blue); }
 /* Rows: one world each, with its name and score in the top right corner (the sky is empty there). */
 .arena-board { margin-top: 12px; border-bottom: 1px solid var(--rule); -webkit-user-select: none; user-select: none; }
 .arena-attempts { margin: 0; padding: 0; list-style: none; }
@@ -906,35 +1030,7 @@ html:not(.js) .arena { display: none; }
 .lane-prompt:empty { display: none; }
 .arena-attempts .arena-row { animation: row-in 280ms var(--ease-out); }
 @keyframes row-in { from { opacity: 0; } }
-/* Two toggles under the buttons, each opening a game window: the score box and "How it learns?". */
-.arena-more { display: flex; flex-wrap: wrap; gap: 0 26px; margin-top: 4px; }
-.game-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.4;
-  transition: color var(--interactive);
-}
-.toggle-arrow {
-  flex: none;
-  width: 11px;
-  height: 7px;
-  background: url(pixel-down.svg) center / 11px 7px no-repeat;
-  transform: rotate(-90deg);
-  transition: transform 200ms var(--ease-out), translate 200ms var(--ease-out);
-}
-.game-toggle[aria-expanded='true'] .toggle-arrow { transform: none; }
-.game-toggle:hover { color: var(--blue); }
-.game-toggle:hover .toggle-arrow { translate: 2px 0; }
-.game-toggle[aria-expanded='true']:hover .toggle-arrow { translate: 0 2px; }
-.game-toggle:focus-visible { outline-offset: 3px; }
+/* The two toggles open game windows: the score box and "How it learns?". */
 .score-box, .learn-box { margin: 6px 4px 18px 0; padding: 16px 20px 18px; animation: window-in 220ms var(--ease-out); }
 @keyframes window-in { from { opacity: 0; transform: translateY(-4px); } }
 .score-box + .learn-box { margin-top: 0; }
@@ -1035,21 +1131,8 @@ html:not(.js) .arena { display: none; }
 @keyframes pop-in { from { transform: scale(1.8); opacity: 0; } }
 .gameover-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; }
 .continue[hidden] + .gameover-actions { margin-top: 30px; }
-.respawn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 48px;
-  padding: 0 14px 0 22px;
-  border-radius: 999px;
-  background: var(--blue);
-  color: var(--paper);
-  font-weight: 600;
-  transition: background var(--interactive), transform var(--interactive);
-}
-.respawn kbd { border-color: rgb(255 255 255 / 45%); background: transparent; color: var(--paper); }
-.respawn:hover { background: var(--blue-dark); }
-.respawn:active { transform: scale(.97); }
+.respawn { gap: 12px; min-height: 44px; padding: 0 12px 0 18px; font-size: 13px; }
+.respawn kbd { border-color: var(--paper); background: transparent; color: var(--paper); box-shadow: 0 2px 0 var(--paper); }
 .gameover-paths { display: flex; gap: 22px; color: var(--muted); font-size: 13px; }
 .gameover-paths a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-decoration-color: rgb(32 32 30 / 30%); text-underline-offset: 5px; transition: color var(--interactive); }
 .gameover-paths a:hover { color: var(--blue); text-decoration-color: currentColor; }
@@ -1064,11 +1147,11 @@ html:not(.js) .arena { display: none; }
   margin: clamp(16px, 15vh, 150px) auto auto;
   padding: 0;
   overflow: auto;
-  border: 0;
-  border-radius: 24px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
   background: var(--paper);
   color: var(--ink);
-  box-shadow: var(--window-shadow);
+  box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--ink), 6px 6px 0 var(--pop-shadow);
   opacity: 0;
   transform: translateY(14px) scale(.98);
   transition: opacity 160ms var(--ease-in), transform 160ms var(--ease-in), overlay 160ms allow-discrete, display 160ms allow-discrete;
@@ -1084,47 +1167,15 @@ html:not(.js) .arena { display: none; }
   .window-dialog[open] { opacity: 0; transform: translateY(14px) scale(.98); }
   .window-dialog[open]::backdrop { background: rgb(246 246 243 / 0%); }
 }
-.window-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 12px 6px 22px; }
+.window-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 14px 6px 22px; }
 .window-title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; }
-.window-close {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--muted);
-  font-size: 24px;
-  line-height: 1;
-  transition: background var(--interactive), color var(--interactive);
-}
-.window-close:hover { background: var(--bubble); color: var(--ink); }
 .controls-list { margin: 0; padding: 8px 22px 6px; }
 .controls-row { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: center; gap: 16px; padding: 9px 0; border-top: 1px solid var(--rule); font-size: 13px; line-height: 1.5; }
 .controls-row:first-child { border-top: 0; }
 .controls-row dt { display: flex; flex-wrap: wrap; gap: 5px; }
 .controls-row dd { margin: 0; color: var(--muted); }
 .window-note { margin: 0; padding: 12px 22px 20px; color: var(--muted); font-size: 12px; }
-.controls-hud {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 15;
-  display: none;
-  align-items: center;
-  gap: 8px;
-  min-height: 36px;
-  padding: 0 6px 0 12px;
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  background: rgb(255 255 255 / 92%);
-  color: var(--muted);
-  font-size: 12px;
-  transition: color var(--interactive), border-color var(--interactive);
-}
-.controls-hud:hover { border-color: var(--blue); color: var(--blue); }
+.controls-hud { position: fixed; right: 24px; bottom: 24px; z-index: 15; display: none; }
 @media (hover: hover) and (pointer: fine) and (min-width: 1200px) {
   .controls-hud { display: inline-flex; }
 }
@@ -1202,7 +1253,7 @@ html:not(.js) .arena { display: none; }
   .card-cover { grid-column: 1; grid-row: 1 / span 2; border-radius: 10px; }
   .post-cover { width: 76px; height: 76px; }
   .card-date { grid-column: 2; grid-row: 1; margin-bottom: 4px; }
-  .card-title { grid-column: 2; grid-row: 2; margin-bottom: 0; font-size: 15px; }
+  .card-title { grid-column: 2; grid-row: 2; margin-bottom: 0; font-size: 18px; }
   .card-link::after { border-radius: 18px; }
   .post-card .excerpt { grid-column: 1 / -1; font-size: 14px; line-height: 1.75; }
   .post-card .card-title + .excerpt { margin-top: 12px; }
@@ -1218,7 +1269,7 @@ html:not(.js) .arena { display: none; }
   .travel-section h2 { font-size: 15px; }
   .game-note { font-size: 13.5px; }
   .arena { margin-top: 56px; }
-  .arena-bar { align-items: flex-start; flex-direction: column; }
+  .arena-bar, .arena-more { align-items: flex-start; flex-direction: column; }
   .library-intro { flex-direction: column; gap: 14px; }
   .library-intro .books-back { margin-top: 0; }
   .book-tools { margin-top: 32px; }
@@ -1230,12 +1281,12 @@ html:not(.js) .arena { display: none; }
     flex-wrap: nowrap;
     width: calc(100% + 2 * var(--gutter));
     margin: 12px calc(-1 * var(--gutter)) 0;
-    padding: 2px var(--gutter) 6px;
+    padding: 7px var(--gutter) 8px;
     overflow-x: auto;
     scrollbar-width: none;
   }
   .theme-chips::-webkit-scrollbar { display: none; }
-  .chip { flex: none; min-height: 40px; }
+  .chip { flex: none; min-height: 38px; }
   .library-layout { margin-top: 32px; }
   .book-years { margin-bottom: 22px; }
   .book-year + .book-year { margin-top: 56px; }

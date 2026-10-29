@@ -50,6 +50,21 @@
     || (el.tagName === 'INPUT' && !/^(radio|checkbox|button|submit|reset|range|color|file|image)$/.test(el.type)));
   const scrollsSideways = el => el instanceof HTMLElement && el !== document.body && el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX !== 'visible';
 
+  /* Keycaps on the page go down while you hold their key, like the buttons when you press them. */
+  const capNames = {' ': 'space', ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', Escape: 'esc'};
+  const held = new Map();
+  document.addEventListener('keydown', event => {
+    const id = event.code || event.key;
+    if (!event.key || !id || held.has(id)) return;
+    const name = capNames[event.key] || event.key.toLowerCase();
+    const caps = $$('kbd').filter(cap => cap.textContent.trim().toLowerCase() === name);
+    held.set(id, caps);
+    for (const cap of caps) cap.classList.add('is-down');
+  });
+  const release = id => { for (const cap of held.get(id) || []) cap.classList.remove('is-down'); held.delete(id); };
+  document.addEventListener('keyup', event => release(event.code || event.key));
+  window.addEventListener('blur', () => { for (const code of [...held.keys()]) release(code); });
+
   /* Cover: a title-screen menu. The pixel hand jumps to the word you hover; ↑ / ↓ (or j / k) and Enter work too. */
   const menu = $('.cover-choices');
   if (menu) {
@@ -118,48 +133,158 @@
     describe(['Enter'], 'open the selected entry');
   }
 
-  /* Personal: point at travel, read, write or played and a small window above the word types a line about
-     it, with a pixel arrow pointing down at the word. Mouse, trackpad and keyboard focus; not on touch. */
-  const sayers = $$('[data-say]');
-  const sayHost = sayers[0]?.closest('.personal-intro');
-  if (sayHost) {
+  /* Say windows. Pointing at a word (travel, read, write, played on Personal; the research field on Research),
+     a book on Reading or a cover on Games opens a small game window above it that types a few lines about it,
+     with a pixel arrow pointing down at it. Mouse, trackpad and keyboard focus; on touch, a tap on a book, a
+     cover or a word that isn't a link. The window is decoration: everything in it is on the page or in the
+     word's description. */
+  const words = $$('[data-say]');
+  const shelves = $('.book-shelves');
+  const covers = $$('.game-tile');
+  if (words.length || shelves || covers.length) {
     const say = document.createElement('div');
     say.className = 'say';
     say.hidden = true;
     say.setAttribute('aria-hidden', 'true');
-    say.innerHTML = '<p class="say-box game-window"></p><span class="say-arrow"></span>';
-    sayHost.append(say);
+    say.innerHTML = '<div class="say-box game-window"></div><span class="say-arrow"></span>';
+    body.append(say);
     const box = $('.say-box', say);
     let current = null;
     let hideTimer = 0;
-    // Measured from the layout boxes, not the popped (transformed) word, so the window holds still.
-    const place = link => {
-      const host = sayHost.getBoundingClientRect();
-      const top = link.offsetTop;
-      const center = link.offsetLeft + link.offsetWidth / 2;
-      const right = document.documentElement.clientWidth - host.left - 16; // the window may run past the text column
-      const x = Math.max(0, Math.min(center - 30, right - box.offsetWidth));
-      const above = host.top + top - box.offsetHeight - 18 >= 2; // below only when there is no room on screen
-      const arrowY = above ? top - 15 : top + link.offsetHeight + 1;
+
+    // Lines typed one after another; the rest of each line is laid out from the start (see typeInto).
+    const typeLines = (lines, perTick, tick) => {
+      window.clearTimeout(typing.get(box));
+      const els = lines.map(line => {
+        const el = document.createElement('span');
+        el.className = `say-line${line.cls ? ` ${line.cls}` : ''}`;
+        if (line.lang) el.lang = line.lang;
+        el.textContent = line.text;
+        return el;
+      });
+      box.replaceChildren(...els);
+      if (!moving()) return;
+      const total = lines.reduce((n, line) => n + line.text.length, 0);
+      let i = 0;
+      const step = () => {
+        let left = i;
+        lines.forEach((line, n) => {
+          const shown = Math.max(0, Math.min(line.text.length, left));
+          left -= line.text.length;
+          if (shown === line.text.length) { els[n].textContent = line.text; return; }
+          const done = document.createElement('span');
+          const rest = document.createElement('span');
+          done.textContent = line.text.slice(0, shown);
+          rest.className = 'type-rest';
+          rest.textContent = line.text.slice(shown);
+          els[n].replaceChildren(done, rest);
+        });
+        if (i >= total) return;
+        i += perTick;
+        typing.set(box, window.setTimeout(step, tick));
+      };
+      step();
+    };
+
+    // Where the target sits on the page, from its layout box rather than the popped (transformed) one, so the
+    // window holds still. A word that wraps onto two lines is pointed at on its first line.
+    const spot = el => {
+      const rects = el.getClientRects();
+      if (rects.length > 1) {
+        const r = rects[0];
+        return {x: r.left + window.scrollX, y: r.top + window.scrollY, width: r.width, height: r.height};
+      }
+      let x = 0;
+      let y = 0;
+      for (let node = el; node; node = node.offsetParent) { x += node.offsetLeft; y += node.offsetTop; }
+      return {x, y, width: el.offsetWidth, height: el.offsetHeight};
+    };
+    const firstLineWidth = el => {
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      return range.getClientRects()[0]?.width || el.offsetWidth;
+    };
+    const place = target => {
+      const at = spot(target);
+      let center = at.x + at.width / 2;
+      if (target.classList.contains('book')) {
+        const title = $('.book-title', target);
+        center = at.x + title.offsetLeft + Math.min(firstLineWidth(title), title.offsetWidth) / 2;
+      }
+      const left = window.scrollX + 12;
+      const right = window.scrollX + document.documentElement.clientWidth - 12;
+      const x = Math.max(left, Math.min(center - 30, right - box.offsetWidth));
+      // Covers and books lift when they pop, so the arrow keeps clear of the lifted edge.
+      const lift = target.classList.contains('game-tile') ? 9 : target.classList.contains('book') ? 3 : 0;
+      const above = at.y - lift - window.scrollY - box.offsetHeight - 18 >= 2; // below only when there is no room on screen
+      const arrowY = above ? at.y - lift - 15 : at.y + at.height + lift + 1;
       say.classList.toggle('is-below', !above);
       say.style.setProperty('--arrow-x', `${center}px`);
       say.style.setProperty('--arrow-y', `${arrowY}px`);
       say.style.setProperty('--box-x', `${x}px`);
       say.style.setProperty('--box-y', `${above ? arrowY - 3 - box.offsetHeight : arrowY + 17}px`);
     };
-    const show = link => {
+
+    // What each kind of target says.
+    const language = new Intl.DisplayNames(['en'], {type: 'language'});
+    const nameOf = code => { try { return language.of(code); } catch { return ''; } };
+    const authorsOf = text => text.split(/\s*,\s*(?:and\s+)?|\s+and\s+|\s*[、&;；]\s*/)
+      .map(name => name.replace(/\s*\((?:editor|editors|ed\.)\)$/i, '').replace(/主编$/, '').trim())
+      .filter(name => name && !/^(various|多位作者)/i.test(name) && !/various contributors/i.test(name));
+    let byAuthor = null;
+    const shelfIndex = () => {
+      byAuthor = new Map();
+      for (const book of $$('.book', shelves)) {
+        const author = $('.book-author [lang]', book)?.textContent || '';
+        const title = $('.book-title', book).textContent;
+        for (const name of authorsOf(author)) {
+          if (!byAuthor.has(name)) byAuthor.set(name, []);
+          if (!byAuthor.get(name).includes(title)) byAuthor.get(name).push(title);
+        }
+      }
+    };
+    const bookLines = book => {
+      if (!byAuthor) shelfIndex();
+      const title = $('.book-title', book);
+      const author = $('.book-author', book);
+      const year = $('h2', book.closest('.book-year'))?.textContent;
+      const category = $('h3', book.closest('.book-category'))?.textContent;
+      const lines = [{text: title.textContent, cls: 'say-title', lang: title.lang}];
+      const translation = $('.book-translation', book);
+      if (translation) lines.push({text: translation.textContent, cls: 'say-sub'});
+      if (author) lines.push({text: `by ${author.textContent.trim()}`});
+      // The year is the year the book sits under on the list (not proof of when it was read).
+      lines.push({text: [category, /^\d{4}$/.test(year) ? year : '', title.lang !== 'en' ? nameOf(title.lang) : ''].filter(Boolean).join(' · '), cls: 'say-meta'});
+      const name = authorsOf($('.book-author [lang]', book)?.textContent || '').find(n => (byAuthor.get(n) || []).length > 1);
+      if (name) {
+        const others = byAuthor.get(name).filter(t => t !== title.textContent);
+        const listed = others.slice(0, 3).join(', ') + (others.length > 3 ? ` and ${others.length - 3} more` : '');
+        lines.push({text: `Also by ${name}: ${listed}`, cls: 'say-also'});
+      }
+      return lines;
+    };
+    const linesFor = target => {
+      if (target.classList.contains('book')) return {kind: 'book', lines: bookLines(target), perTick: 3, tick: 16};
+      if (target.classList.contains('game-tile')) {
+        return {kind: 'game', lines: [{text: target.dataset.name, cls: 'say-title'}, {text: target.dataset.meta, cls: 'say-meta'}], perTick: 2, tick: 16};
+      }
+      return {kind: 'word', lines: [{text: target.dataset.say}], perTick: 1, tick: 22};
+    };
+
+    const show = target => {
       window.clearTimeout(hideTimer);
-      if (current === link && !say.hidden) return;
+      if (current === target && !say.hidden) return;
       current?.classList.remove('is-said');
-      current = link;
-      link.classList.add('is-said');
+      current = target;
+      target.classList.add('is-said');
+      const {kind, lines, perTick, tick} = linesFor(target);
+      say.dataset.kind = kind;
       say.hidden = false;
-      box.textContent = link.dataset.say;
-      place(link);
+      typeLines(lines, perTick, tick); // every line is laid out in full from the first frame, so it can be placed now
+      place(target);
       box.style.animation = 'none';
       void box.offsetWidth;
       box.style.animation = '';
-      typeInto(box, link.dataset.say, 22);
     };
     const hideNow = () => {
       window.clearTimeout(hideTimer);
@@ -172,13 +297,49 @@
       window.clearTimeout(hideTimer);
       hideTimer = window.setTimeout(hideNow, 140);
     };
-    for (const link of sayers) {
-      link.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(link); });
-      link.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch' && !link.matches(':focus-visible')) hide(); });
-      link.addEventListener('focus', () => { if (link.matches(':focus-visible')) show(link); });
-      link.addEventListener('blur', hide);
-      link.addEventListener('click', hideNow);
+    const toggle = target => { if (current === target && !say.hidden) hideNow(); else show(target); };
+
+    for (const word of words) {
+      word.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(word); });
+      word.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch' && !word.matches(':focus-visible')) hide(); });
+      word.addEventListener('focus', () => { if (word.matches(':focus-visible')) show(word); });
+      word.addEventListener('blur', hide);
+      // A link goes somewhere, so its window just closes. A word that is only a word keeps its window open under
+      // the mouse, and opens and closes it with a tap or a key.
+      word.addEventListener('click', event => {
+        if (word.tagName === 'A') hideNow();
+        else if (event.pointerType === 'mouse') show(word);
+        else toggle(word);
+      });
     }
+    // Books and covers: one set of listeners for the whole shelf.
+    const hosts = [shelves, covers[0]?.parentElement].filter(Boolean);
+    const targetIn = el => el instanceof Element ? el.closest('.book, .game-tile') : null;
+    for (const host of hosts) {
+      host.addEventListener('pointerover', event => {
+        const target = targetIn(event.target);
+        if (target && event.pointerType !== 'touch') show(target);
+      });
+      host.addEventListener('pointerout', event => {
+        const target = targetIn(event.target);
+        if (target && event.pointerType !== 'touch' && !target.contains(event.relatedTarget) && !target.matches(':focus-visible')) hide();
+      });
+      host.addEventListener('click', event => {
+        const target = targetIn(event.target);
+        if (target && (event.pointerType === 'touch' || event.pointerType === '' || !matchMedia('(hover: hover)').matches)) toggle(target);
+      });
+      host.addEventListener('focusin', event => {
+        const target = targetIn(event.target);
+        if (target && target.matches(':focus-visible')) show(target);
+      });
+      host.addEventListener('focusout', event => { if (targetIn(event.target) === current) hide(); });
+    }
+    // A tap anywhere else closes a window opened by a tap.
+    document.addEventListener('pointerdown', event => {
+      if (current && event.pointerType === 'touch' && !current.contains(event.target)) hideNow();
+    });
+    $('#book-search')?.addEventListener('input', hideNow);
+    for (const radio of $$('.theme-chips input')) radio.addEventListener('change', hideNow);
     window.addEventListener('keydown', event => { if (event.key === 'Escape' && current) hideNow(); });
     window.addEventListener('resize', () => { if (current) place(current); });
     window.addEventListener('pagehide', hideNow);
@@ -364,7 +525,7 @@
     controls.className = 'window-dialog controls-window';
     controls.setAttribute('aria-labelledby', 'controls-title');
     controls.innerHTML = `<header class="window-header"><h2 class="window-title" id="controls-title">Controls</h2>`
-      + `<button class="window-close" type="button" aria-label="Close"><span aria-hidden="true">×</span></button></header>`
+      + `<button class="game-button is-small is-square window-close" type="button" data-icon="close" aria-label="Close"><span class="icon" aria-hidden="true"></span></button></header>`
       + `<dl class="controls-list">${rows.map(row => `<div class="controls-row"><dt>${row.keys.map(key => `<kbd>${key}</kbd>`).join('')}</dt><dd>${row.label}</dd></div>`).join('')}</dl>`
       + `<p class="window-note">Every key is optional. Mouse, touch and Tab work everywhere.</p>`;
     body.append(controls);
@@ -389,7 +550,7 @@
   if (!isEntrance && pageKeys) {
     const hud = document.createElement('button');
     hud.type = 'button';
-    hud.className = 'controls-hud';
+    hud.className = 'game-button is-small controls-hud';
     hud.innerHTML = 'controls <kbd aria-hidden="true">?</kbd>';
     hud.setAttribute('aria-label', 'Keyboard controls');
     hud.addEventListener('click', toggleControls);

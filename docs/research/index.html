@@ -28,27 +28,27 @@
 </header>
 <main id="main">
 <div class="research-hero">
-<div><h1 class="sr-only">Research</h1><p class="lede">Hi, I&#39;m Yumi. I&#39;m doing research in Deep Reinforcement Learning. Reinforcement Learning is fun.</p>
+<div><h1 class="sr-only">Research</h1><p class="lede">Hi, I&#39;m Yumi. I&#39;m doing research in <span class="nowrap"><button type="button" class="pop-link is-mid is-phrase" data-say="In most of my past work, I focused on sparse-reward settings." aria-describedby="say-field">Deep Reinforcement Learning</button>.</span> Reinforcement Learning is fun.</p><div hidden><span id="say-field">In most of my past work, I focused on sparse-reward settings.</span></div>
 <h2 class="works-heading" id="works-heading">Here are my works:<span class="works-caret" aria-hidden="true"></span></h2></div>
 <img class="profile" src="https://avatars.githubusercontent.com/u/118834385?v=4" alt="Yumi Omori" width="148" height="148" decoding="async">
 </div>
 
 <section class="arena" id="dino-arena" aria-labelledby="arena-heading">
-<div class="arena-top">
-<h2 class="arena-heading" id="arena-heading">Dino arena</h2>
+<h2 class="sr-only" id="arena-heading">Dino arena</h2>
+<div class="arena-bar">
+<div class="arena-buttons">
+<button type="button" class="game-button" data-action="train" data-icon="play"><span class="icon" aria-hidden="true"></span><span class="label">Start training</span></button>
+<button type="button" class="game-button" data-action="speed" data-icon="fast" aria-pressed="true"><span class="icon" aria-hidden="true"></span><span class="label">Fast-forward 3×</span></button>
+<button type="button" class="game-button" data-action="again" data-icon="play" hidden><span class="icon" aria-hidden="true"></span><span class="label">Train again</span></button>
+</div>
 <p class="arena-status" data-hud aria-hidden="true"></p>
 </div>
-<div class="arena-bar">
-<p class="arena-keys"><span class="keys-desktop"><kbd>Space</kbd> or <kbd>↑</kbd> jump <span aria-hidden="true">·</span> <kbd>↓</kbd> duck</span><span class="keys-touch">Tap to jump <span aria-hidden="true">·</span> swipe down to duck</span></p>
-<div class="arena-buttons">
-<button type="button" class="arena-button" data-action="train">Start training</button>
-<button type="button" class="arena-button" data-action="speed" aria-pressed="true">Fast-forward 3×</button>
-<button type="button" class="arena-button" data-action="again" hidden>Train again</button>
-</div>
-</div>
 <div class="arena-more">
-<button type="button" class="game-toggle" aria-expanded="false" aria-controls="score-box"><span class="toggle-arrow" aria-hidden="true"></span>Score box</button>
-<button type="button" class="game-toggle" aria-expanded="false" aria-controls="how-it-learns"><span class="toggle-arrow" aria-hidden="true"></span>How it learns?</button>
+<div class="arena-toggles">
+<button type="button" class="game-button is-small game-toggle" data-icon="down" aria-expanded="false" aria-controls="score-box"><span class="icon" aria-hidden="true"></span>Score box</button>
+<button type="button" class="game-button is-small game-toggle" data-icon="down" aria-expanded="false" aria-controls="how-it-learns"><span class="icon" aria-hidden="true"></span>How it learns?</button>
+</div>
+<p class="arena-keys"><span class="keys-desktop"><kbd>Space</kbd> or <kbd>↑</kbd> jump <span aria-hidden="true">·</span> <kbd>↓</kbd> duck</span><span class="keys-touch">Tap to jump <span aria-hidden="true">·</span> swipe down to duck</span></p>
 </div>
 <div class="game-window score-box" id="score-box" hidden>
 <ol class="score-list" data-score-list aria-label="DQN attempts"></ol>
