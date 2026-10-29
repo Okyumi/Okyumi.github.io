@@ -1,4 +1,4 @@
-// Shared behaviour for every page: the Personal visit pass, keyboard controls and a few game touches.
+// Shared behaviour for every page: the Personal visit pass, keyboard controls and a few small game touches.
 // All of it is optional. Every page and link works without JavaScript.
 (() => {
   const body = document.body;
@@ -9,10 +9,10 @@
   const isEntrance = body.classList.contains('cover-page') || body.classList.contains('detour-page');
 
   /* Visit pass. Research-side Personal links (the cover, the research page) go through the Bayesian detour.
-     After "Yes, I AM SURE" they go straight to /personal/ for the rest of the visit. The pass lives in
-     window.name: this tab only, never stored on the device or sent anywhere. */
-  const PASS = 'yumi-personal-yes';
-  const hasPass = () => { try { return window.name === PASS; } catch { return false; } };
+     The second time through the detour hands out a free pass (entrance.js); after that these links go
+     straight to /personal/ for the rest of the visit. The pass lives in window.name: this tab only, never
+     stored on the device or sent anywhere. ('yumi-personal-yes' is the older pass, from before the free pass.) */
+  const hasPass = () => { try { return window.name === 'yumi-personal-free' || window.name === 'yumi-personal-yes'; } catch { return false; } };
   const applyPass = () => {
     if (!hasPass()) return;
     for (const link of $$('a[data-personal-gate]')) link.setAttribute('href', link.dataset.personalDirect);
@@ -76,48 +76,6 @@
     describe(['Enter'], 'select');
   }
 
-  /* Personal: the opening sentence is the menu. Pointing at a verb (or focusing it) lifts it, and the line
-     underneath says what's behind it. With a verb focused, ← / → move to the next one. */
-  const sentence = $('.doors-sentence');
-  if (sentence) {
-    const doors = $$('.door', sentence);
-    const hint = $('.door-hint');
-    const note = $('.door-note');
-    const resting = note.innerHTML;
-    let active = null;
-    let timer = 0;
-    const show = door => {
-      window.clearTimeout(timer);
-      if (door === active) return;
-      active = door;
-      doors.forEach(item => item.classList.toggle('is-active', item === door));
-      hint.classList.toggle('is-peeking', Boolean(door));
-      if (door) note.textContent = door.dataset.note;
-      else note.innerHTML = resting;
-      note.classList.remove('is-new');
-      void note.offsetWidth;
-      note.classList.add('is-new');
-    };
-    // A short grace period, so the line doesn't flicker back while the mouse crosses the commas.
-    const rest = () => {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        if (!doors.includes(document.activeElement)) show(null);
-      }, 450);
-    };
-    doors.forEach((door, i) => {
-      door.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(door); });
-      door.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch') rest(); });
-      door.addEventListener('focus', () => show(door));
-      door.addEventListener('blur', rest);
-      door.addEventListener('keydown', event => {
-        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-        event.preventDefault();
-        doors[(i + (event.key === 'ArrowRight' ? 1 : -1) + doors.length) % doors.length].focus();
-      });
-    });
-  }
-
   /* Personal: step through the entries with j / k; the hand points at the selected one. */
   const cards = $$('.post-card');
   if (cards.length) {
@@ -151,16 +109,6 @@
   if (back) {
     bind(['b'], () => back.click());
     describe(['b'], back.classList.contains('back-to-blog') ? 'back to the blog' : 'back to writing');
-  }
-  // "Level complete": the marker pops once when you reach the end of a post.
-  const level = $('.level-complete');
-  if (level && 'IntersectionObserver' in window) {
-    const seen = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      level.classList.add('is-reached');
-      seen.disconnect();
-    }, {threshold: .6});
-    seen.observe(level);
   }
   const progress = $('.reading-progress');
   const article = $('.article-body');
@@ -198,23 +146,6 @@
     bind(['k'], () => go(-1));
     describe(['j', 'k'], track.classList.contains('book-years') ? 'next / previous year' : 'next / previous waypoint');
   }
-  // Travel: the score counts up on arrival.
-  const counts = $$('[data-count]');
-  if (counts.length && moving()) {
-    const start = performance.now();
-    const duration = 1300;
-    // Hold each number's final width while it counts, so the labels beside it stay still.
-    counts.forEach(el => { el.style.minWidth = `${el.getBoundingClientRect().width}px`; });
-    const tickCounts = now => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - (1 - t) ** 4;
-      counts.forEach(el => { el.textContent = String(Math.round(Number(el.dataset.count) * eased)); });
-      if (t < 1) window.requestAnimationFrame(tickCounts);
-      else counts.forEach(el => { el.style.minWidth = ''; });
-    };
-    window.requestAnimationFrame(tickCounts);
-  }
-
   // Research: the Dino arena's keys work while the game has focus (dino.js handles them).
   if ($('.arena-canvas')) {
     describe(['Space', '↑'], 'jump (click the game first)');

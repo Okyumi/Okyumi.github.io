@@ -1,4 +1,6 @@
-/* Dino arena (research page). You play the top lane; underneath, a Deep Q-Network learns the same game.
+/* Dino arena (research page). The top row is yours. Underneath, a Deep Q-Network learns the same game:
+   every attempt it makes gets its own row, in order, and a row freezes where that attempt crashed.
+   Training stops once an attempt reaches 1,000 points.
    The rules and the learner are in dino-core.js. Training runs in a Web Worker made from that same source
    (or in short slices on the page when workers are unavailable), so the game stays smooth.
    Nothing is stored: every visit trains a new agent. */
@@ -10,13 +12,12 @@
   const $ = selector => root.querySelector(selector);
   const board = $('.arena-board');
   const canvas = $('.arena-canvas');
-  const ctx = canvas.getContext('2d', {alpha: false});
-  const lanes = [$('.lane-player'), $('.lane-agent')];
+  const yourRow = canvas.parentElement;
+  const list = $('[data-attempts]');
   const ui = {
     playerHi: $('[data-player-hi]'), playerScore: $('[data-player-score]'), playerPrompt: $('[data-player-prompt]'),
-    agentAttempt: $('[data-agent-attempt]'), agentBest: $('[data-agent-best]'), agentScore: $('[data-agent-score]'), agentPrompt: $('[data-agent-prompt]'),
-    hud: $('[data-hud]'), status: $('#arena-status'), list: $('[data-attempts]'), empty: $('[data-empty]'), solved: $('[data-solved]'),
-    train: $('[data-action="train"]'), speed: $('[data-action="speed"]'), race: $('[data-action="race"]'), again: $('[data-action="again"]')
+    hud: $('[data-hud]'), status: $('#arena-status'),
+    train: $('[data-action="train"]'), speed: $('[data-action="speed"]'), again: $('[data-action="again"]')
   };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const touchFirst = window.matchMedia('(hover: none), (pointer: coarse)');
@@ -55,40 +56,52 @@
   }
   const INK = '#20201e', BLUE = '#284ed1', PAPER = '#ffffff', PEBBLE = 'rgba(32, 32, 30, 0.34)', RULE = 'rgba(32, 32, 30, 0.12)';
 
-  /* Layout: the world is measured in units and scaled to the board's width, so the rules never change. */
-  const HEAD = 34;   // CSS pixels above each lane for its labels
+
+  /* Layout: the world is measured in units and scaled to the column's width, so the rules never change.
+     Every row (yours and each attempt) is one canvas of the same size. */
   const SKY = 136;   // world units above the ground (the highest jump reaches about 131)
   const BELOW = 18;  // world units under the ground line
-  let view = {width: 600, scale: 1, dpr: 1, lane: 200, units: 600};
+  let view = {width: 0, scale: 1, dpr: 1, height: 0, units: 600};
+  const surface = el => ({el, ctx: el.getContext('2d', {alpha: false})});
+  const you = surface(canvas);
+  const rows = [];   // one per attempt: {li, world: surface, name, score, scene, status}
+  const fit = s => {
+    s.el.width = Math.round(view.width * view.dpr);
+    s.el.height = Math.round(view.height * view.dpr);
+  };
   const layout = () => {
-    const width = board.clientWidth || 600;
+    const width = Math.round(board.clientWidth) || 600;
     const scale = Math.min(1.3, Math.max(0.6, width / 720));
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    const lane = Math.round(HEAD + (SKY + BELOW) * scale);
-    view = {width, scale, dpr, lane, units: width / scale};
-    board.style.setProperty('--lane', lane + 'px');
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(lane * 2 * dpr);
+    const height = Math.round((SKY + BELOW) * scale);
+    if (width === view.width && dpr === view.dpr && height === view.height) return;
+    view = {width, scale, dpr, height, units: width / scale};
+    board.style.setProperty('--world', height + 'px');
+    fit(you);
+    for (const row of rows) {
+      fit(row.world);
+      if (row.scene) drawWorld(row.world, row.scene, INK, row.status);
+    }
     paint(true);
   };
 
   /* Drawing. Pixel edges are rounded to device pixels, so the art stays crisp at any scale. */
-  const groundY = lane => (lane * view.lane + HEAD + SKY * view.scale) * view.dpr;
-  const runs = (list, left, top, u) => {
-    for (const [x0, x1, row] of list) {
+  const groundY = () => SKY * view.scale * view.dpr;
+  const runs = (ctx, spans, left, top, u) => {
+    for (const [x0, x1, row] of spans) {
       const X0 = Math.round(left + x0 * u), X1 = Math.round(left + x1 * u);
       const Y0 = Math.round(top + row * u), Y1 = Math.round(top + (row + 1) * u);
       ctx.fillRect(X0, Y0, X1 - X0, Y1 - Y0);
     }
   };
-  const sprite = (name, x, y, lane, color) => {
+  const sprite = (ctx, name, x, y, color) => {
     const s = SPRITES[name], k = view.scale * view.dpr, u = PIXEL * k;
-    const left = x * k, top = groundY(lane) - (y + s.h * PIXEL) * k;
+    const left = x * k, top = groundY() - (y + s.h * PIXEL) * k;
     ctx.fillStyle = color;
-    runs(s.body, left, top, u);
+    runs(ctx, s.body, left, top, u);
     if (s.white.length) {
       ctx.fillStyle = PAPER;
-      runs(s.white, left, top, u);
+      runs(ctx, s.white, left, top, u);
     }
   };
   const hash = i => {
@@ -97,10 +110,10 @@
     t = Math.imul(t, 0xc2b2ae35);
     return ((t ^ t >>> 16) >>> 0) / 4294967296;
   };
-  const ground = (lane, distance) => {
-    const k = view.scale * view.dpr, y = Math.round(groundY(lane));
+  const ground = (ctx, width, distance) => {
+    const k = view.scale * view.dpr, y = Math.round(groundY());
     ctx.fillStyle = INK;
-    ctx.fillRect(0, y, canvas.width, Math.max(1, Math.round(k)));
+    ctx.fillRect(0, y, width, Math.max(1, Math.round(k)));
     ctx.fillStyle = PEBBLE;
     const step = 26, first = Math.floor(distance / step) - 1;
     for (let i = first; (i - first - 1) * step < view.units + step; i++) {
@@ -112,59 +125,71 @@
       ctx.fillRect(Math.round(x * k), y + Math.round(depth * k), Math.max(1, Math.round(length * k)), Math.max(1, Math.round(k)));
     }
   };
-  const drawObstacles = (game, lane) => {
+  const drawObstacles = (ctx, game) => {
     for (const o of game.obstacles) {
       if (o.x > view.units + 8 || o.x + o.w < -8) continue;
-      if (o.kind === 'bird') sprite(Math.floor((game.frames + o.flap) / 12) % 2 ? 'bird2' : 'bird1', o.x, o.bottom, lane, INK);
+      if (o.kind === 'bird') sprite(ctx, Math.floor((game.frames + o.flap) / 12) % 2 ? 'bird2' : 'bird1', o.x, o.bottom, INK);
       else {
         const each = o.kind === 'large' ? 25 : 17;
-        for (let i = 0; i < o.count; i++) sprite(o.kind, o.x + i * each + 0.5, 0, lane, INK);
+        for (let i = 0; i < o.count; i++) sprite(ctx, o.kind, o.x + i * each + 0.5, 0, INK);
       }
     }
   };
   const pose = (game, status) => {
     if (status === 'over' || status === 'crashed') return 'dead';
-    if (status !== 'playing' && status !== 'running') return 'stand';
+    if (status !== 'playing' && status !== 'running' && status !== 'solved') return 'stand';
     if (!game.grounded) return 'stand';
     const step = Math.floor(game.frames / 6) % 2;
     if (game.ducking) return step ? 'duck2' : 'duck1';
     return step ? 'run2' : 'run1';
   };
-  const drawLane = (game, lane, color, status) => {
-    ground(lane, game.distance);
-    drawObstacles(game, lane);
-    sprite(pose(game, status), RULES.dinoX, game.y, lane, color);
-  };
+  function drawWorld(s, game, color, status) {
+    const {ctx, el} = s;
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0, 0, el.width, el.height);
+    ground(ctx, el.width, game.distance);
+    drawObstacles(ctx, game);
+    sprite(ctx, pose(game, status), RULES.dinoX, game.y, color);
+  }
 
-  /* State. Phases: idle → training → solved, with racing as a detour from solved. */
+  /* State. Phases: idle → training → solved. */
   let phase = 'idle';
   let userPaused = false;
   let fastForward = true;
-  let raced = false;
-  let resultText = '';
   const player = {game: new Runner(randomSeed()), status: 'ready', hi: 0, jump: 0, duck: false, overAt: -999};
   const agent = {game: new Runner(randomSeed()), status: 'waiting', attempt: 0, best: 0, k: 0, action: 0, wait: 0, policy: new Policy(null)};
-  const race = {count: 0};
   const entries = [];
-  const training = {trainer: null, running: false, steps: 0, sps: 0, epsilon: 1, checkpoint: 0, weights: null, activeMs: 0, kind: ''};
+  const training = {trainer: null, running: false, steps: 0, sps: 0, epsilon: 1, checkpoint: 0, weights: null, activeMs: 0, kind: '', solvedText: ''};
   let ticks = 0;
 
-  /* Attempts list: the newest at the bottom, older ones folded into one line. */
-  const SHOWN = 8;
-  const renderEntries = () => {
-    ui.empty.hidden = entries.length > 0;
-    ui.empty.textContent = phase === 'idle'
-      ? (reducedMotion.matches ? 'No attempts yet. Press “Start training” to begin.' : 'No attempts yet. Training starts when the arena is on screen.')
-      : 'No crashes yet. The first attempt is running.';
-    const folded = Math.max(0, entries.length - SHOWN);
-    const best = entries.slice(0, folded).reduce((most, e) => Math.max(most, e.score), 0);
-    const rows = entries.slice(folded).map((e, i, shown) => `<li class="attempt${e.solved ? ' is-solved' : ''}${i === shown.length - 1 ? ' is-new' : ''}">`
-      + `<span class="attempt-number">#${e.attempt}</span>`
-      + `<span class="attempt-bar" style="--score: ${Math.min(1, e.score / RULES.target).toFixed(3)}"></span>`
-      + `<span class="attempt-score">${fmt(e.score)}</span>`
-      + `<span class="attempt-cause">${e.solved ? 'reached 1,000 · solved' : 'hit ' + e.cause}</span></li>`);
-    if (folded) rows.unshift(`<li class="attempt attempt-earlier">${folded} earlier attempt${folded === 1 ? '' : 's'} · best ${fmt(best)}</li>`);
-    ui.list.innerHTML = rows.join('');
+  /* Attempt rows: a new one at the bottom for every attempt; the finished ones keep their last frame. */
+  const liveRow = () => rows[rows.length - 1];
+  const addRow = attempt => {
+    const li = document.createElement('li');
+    li.className = 'arena-row is-live';
+    li.innerHTML = `<p class="row-head"><span class="row-name">DQN attempt ${attempt}</span><span class="row-score">00000</span></p><canvas aria-hidden="true"></canvas>`;
+    list.append(li);
+    const row = {li, world: surface(li.querySelector('canvas')), name: li.querySelector('.row-name'), score: li.querySelector('.row-score'), scene: null, status: 'running', shown: ''};
+    fit(row.world);
+    rows.push(row);
+    return row;
+  };
+  const freezeRow = (status, solved = false) => {
+    const row = liveRow();
+    if (!row || row.scene) return;
+    row.scene = agent.game.copy();
+    row.status = status;
+    drawWorld(row.world, row.scene, INK, status);
+    row.score.textContent = pad(row.scene.score);
+    row.li.classList.remove('is-live');
+    if (solved) {
+      row.li.classList.add('is-solved');
+      row.name.textContent = `DQN attempt ${agent.attempt} · solved`;
+    }
+  };
+  const clearRows = () => {
+    rows.length = 0;
+    list.replaceChildren();
   };
   const announce = message => { ui.status.textContent = message; };
 
@@ -280,19 +305,18 @@
     phase = 'training';
     userPaused = false;
     entries.length = 0;
-    Object.assign(training, {steps: 0, sps: 0, epsilon: 1, checkpoint: 0, weights: null, activeMs: 0});
+    clearRows();
+    Object.assign(training, {steps: 0, sps: 0, epsilon: 1, checkpoint: 0, weights: null, activeMs: 0, solvedText: ''});
     Object.assign(agent, {game: new Runner(randomSeed()), status: 'waiting', attempt: 0, best: 0, k: 0, action: 0, wait: 0});
-    ui.solved.hidden = true;
     training.trainer = createTrainer();
     training.kind = training.trainer.kind;
     training.trainer.send({type: 'start', seed: randomSeed()});
     training.running = true;
-    renderEntries();
     announce('Training started.');
     sync();
   };
 
-  /* The agent's lane: each attempt plays the best network so far on a new course, at 1× or 3×. */
+  /* Each attempt plays the best network so far on a new course, at 1× or 3×. */
   const startAttempt = () => {
     agent.attempt++;
     agent.game = new Runner(randomSeed());
@@ -300,50 +324,46 @@
     agent.k = 0;
     agent.action = 0;
     agent.status = 'running';
+    addRow(agent.attempt);
   };
   const stepAgent = () => {
     if (agent.status === 'running') {
       if (agent.k === 0) agent.action = agent.policy.decide(agent.game).action;
-      // Same sequence of frames as core.act(), so the lane matches the evaluation in the worker exactly.
+      // Same sequence of frames as core.act(), so the row matches the evaluation in the worker exactly.
       const crashed = agent.game.frame(agent.action === 1 && agent.k === 0, agent.action === 2);
       agent.k = (agent.k + 1) % RULES.repeat;
       if (crashed) {
         agent.status = 'crashed';
-        agent.wait = 40;
-        if (phase === 'training') {
-          agent.best = Math.max(agent.best, agent.game.score);
-          entries.push({attempt: agent.attempt, score: agent.game.score, cause: agent.game.cause});
-          renderEntries();
-        }
-      } else if (phase === 'training' && agent.game.score >= RULES.target) solve();
+        agent.wait = 30;
+        agent.best = Math.max(agent.best, agent.game.score);
+        entries.push({attempt: agent.attempt, score: agent.game.score, cause: agent.game.cause});
+        freezeRow('crashed');
+      } else if (agent.game.score >= RULES.target) solve();
     } else if (agent.status === 'crashed' && phase === 'training' && --agent.wait <= 0) startAttempt();
   };
   const solve = () => {
     phase = 'solved';
-    agent.status = 'done';
+    agent.status = 'solved';
     agent.best = Math.max(agent.best, agent.game.score);
     entries.push({attempt: agent.attempt, score: agent.game.score, solved: true});
-    renderEntries();
+    freezeRow('solved', true);
     stopTrainer();
     const seconds = Math.max(1, Math.round(training.activeMs / 1000));
-    const time = seconds < 90 ? `${seconds} seconds` : `${Math.floor(seconds / 60)} min ${seconds % 60} s`;
-    ui.solved.textContent = `Solved on attempt ${agent.attempt}, after ${fmt(training.steps)} training steps and ${time}.`;
-    ui.solved.hidden = false;
-    announce(`Solved. The agent reached 1,000 points on attempt ${agent.attempt}. You can race it now.`);
+    const time = seconds < 90 ? `${seconds} s` : `${Math.floor(seconds / 60)} min ${seconds % 60} s`;
+    training.solvedText = `solved on attempt ${agent.attempt} · ${fmt(training.steps)} training steps · ${time}`;
+    announce(`Solved. The agent reached 1,000 points on attempt ${agent.attempt}.`);
     sync();
   };
 
-  /* Your lane. */
+  /* Your row. */
   const startPlayer = () => {
     player.game = new Runner(randomSeed());
     player.status = 'playing';
     player.jump = 6; // starting a run is a jump, like the original
     player.duck = false;
-    resultText = '';
   };
   const press = () => {
     if (player.status === 'playing') { player.jump = 6; return; } // remembered for 0.1 s, so an early press still lands
-    if (player.status === 'countdown' || phase === 'racing') return;
     if (player.status === 'over' && ticks - player.overAt < 24) return;
     startPlayer();
   };
@@ -356,66 +376,24 @@
       player.overAt = ticks;
       player.duck = false;
       player.hi = Math.max(player.hi, player.game.score);
-      if (phase !== 'racing') announce(`Game over. You scored ${fmt(player.game.score)}.`);
+      announce(`Game over. You scored ${fmt(player.game.score)}.`);
     }
-  };
-
-  /* Race: same course, same start, the trained network at normal speed. Same clock, so the score is
-     the same on both lanes until someone crashes. */
-  const startRace = () => {
-    if (!training.weights || phase !== 'solved') return;
-    phase = 'racing';
-    raced = true;
-    resultText = '';
-    const seed = randomSeed();
-    Object.assign(player, {game: new Runner(seed), status: 'countdown', jump: 0, duck: false});
-    Object.assign(agent, {game: new Runner(seed), status: 'countdown', k: 0, action: 0});
-    agent.policy.load(training.weights);
-    race.count = 180;
-    canvas.focus({preventScroll: true});
-    announce('Race starting in three seconds. Space or the up arrow to jump, the down arrow to duck.');
-    sync();
-  };
-  // Called after both lanes have moved, so a crash on the same frame is a draw.
-  const raceCheck = () => {
-    const agentOut = agent.status === 'crashed';
-    if (player.status !== 'over') return; // you're still running; the race goes on until you crash
-    const you = player.game.score, them = agent.game.score;
-    if (agentOut && you > them) resultText = `You win, ${fmt(you)} to ${fmt(them)}.`;
-    else if (agentOut && you === them) resultText = `A draw at ${fmt(you)}.`;
-    else resultText = `The agent wins. You crashed at ${fmt(you)}; it was still running.`;
-    if (!agentOut) agent.status = 'done';
-    phase = 'solved';
-    announce(resultText);
-    sync();
   };
 
   /* The loop: fixed 60 Hz steps, drawn on animation frames. advanceTime() takes over for tests. */
   const STEP = 1000 / 60;
   let rafId = 0, looping = false, last = 0, carry = 0, manual = false;
   let visible = !document.hidden, onScreen = false;
-  const meter = {frames: 0, since: 0, fps: 0, shown: 0};
   const tick = () => {
     ticks++;
-    if (phase === 'racing' && race.count > 0 && --race.count === 0) {
-      player.status = 'playing';
-      agent.status = 'running';
-    }
     stepPlayer();
-    const agentSteps = phase === 'training' ? (userPaused ? 0 : fastForward ? 3 : 1) : 1;
+    const agentSteps = phase === 'training' ? (userPaused ? 0 : fastForward ? 3 : 1) : 0;
     for (let i = 0; i < agentSteps; i++) stepAgent();
-    if (phase === 'racing') raceCheck();
   };
   const loop = now => {
     rafId = window.requestAnimationFrame(loop);
     const dt = last ? Math.min(100, now - last) : STEP;
     last = now;
-    meter.frames++;
-    if (now - meter.since >= 1000) {
-      meter.fps = Math.round(meter.frames * 1000 / (now - meter.since || 1000));
-      meter.frames = 0;
-      meter.since = now;
-    }
     if (!manual) {
       carry += dt;
       let n = 0;
@@ -429,8 +407,6 @@
     if (looping) return;
     looping = true;
     last = 0;
-    meter.since = performance.now();
-    meter.frames = 0;
     rafId = window.requestAnimationFrame(loop);
   };
   const stopLoop = () => {
@@ -438,7 +414,7 @@
     looping = false;
   };
 
-  /* Text on and around the board. Only touched when something changed. */
+  /* Text on and around the rows. Only touched when something changed. */
   const shown = {};
   const setText = (el, key, value) => {
     if (shown[key] === value) return;
@@ -447,60 +423,43 @@
   };
   const playerPrompt = () => {
     const touch = touchFirst.matches;
-    if (player.status === 'countdown') return String(Math.ceil(race.count / 60));
     if (player.status === 'ready') return touch ? 'Tap to play' : document.activeElement === canvas ? 'Press Space to play' : 'Click here to play';
-    if (player.status === 'over') {
-      const again = touch ? 'tap to play again' : 'press Space to play again';
-      return resultText ? `${resultText} ${again[0].toUpperCase()}${again.slice(1)}.` : `Game over · ${again}`;
-    }
+    if (player.status === 'over') return `Game over · ${touch ? 'tap' : 'press Space'} to play again`;
     return '';
   };
-  const agentPrompt = () => {
-    if (phase === 'idle') return reducedMotion.matches || !onScreen ? 'Press “Start training” to begin' : 'Starting…';
-    if (phase === 'training' && userPaused) return 'Training paused';
-    if (phase === 'training' && agent.status === 'waiting') return 'Warming up…';
-    if (agent.status === 'countdown') return 'Racing you';
-    if (phase === 'solved' && agent.status === 'done' && !raced) return 'Solved';
-    return '';
+  const hudText = () => {
+    if (phase === 'solved') return training.solvedText;
+    if (phase !== 'training') return '';
+    return `${fmt(training.steps)} training steps · ε ${training.epsilon.toFixed(2)}${userPaused ? ' · paused' : ''}`;
   };
+  let hudShown = 0;
   const paint = (force = false) => {
-    ctx.fillStyle = PAPER;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = RULE;
-    ctx.fillRect(0, Math.round(view.lane * view.dpr), canvas.width, Math.max(1, Math.round(view.dpr)));
-    drawLane(player.game, 0, BLUE, player.status);
-    drawLane(agent.game, 1, INK, agent.status);
+    drawWorld(you, player.game, BLUE, player.status);
+    const row = liveRow();
+    if (row && !row.scene) {
+      drawWorld(row.world, agent.game, INK, agent.status);
+      const score = pad(agent.game.score);
+      if (row.shown !== score) { row.shown = score; row.score.textContent = score; }
+    }
     setText(ui.playerScore, 'ps', pad(player.game.score));
     setText(ui.playerHi, 'ph', pad(Math.max(player.hi, player.status === 'over' ? player.game.score : 0)));
-    setText(ui.agentScore, 'as', pad(agent.game.score));
-    setText(ui.agentBest, 'ab', pad(agent.best));
-    setText(ui.agentAttempt, 'aa', phase === 'racing' || (raced && phase === 'solved') ? ' · race' : agent.attempt ? ` · attempt ${agent.attempt}` : '');
     setText(ui.playerPrompt, 'pp', playerPrompt());
-    setText(ui.agentPrompt, 'ap', agentPrompt());
-    board.classList.toggle('is-playing', player.status === 'playing' || player.status === 'countdown');
+    yourRow.classList.toggle('is-playing', player.status === 'playing');
     const now = performance.now();
-    if (force || now - meter.shown > 500) {
-      meter.shown = now;
-      const fps = looping ? `${meter.fps || '…'} fps` : 'paused';
-      const state = phase === 'training'
-        ? (training.running ? `${fmt(training.sps)} steps/s · ε ${training.epsilon.toFixed(2)}` : 'training paused')
-        : phase === 'idle' ? 'not training yet' : 'training finished';
-      setText(ui.hud, 'hud', `${fps} · ${state}`);
+    if (force || now - hudShown > 250) {
+      hudShown = now;
+      setText(ui.hud, 'hud', hudText());
     }
   };
 
   /* Buttons. */
   const syncButtons = () => {
-    const done = phase === 'solved' || phase === 'racing';
+    const done = phase === 'solved';
     ui.train.hidden = done;
     ui.train.textContent = phase === 'idle' ? 'Start training' : userPaused ? 'Resume training' : 'Pause training';
     ui.speed.hidden = done;
     ui.speed.setAttribute('aria-pressed', String(fastForward));
-    ui.race.hidden = !done;
-    ui.race.disabled = phase === 'racing';
-    ui.race.textContent = raced ? 'Race again' : 'Race it';
     ui.again.hidden = !done;
-    ui.again.disabled = phase === 'racing';
   };
   // Run only what can be seen: the loop needs the arena on screen, training also needs it not paused.
   const sync = () => {
@@ -528,13 +487,7 @@
     fastForward = !fastForward;
     syncButtons();
   });
-  ui.race.addEventListener('click', startRace);
-  ui.again.addEventListener('click', () => {
-    raced = false;
-    resultText = '';
-    if (player.status === 'countdown') player.status = 'ready';
-    startTraining();
-  });
+  ui.again.addEventListener('click', startTraining);
 
   /* Controls: only while the game itself has focus, so Space still scrolls the page everywhere else. */
   canvas.addEventListener('keydown', event => {
@@ -574,38 +527,40 @@
   canvas.addEventListener('pointercancel', release);
   canvas.addEventListener('contextmenu', event => event.preventDefault());
 
-  /* Start when the arena comes into view (not with reduced motion: then it waits for the button). */
+  /* Training starts when your row comes into view (not with reduced motion: then it waits for the button),
+     and keeps going while any part of the arena, including the rows far below, is on screen. */
   document.addEventListener('visibilitychange', () => {
     visible = !document.hidden;
     sync();
   });
   new IntersectionObserver(([entry]) => {
     onScreen = entry.isIntersecting;
-    if (onScreen && phase === 'idle' && !reducedMotion.matches) startTraining();
-    else sync();
-  }, {threshold: 0.2}).observe(board);
+    sync();
+  }, {threshold: 0}).observe(root);
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && phase === 'idle' && !reducedMotion.matches) startTraining();
+  }, {threshold: 0.2}).observe(yourRow);
   new ResizeObserver(() => layout()).observe(board);
   root.classList.add('is-ready');
   layout();
-  renderEntries();
   syncButtons();
 
   /* Test hooks: a text view of the game and a deterministic clock. */
   const obstaclesText = game => game.obstacles.filter(o => o.x < view.units && o.x + o.w > 0)
     .map(o => ({kind: o.kind === 'bird' ? ['low', 'middle', 'high'][o.level] + ' bird' : `${o.count} ${o.kind} cact${o.count > 1 ? 'i' : 'us'}`, x: Math.round(o.x), w: o.w, bottom: o.bottom, top: o.top}));
   window.render_game_to_text = () => JSON.stringify({
-    coordinates: 'world units; x grows to the right from the lane’s left edge, y is height above the ground; the dinosaur’s left edge is at x = 48',
+    coordinates: 'world units; x grows to the right from the row’s left edge, y is height above the ground; the dinosaur’s left edge is at x = 48',
     phase,
     fastForward,
-    view: {units: Math.round(view.units), scale: +view.scale.toFixed(3)},
+    view: {units: Math.round(view.units), scale: +view.scale.toFixed(3), rowHeight: view.height},
     player: {status: player.status, score: player.game.score, hi: player.hi, y: +player.game.y.toFixed(1), vy: +player.game.vy.toFixed(2), grounded: player.game.grounded, ducking: player.game.ducking, speed: +player.game.speed.toFixed(2), obstacles: obstaclesText(player.game)},
     agent: {status: agent.status, attempt: agent.attempt, score: agent.game.score, best: agent.best, action: ACTIONS[agent.action], obstacles: obstaclesText(agent.game)},
     training: {running: training.running, paused: userPaused, steps: training.steps, stepsPerSecond: Math.round(training.sps), epsilon: +training.epsilon.toFixed(3), checkpoint: Math.round(training.checkpoint), where: training.kind},
+    rows: rows.length,
+    frozenRows: rows.filter(row => row.scene).length,
     attempts: entries.length,
     lastAttempt: entries.at(-1) || null,
-    solved: phase === 'solved' || phase === 'racing' ? ui.solved.textContent : null,
-    race: phase === 'racing' ? {countdown: Math.ceil(race.count / 60)} : resultText ? {result: resultText} : null,
-    fps: meter.fps
+    solved: phase === 'solved' ? training.solvedText : null
   });
   window.advanceTime = ms => {
     manual = true;

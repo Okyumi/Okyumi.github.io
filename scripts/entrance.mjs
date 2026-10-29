@@ -92,11 +92,14 @@ ${fontLinks(detour ? ['mono', 'display'] : ['mono'], '  ')}${detour ? `
       <p class="bubble" data-message="2">Are you sure you want to visit Yumi’s Personal? You have <b class="countdown"><span class="count">10</span> <span class="unit">seconds</span></b> to decide.</p>
       <p class="bubble" data-message="bonus" hidden>Fine, <b class="countdown"><span class="bonus-count">5</span> bonus <span class="bonus-unit">seconds</span></b>, as a treat.</p>
       <p class="bubble" data-message="final" hidden>Time’s up. Your silence is now strong evidence for Research. Taking you there…</p>
+      <p class="bubble" data-message="again-1" hidden>Wow, it’s you again.</p>
+      <p class="bubble" data-message="again-2" hidden>I guess you really tried to get into Yumi’s Personal.</p>
+      <p class="bubble" data-message="again-3" hidden>Okay, I’ll give you a free pass.</p>
       <p class="typing" aria-hidden="true" hidden><span></span><span></span><span></span></p>
     </div>
     <nav class="chat-replies" aria-label="Your reply">
       <a class="reply reply-yes" href="../">Yes, I AM SURE</a>
-      <a class="reply reply-no" href="../../research/">No, I want to check out this PhD applicant full of potential, who I’d absolutely love to work with</a>
+      <a class="reply reply-no" href="../../research/" data-bonus-text="No, I just want to check on this PhD applicant full of potential, who I’d absolutely love to work with">No, I just want to check on a potential PhD applicant</a>
     </nav>
   </dialog>
   <script src="../../assets/entrance.js" defer></script>
