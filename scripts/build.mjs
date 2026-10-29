@@ -79,11 +79,12 @@ for (const [name, sprite] of Object.entries(icons)) await write(`assets/icon-${n
 const menuHand = toSVG(hand);
 
 /* Shared page parts. */
-// JetBrains Mono everywhere, Source Serif 4 for the articles (blog posts) only.
+// JetBrains Mono everywhere, Source Serif 4 for the articles (blog posts), Fraunces for the post titles on the writing page.
 // Cabinet Grotesk is used once, for the punchline on the Bayesian detour; only that page contacts Fontshare.
 const googleFonts = {
   mono: 'family=JetBrains+Mono:wght@400;500;600;700',
-  text: 'family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600'
+  text: 'family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600',
+  title: 'family=Fraunces:opsz,wght,SOFT@9..144,600,50'
 };
 const fontLinks = (fonts, indent = '') => {
   const google = fonts.filter(font => googleFonts[font]).map(font => googleFonts[font]);
@@ -205,7 +206,7 @@ const sayings = {
 };
 const pop = (path, word) => `<a class="pop-link" href="${path}"${sayings[word] ? ` data-say="${esc(sayings[word])}" aria-describedby="say-${word}"` : ''}>${word}</a>`;
 const sayHTML = Object.entries(sayings).filter(([, line]) => line).map(([word, line]) => `<span id="say-${word}">${esc(line)}</span>`).join('');
-await write('personal/index.html', head({title: 'Personal · Yumi Omori', description: 'I travel, read, write a lot. I also played a lot of video games. Below is a subset of the things I write.', base: '../', canonical: '/personal/', fonts: ['mono', 'text']}) + `
+await write('personal/index.html', head({title: 'Personal · Yumi Omori', description: 'I travel, read, write a lot. I also played a lot of video games. Below is a subset of the things I write.', base: '../', canonical: '/personal/', fonts: ['mono', 'title']}) + `
 <body class="personal-page"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 ${header('personal', '../')}
@@ -344,6 +345,7 @@ const gameShelf = [
   ['skyrim', 'The Elder Scrolls V: Skyrim', 'Bethesda Game Studios', 2011],
   ['cyberpunk-2077', 'Cyberpunk 2077', 'CD Projekt Red', 2020],
   ['breath-of-the-wild', 'The Legend of Zelda: Breath of the Wild', 'Nintendo', 2017],
+  ['tears-of-the-kingdom', 'The Legend of Zelda: Tears of the Kingdom', 'Nintendo', 2023],
   ['red-dead-redemption-2', 'Red Dead Redemption 2', 'Rockstar Games', 2018],
   ['dying-light-2', 'Dying Light 2 Stay Human', 'Techland', 2022],
   ['world-of-warcraft-midnight', 'World of Warcraft: Midnight', 'Blizzard Entertainment', 2026],
