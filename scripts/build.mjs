@@ -5,7 +5,7 @@ import {marked} from './vendor/marked.mjs';
 import {readingList, bookCategories} from './reading-list.mjs';
 import {writeEntrance} from './entrance.mjs';
 import {arenaHTML} from './arena.mjs';
-import {arrow, hand, toPNG, toSVG} from './pixel-art.mjs';
+import {arrow, hand, pointDown, toPNG, toSVG} from './pixel-art.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'docs');
@@ -70,17 +70,18 @@ const write = async (p, s) => {
   await fs.mkdir(path.dirname(dest), {recursive: true});
   await fs.writeFile(dest, s);
 };
-// Pixel art (scripts/pixel-art.mjs): the game-screen cursor and the menu pointer.
+// Pixel art (scripts/pixel-art.mjs): the mouse cursor (every page), the menu pointer and the down arrow.
 await write('assets/cursor.png', toPNG(arrow, 2));
 await write('assets/cursor@2x.png', toPNG(arrow, 4));
 await write('assets/pixel-hand.svg', toSVG(hand));
+await write('assets/pixel-down.svg', toSVG(pointDown));
 const menuHand = toSVG(hand);
 
 /* Shared page parts. */
-// JetBrains Mono for interface and short text, Source Serif 4 for long reading (posts, excerpts, the travel guide).
+// JetBrains Mono everywhere, Source Serif 4 for the articles (blog posts) only.
 // Cabinet Grotesk is used once, for the punchline on the Bayesian detour; only that page contacts Fontshare.
 const googleFonts = {
-  mono: 'family=JetBrains+Mono:wght@400;500;600',
+  mono: 'family=JetBrains+Mono:wght@400;500;600;700',
   text: 'family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600'
 };
 const fontLinks = (fonts, indent = '') => {
@@ -111,7 +112,13 @@ ${fontLinks(fonts)}
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="${base}assets/site.js"></script>${math ? '\n' + mathHead : ''}${extra ? '\n' + extra : ''}
 </head>`;
-const reading = ['mono', 'text'];
+const articleFonts = ['mono', 'text'];
+// Links in running text are bold blue words that pop out when you point at them (.pop-link in site.css).
+// Long ones stay inline so they can wrap, and lift instead of tilting.
+// Short words tilt and grow; longer names tilt less (is-mid); long ones stay inline and only lift (is-long).
+const popSize = label => label.length > 16 ? ' is-long' : label.length > 8 ? ' is-mid' : '';
+const popLink = (attrs, inner) => `<a class="pop-link${popSize(text(inner))}" ${attrs.trim()}>${inner}</a>`;
+const popLinks = html => html.replace(/<a\s([^>]*)>([\s\S]*?)<\/a>/g, (tag, attrs, inner) => /\bclass=/.test(attrs) ? tag : popLink(attrs, inner));
 // Research-side Personal links go through the Bayesian detour (personal/hello/) until the visitor says yes.
 const header = (active, base = '', gate = false) => `<header class="site-header">
 <a class="wordmark" href="${base || './'}">Yumi Omori</a>
@@ -174,20 +181,30 @@ ${p.cover ? `<span class="card-cover"><img class="post-cover" src="${asset(p.cov
 ${excerptHTML(p)}</div>
 </article>`).join('\n');
 const timeline = months.map((m, i) => `<a class="timeline-link" href="#${monthId(m)}"${i === 0 ? ' aria-current="true"' : ''}><span>${date(m + '-01', {month: 'short', year: 'numeric'})}</span><span class="tick" aria-hidden="true"></span></a>`).join('\n');
-// The opening sentence is the menu: travel, read and played lead to their pages.
-const pop = (path, word) => `<a class="pop-link" href="${path}">${word}</a>`;
-await write('personal/index.html', head({title: 'Personal · Yumi Omori', description: 'I travel, read, write a lot. I also played a lot of video games. Below is a subset of the things I write.', base: '../', canonical: '/personal/', fonts: reading}) + `
+// The opening sentence is the menu: travel, read, write and played. Pointing at one of them shows a line
+// about it (site.js types it into a small window over the word); screen readers get it as the description.
+const travelCount = travelSource.match(/visited (\d+) places in (\d+) countries/);
+const sayings = {
+  travel: travelCount ? `I have visited ${travelCount[1]} places in ${travelCount[2]} countries.` : '',
+  read: `${catalogueCount} books in the inventory.`,
+  write: 'Well, here I have a subset of the things I write.',
+  played: 'A small subset of games I play D:'
+};
+const pop = (path, word) => `<a class="pop-link" href="${path}"${sayings[word] ? ` data-say="${esc(sayings[word])}" aria-describedby="say-${word}"` : ''}>${word}</a>`;
+const sayHTML = Object.entries(sayings).filter(([, line]) => line).map(([word, line]) => `<span id="say-${word}">${esc(line)}</span>`).join('');
+await write('personal/index.html', head({title: 'Personal · Yumi Omori', description: 'I travel, read, write a lot. I also played a lot of video games. Below is a subset of the things I write.', base: '../', canonical: '/personal/'}) + `
 <body class="personal-page"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 ${header('personal', '../')}
 <main id="main">
 ${pageTitle('Personal')}
 <div class="personal-intro">
-<p>I ${pop('../travel/', 'travel')}, ${pop('../read/', 'read')}, write a lot. I also ${pop('../games/', 'played')} a lot of video games.</p>
+<p>I ${pop('../travel/', 'travel')}, ${pop('../read/', 'read')}, ${pop('#writing', 'write')} a lot. I also ${pop('../games/', 'played')} a lot of video games.</p>
 <p>Below is a subset of the things I write.</p>
 </div>
+<div hidden>${sayHTML}</div>
 <div class="archive-layout">
-<div class="post-list">
+<div class="post-list" id="writing">
 ${months.map(m => `<section class="month-group" id="${monthId(m)}" aria-label="${date(m + '-01', {month: 'long', year: 'numeric'})}">
 ${cards(m)}
 </section>`).join('\n')}
@@ -200,16 +217,21 @@ ${timeline}
 ${footer}
 </div><script src="../assets/timeline.js" defer></script></body></html>`);
 
-/* Articles: one centered reading column. Previous = older, next = newer (also on ← / →). */
+/* Articles: one centered reading column, and a game menu at the end: previous (older) post, next (newer)
+   post and back to the blog. The hand points at the selected option; ↑ / ↓ move it, ← / → / b also work. */
 for (let i = 0; i < posts.length; i++) {
   const p = posts[i], older = posts[i + 1], newer = posts[i - 1];
-  const nav = (item, direction) => {
-    if (!item) return '<span aria-hidden="true"></span>';
+  const option = (className, link, label, extra = '') => `<a class="menu-option ${className}" href="${link}"${extra}><span class="menu-hand" aria-hidden="true"></span><span class="nav-label">${label}</span>`;
+  const postOption = (item, direction) => {
+    if (!item) return '';
     const previous = direction === 'previous';
-    const label = previous ? '<span aria-hidden="true">←</span> Previous post' : 'Next post <span aria-hidden="true">→</span>';
-    return `<a class="${direction}" href="../${item.slug}/" rel="${previous ? 'prev' : 'next'}"><span class="nav-label">${label}</span><span class="nav-title"${vt('post-' + item.slug)}>${esc(item.title)}</span></a>`;
+    return option(direction, `../${item.slug}/`, `<span aria-hidden="true">${previous ? '←' : '→'}</span> ${previous ? 'Previous' : 'Next'} post`, ` rel="${previous ? 'prev' : 'next'}"`)
+      + `<span class="nav-title"${vt('post-' + item.slug)}>${esc(item.title)}</span></a>`;
   };
-  await write(href(p) + 'index.html', head({title: p.title + ' · Yumi Omori', description: p.excerpt || p.title, base: '../../', canonical: '/' + href(p), fonts: reading, math: true}) + `
+  const menu = [postOption(older, 'previous'), postOption(newer, 'next'),
+    option('back-to-blog', `../../personal/#${monthId(p.date.slice(0, 7))}`, '<span aria-hidden="true">↶</span> Back to blog') + '</a>']
+    .filter(Boolean).map((item, n) => n ? item : item.replace('class="menu-option ', 'class="menu-option is-current '));
+  await write(href(p) + 'index.html', head({title: p.title + ' · Yumi Omori', description: p.excerpt || p.title, base: '../../', canonical: '/' + href(p), fonts: articleFonts, math: true}) + `
 <body class="reading-page"><a class="skip-link" href="#article">Skip to article</a>
 <div class="reading-progress" aria-hidden="true" hidden><span></span></div>
 <div class="shell">
@@ -220,16 +242,17 @@ ${personalTabs('writing', '../../', 'true')}
 <header class="article-header"><h1${vt('post-' + p.slug)}>${esc(p.title)}</h1><ul class="article-meta"><li><a href="../../">Yumi Omori</a></li><li><time datetime="${p.date}">${date(p.date, {month: 'long', year: 'numeric'})}</time></li><li>${p.readingTime} min read</li></ul></header>
 <div class="article-body">${p.html}</div>
 </article>
-<nav class="post-navigation" aria-label="Article navigation">${nav(older, 'previous')}${nav(newer, 'next')}</nav>
-<a class="back-to-blog" href="../../personal/#${monthId(p.date.slice(0, 7))}"><span aria-hidden="true">↶</span> Back to blog</a>
+<nav class="post-navigation game-window" aria-label="Article navigation">
+${menu.join('\n')}
+</nav>
 </main>
 ${footer}
 </div></body></html>`);
 }
 
 /* Travel: content/travel.html as written, with its sections on the side track. */
-const travelContent = externalLinks(travelSource);
-await write('travel/index.html', head({title: 'Travel · Yumi Omori', description: 'Travel notes, youth discounts, exchanges, and ideas for longer journeys.', base: '../', canonical: '/travel/', fonts: reading}) + `
+const travelContent = popLinks(externalLinks(travelSource));
+await write('travel/index.html', head({title: 'Travel · Yumi Omori', description: 'Travel notes, youth discounts, exchanges, and ideas for longer journeys.', base: '../', canonical: '/travel/'}) + `
 <body class="travel-body"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 ${header('personal', '../')}
@@ -263,7 +286,7 @@ ${header('personal', '../')}
 ${personalTabs('reading', '../')}
 <main id="main" class="books-page">
 ${pageTitle('Reading list')}
-<header class="library-intro"><div><p class="books-intro">My reading list, organized by year.</p><p class="books-intro">In general, I read widely and am always interested in exploring books from unfamiliar fields. If you have any suggestions or would like to discuss a book on this list that you found interesting, please feel free to email me at <a href="mailto:yd2247@nyu.edu">yd2247@nyu.edu</a>.</p></div><a class="books-back" href="../personal/"><span aria-hidden="true">↶</span> back to writing</a></header>
+<header class="library-intro"><div><p class="books-intro">My reading list, organized by year.</p><p class="books-intro">In general, I read widely and am always interested in exploring books from unfamiliar fields. If you have any suggestions or would like to discuss a book on this list that you found interesting, please feel free to email me at ${popLink('href="mailto:yd2247@nyu.edu"', 'yd2247@nyu.edu')}.</p></div><a class="books-back" href="../personal/"><span aria-hidden="true">↶</span> back to writing</a></header>
 <div class="book-tools" hidden>
 <div class="book-search-row"><label class="book-search"><span class="sr-only">Find a title or author</span><input id="book-search" type="search" placeholder="Find a title or author" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><span id="book-results" role="status" aria-live="polite">${catalogueCount} books</span></div>
 <fieldset class="theme-chips"><legend class="sr-only">Filter by theme</legend>${chip('all', 'All', catalogueCount, true)}${bookCategories.map(c => chip(c.id, c.label, categoryCounts[c.id])).join('')}</fieldset>
@@ -271,7 +294,7 @@ ${pageTitle('Reading list')}
 <div class="archive-layout library-layout">
 <div class="book-shelves">
 ${bookYears.map(shelfHTML).join('\n')}
-<div class="books-empty" hidden><p>No books match your search.</p><button type="button" class="reset-search text-link">Show all books</button></div>
+<div class="books-empty" hidden><p>No books match your search.</p><button type="button" class="reset-search pop-link">Show all books</button></div>
 </div>
 <nav class="timeline book-years" aria-label="Browse books by year">
 ${bookYears.map(({year}, i) => `<a class="timeline-link" href="#year-${year}"${i === 0 ? ' aria-current="true"' : ''}><span>${year ?? 'Undated'}</span><span class="tick" aria-hidden="true"></span></a>`).join('\n')}
@@ -283,7 +306,7 @@ ${footer}
 </div><script src="../assets/books.js" defer></script></body></html>`);
 
 /* Games. The iwanna-gym line is the repository's own description. */
-const iwannaGym = '<a href="https://github.com/Okyumi/iwanna-gym" target="_blank" rel="noopener noreferrer">iwanna-gym</a>';
+const iwannaGym = popLink('href="https://github.com/Okyumi/iwanna-gym" target="_blank" rel="noopener noreferrer"', 'iwanna-gym');
 const games = [
   {title: 'Final Fantasy XIV', note: '5 Ultimates cleared'},
   {title: 'The Legend of Zelda: Tears of the Kingdom', note: '100% completion'},

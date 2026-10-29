@@ -10,7 +10,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
 <link rel="stylesheet" href="../assets/site.css">
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="../assets/site.js"></script>
@@ -44,6 +44,32 @@
 <button type="button" class="arena-button" data-action="train">Start training</button>
 <button type="button" class="arena-button" data-action="speed" aria-pressed="true">Fast-forward 3×</button>
 <button type="button" class="arena-button" data-action="again" hidden>Train again</button>
+</div>
+</div>
+<div class="arena-more">
+<button type="button" class="game-toggle" aria-expanded="false" aria-controls="score-box"><span class="toggle-arrow" aria-hidden="true"></span>Score box</button>
+<button type="button" class="game-toggle" aria-expanded="false" aria-controls="how-it-learns"><span class="toggle-arrow" aria-hidden="true"></span>How it learns?</button>
+</div>
+<div class="game-window score-box" id="score-box" hidden>
+<ol class="score-list" data-score-list aria-label="DQN attempts"></ol>
+</div>
+<div class="game-window learn-box" id="how-it-learns" hidden>
+<p class="learn-question" data-type>Are you familiar with RL?</p>
+<div class="learn-choices" role="group" aria-label="Are you familiar with RL?">
+<button type="button" class="learn-choice" data-answer="yes" aria-pressed="false" aria-controls="learn-yes"><span class="menu-hand" aria-hidden="true"></span>Yes</button>
+<button type="button" class="learn-choice" data-answer="no" aria-pressed="false" aria-controls="learn-no"><span class="menu-hand" aria-hidden="true"></span>No</button>
+</div>
+<div class="learn-answer" id="learn-yes" hidden><p data-type>Well, then you should be very familiar with classic DQN, and I’m pretty sure you don’t need any further explanation.</p></div>
+<div class="learn-answer learn-primer" id="learn-no" hidden>
+<p>In reinforcement learning, an agent learns by trial and error. At each step <span class="tex">t</span> it sees a state <span class="tex">s_t</span>, takes an action <span class="tex">a_t</span>, and gets back a reward <span class="tex">r_t</span> and the next state <span class="tex">s_{t+1}</span>. It is looking for a policy <span class="tex">\pi(a \mid s)</span> that maximizes the expected return, the discounted sum of future rewards:</p>
+<div class="tex is-display">G_t = \sum_{k=0}^{\infty} \gamma^k\, r_{t+k}, \qquad 0 \le \gamma &lt; 1.</div>
+<p>The action value <span class="tex">Q^\pi(s, a) = \mathbb{E}_\pi[\, G_t \mid s_t = s,\ a_t = a \,]</span> is the return you can expect after taking <span class="tex">a</span> in <span class="tex">s</span> and following <span class="tex">\pi</span> from then on. The best one, <span class="tex">Q^*</span>, satisfies the Bellman optimality equation</p>
+<div class="tex is-display">Q^*(s, a) = \mathbb{E}\Big[\, r + \gamma \max_{a'} Q^*(s', a') \Bigm| s, a \Big],</div>
+<p>and once you know it, acting well is easy: take <span class="tex">\arg\max_a Q^*(s, a)</span>.</p>
+<p>DQN approximates <span class="tex">Q^*</span> with a neural network <span class="tex">Q_\theta</span>. It keeps its transitions <span class="tex">(s, a, r, s')</span> in a replay buffer <span class="tex">\mathcal{D}</span> and trains on random batches from it, pulling <span class="tex">Q_\theta</span> toward a target <span class="tex">y</span> computed by an older copy of itself, <span class="tex">Q_{\theta^-}</span>:</p>
+<div class="tex is-display">y = r + \gamma \max_{a'} Q_{\theta^-}(s', a'),</div>
+<div class="tex is-display">\mathcal{L}(\theta) = \mathbb{E}_{(s, a, r, s') \sim \mathcal{D}} \big[ (y - Q_\theta(s, a))^2 \big].</div>
+<p>To keep exploring, it acts <span class="no-break"><span class="tex">\varepsilon</span>-greedily</span>: a random action with probability <span class="tex">\varepsilon</span>, otherwise the action with the highest <span class="tex">Q_\theta</span>, and <span class="tex">\varepsilon</span> shrinks as it learns.</p>
 </div>
 </div>
 <div class="arena-board">

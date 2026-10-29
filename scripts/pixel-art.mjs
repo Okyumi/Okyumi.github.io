@@ -48,6 +48,17 @@ export const arrow = [
   '.....oo....'
 ];
 
+// A pixel arrow pointing down: over the words on the Personal page, and turned sideways on the arena toggles.
+export const pointDown = [
+  'ooooooooooo',
+  'ollllllllbo',
+  '.obbbbbbbo.',
+  '..obbbbbo..',
+  '...obbbo...',
+  '....obo....',
+  '.....o.....'
+];
+
 const rows = sprite => sprite.map(row => row.padEnd(Math.max(...sprite.map(r => r.length)), '.'));
 const size = sprite => ({width: Math.max(...sprite.map(r => r.length)), height: sprite.length});
 

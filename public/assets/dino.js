@@ -193,6 +193,38 @@
   };
   const announce = message => { ui.status.textContent = message; };
 
+  /* Score box (opens from its toggle): one line per attempt, in order, and the running one at the end.
+     The bar has a block for every 100 points, up to the 1,000 that solves the game. */
+  const scoreList = root.querySelector('[data-score-list]');
+  const scoreBox = scoreList ? scoreList.closest('.score-box') : null;
+  const fillOf = score => score > 0 ? Math.min(10, Math.ceil(score / 100)) / 10 : 0;
+  const scoreLine = ({attempt, score, live = false, solved = false}) => `<li class="score-entry${live ? ' is-live' : ''}${solved ? ' is-solved' : ''}">`
+    + `<span class="score-n" aria-hidden="true">${String(attempt).padStart(2, '0')}</span>`
+    + `<span class="score-bar" style="--fill: ${fillOf(score)}" aria-hidden="true"></span>`
+    + `<span class="score-value" aria-hidden="true">${pad(score)}</span>`
+    + `<span class="sr-only">Attempt ${attempt}: ${live ? 'running' : `${fmt(score)} points${solved ? ', solved' : ''}`}</span></li>`;
+  const emptyLine = '<li class="score-entry is-empty" aria-hidden="true"><span class="score-n">--</span><span class="score-bar"></span><span class="score-value">-----</span></li>';
+  const scores = {key: '', live: null, shown: -1};
+  const syncScores = () => {
+    if (!scoreBox || scoreBox.hidden) return;
+    const running = phase === 'training' && agent.status === 'running';
+    const key = `${phase}|${entries.length}|${running ? agent.attempt : 0}`;
+    if (key !== scores.key) {
+      scores.key = key;
+      const lines = entries.map(scoreLine);
+      if (running) lines.push(scoreLine({attempt: agent.attempt, score: agent.game.score, live: true}));
+      scoreList.innerHTML = lines.join('') || emptyLine;
+      scores.live = running ? scoreList.lastElementChild : null;
+      scores.shown = -1;
+    }
+    if (scores.live && scores.shown !== agent.game.score) {
+      scores.shown = agent.game.score;
+      scores.live.querySelector('.score-value').textContent = pad(agent.game.score);
+      scores.live.querySelector('.score-bar').style.setProperty('--fill', fillOf(agent.game.score));
+    }
+  };
+  scoreBox?.addEventListener('window-open', () => { scores.key = ''; syncScores(); });
+
   /* Training: the worker posts progress four times a second and a checkpoint whenever its network
      beats the best so far on six fixed practice courses (checked every two seconds). */
   function trainerMain(dinoCore, io) {
@@ -445,6 +477,7 @@
     setText(ui.playerHi, 'ph', pad(Math.max(player.hi, player.status === 'over' ? player.game.score : 0)));
     setText(ui.playerPrompt, 'pp', playerPrompt());
     yourRow.classList.toggle('is-playing', player.status === 'playing');
+    syncScores();
     const now = performance.now();
     if (force || now - hudShown > 250) {
       hudShown = now;
@@ -558,6 +591,7 @@
     training: {running: training.running, paused: userPaused, steps: training.steps, stepsPerSecond: Math.round(training.sps), epsilon: +training.epsilon.toFixed(3), checkpoint: Math.round(training.checkpoint), where: training.kind},
     rows: rows.length,
     frozenRows: rows.filter(row => row.scene).length,
+    scoreBox: scoreBox && !scoreBox.hidden ? [...scoreList.querySelectorAll('.score-entry:not(.is-empty)')].map(li => li.querySelector('.score-n').textContent + ' ' + li.querySelector('.score-value').textContent + (li.classList.contains('is-live') ? ' live' : li.classList.contains('is-solved') ? ' solved' : '')) : null,
     attempts: entries.length,
     lastAttempt: entries.at(-1) || null,
     solved: phase === 'solved' ? training.solvedText : null

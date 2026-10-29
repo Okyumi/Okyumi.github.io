@@ -8,6 +8,27 @@
   const moving = () => !reducedMotion.matches;
   const isEntrance = body.classList.contains('cover-page') || body.classList.contains('detour-page');
 
+  /* Typing, for the small game windows. The whole line is laid out from the start (the part still to come
+     is transparent), so the window never changes size while it types, and screen readers get the full line. */
+  const typing = new WeakMap();
+  const typeInto = (el, line, speed = 24) => {
+    window.clearTimeout(typing.get(el));
+    if (!moving()) { el.textContent = line; return; }
+    const shown = document.createElement('span');
+    const rest = document.createElement('span');
+    rest.className = 'type-rest';
+    el.replaceChildren(shown, rest);
+    let i = 0;
+    const step = () => {
+      if (i > line.length) { el.textContent = line; return; }
+      shown.textContent = line.slice(0, i);
+      rest.textContent = line.slice(i);
+      i++;
+      typing.set(el, window.setTimeout(step, speed));
+    };
+    step();
+  };
+
   /* Visit pass. Research-side Personal links (the cover, the research page) go through the Bayesian detour.
      The second time through the detour hands out a free pass (entrance.js); after that these links go
      straight to /personal/ for the rest of the visit. The pass lives in window.name: this tab only, never
@@ -97,6 +118,72 @@
     describe(['Enter'], 'open the selected entry');
   }
 
+  /* Personal: point at travel, read, write or played and a small window above the word types a line about
+     it, with a pixel arrow pointing down at the word. Mouse, trackpad and keyboard focus; not on touch. */
+  const sayers = $$('[data-say]');
+  const sayHost = sayers[0]?.closest('.personal-intro');
+  if (sayHost) {
+    const say = document.createElement('div');
+    say.className = 'say';
+    say.hidden = true;
+    say.setAttribute('aria-hidden', 'true');
+    say.innerHTML = '<p class="say-box game-window"></p><span class="say-arrow"></span>';
+    sayHost.append(say);
+    const box = $('.say-box', say);
+    let current = null;
+    let hideTimer = 0;
+    // Measured from the layout boxes, not the popped (transformed) word, so the window holds still.
+    const place = link => {
+      const host = sayHost.getBoundingClientRect();
+      const top = link.offsetTop;
+      const center = link.offsetLeft + link.offsetWidth / 2;
+      const right = document.documentElement.clientWidth - host.left - 16; // the window may run past the text column
+      const x = Math.max(0, Math.min(center - 30, right - box.offsetWidth));
+      const above = host.top + top - box.offsetHeight - 18 >= 2; // below only when there is no room on screen
+      const arrowY = above ? top - 15 : top + link.offsetHeight + 1;
+      say.classList.toggle('is-below', !above);
+      say.style.setProperty('--arrow-x', `${center}px`);
+      say.style.setProperty('--arrow-y', `${arrowY}px`);
+      say.style.setProperty('--box-x', `${x}px`);
+      say.style.setProperty('--box-y', `${above ? arrowY - 3 - box.offsetHeight : arrowY + 17}px`);
+    };
+    const show = link => {
+      window.clearTimeout(hideTimer);
+      if (current === link && !say.hidden) return;
+      current?.classList.remove('is-said');
+      current = link;
+      link.classList.add('is-said');
+      say.hidden = false;
+      box.textContent = link.dataset.say;
+      place(link);
+      box.style.animation = 'none';
+      void box.offsetWidth;
+      box.style.animation = '';
+      typeInto(box, link.dataset.say, 22);
+    };
+    const hideNow = () => {
+      window.clearTimeout(hideTimer);
+      window.clearTimeout(typing.get(box));
+      say.hidden = true;
+      current?.classList.remove('is-said');
+      current = null;
+    };
+    const hide = () => {
+      window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(hideNow, 140);
+    };
+    for (const link of sayers) {
+      link.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(link); });
+      link.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch' && !link.matches(':focus-visible')) hide(); });
+      link.addEventListener('focus', () => { if (link.matches(':focus-visible')) show(link); });
+      link.addEventListener('blur', hide);
+      link.addEventListener('click', hideNow);
+    }
+    window.addEventListener('keydown', event => { if (event.key === 'Escape' && current) hideNow(); });
+    window.addEventListener('resize', () => { if (current) place(current); });
+    window.addEventListener('pagehide', hideNow);
+  }
+
   /* Articles: ← / → for the previous and next post, b to go back, and a reading-progress bar. */
   const previous = $('.post-navigation .previous');
   const next = $('.post-navigation .next');
@@ -104,6 +191,26 @@
     bind(['ArrowLeft'], event => { if (previous && !scrollsSideways(event.target)) previous.click(); });
     bind(['ArrowRight'], event => { if (next && !scrollsSideways(event.target)) next.click(); });
     describe(['←', '→'], 'previous / next post');
+  }
+  // The menu at the end of an article: the hand follows the mouse and the focus, and ↑ / ↓ move it.
+  const postMenu = $('.post-navigation');
+  if (postMenu) {
+    const options = $$('.menu-option', postMenu);
+    let selected = Math.max(0, options.findIndex(option => option.classList.contains('is-current')));
+    const select = (index, focus = false) => {
+      selected = (index + options.length) % options.length;
+      options.forEach((option, i) => option.classList.toggle('is-current', i === selected));
+      if (focus) options[selected].focus();
+    };
+    options.forEach((option, i) => {
+      option.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') select(i); });
+      option.addEventListener('focus', () => select(i));
+    });
+    postMenu.addEventListener('keydown', event => {
+      if ((event.key !== 'ArrowDown' && event.key !== 'ArrowUp') || event.altKey || event.metaKey || event.ctrlKey) return;
+      event.preventDefault();
+      select(selected + (event.key === 'ArrowDown' ? 1 : -1), true);
+    });
   }
   const back = $('.back-to-blog, .travel-back, .books-back');
   if (back) {
@@ -162,6 +269,67 @@
     });
     describe(['/'], 'find a title or author');
     describe(['Esc'], 'clear the search');
+  }
+
+  /* Game windows that open from a toggle: the arena's score box (dino.js fills it in) and "How it learns?". */
+  for (const toggle of $$('.game-toggle[aria-controls]')) {
+    const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!panel) continue;
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      panel.dispatchEvent(new Event(open ? 'window-open' : 'window-close'));
+    });
+  }
+  // KaTeX (the same version as the blog), loaded the first time "How it learns?" opens. Without it the
+  // math stays as TeX.
+  const KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/';
+  let math = null;
+  const loadMath = () => math ||= new Promise(resolve => {
+    const css = Object.assign(document.createElement('link'), {rel: 'stylesheet', href: KATEX + 'katex.min.css'});
+    const script = Object.assign(document.createElement('script'), {src: KATEX + 'katex.min.js'});
+    let waiting = 2;
+    const loaded = () => { if (--waiting === 0) resolve(window.katex || null); };
+    css.onload = css.onerror = script.onload = script.onerror = loaded;
+    window.setTimeout(() => resolve(window.katex || null), 10000);
+    document.head.append(css, script);
+  });
+  const typeset = async panel => {
+    if (panel.classList.contains('is-typeset')) return;
+    panel.classList.add('is-loading');
+    const katex = await Promise.race([loadMath(), new Promise(resolve => window.setTimeout(resolve, 2500, null))]);
+    panel.classList.remove('is-loading');
+    if (!katex) { loadMath().then(late => late && typeset(panel)); return; }
+    for (const el of $$('.tex', panel)) {
+      try { katex.render(el.textContent, el, {displayMode: el.classList.contains('is-display'), throwOnError: false}); }
+      catch { /* leave this one as TeX */ }
+    }
+    panel.classList.add('is-typeset');
+  };
+  const learn = $('.learn-box');
+  if (learn) {
+    const question = $('.learn-question', learn);
+    const choices = $$('.learn-choice', learn);
+    let asked = false;
+    learn.addEventListener('window-open', () => {
+      loadMath();
+      if (asked) return;
+      asked = true;
+      typeInto(question, question.textContent, 30);
+    });
+    for (const choice of choices) {
+      choice.addEventListener('click', () => {
+        for (const other of choices) {
+          other.setAttribute('aria-pressed', String(other === choice));
+          document.getElementById(other.getAttribute('aria-controls')).hidden = other !== choice;
+        }
+        const answer = document.getElementById(choice.getAttribute('aria-controls'));
+        const line = $('[data-type]', answer);
+        if (line) typeInto(line, line.textContent, 18);
+        else typeset(answer);
+      });
+    }
   }
 
   /* Game over: infinite continues. */

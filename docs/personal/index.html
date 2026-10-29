@@ -10,7 +10,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
 <link rel="stylesheet" href="../assets/site.css">
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="../assets/site.js"></script>
@@ -27,11 +27,12 @@
 <main id="main">
 <h1 class="sr-only">Personal</h1>
 <div class="personal-intro">
-<p>I <a class="pop-link" href="../travel/">travel</a>, <a class="pop-link" href="../read/">read</a>, write a lot. I also <a class="pop-link" href="../games/">played</a> a lot of video games.</p>
+<p>I <a class="pop-link" href="../travel/" data-say="I have visited 138 places in 45 countries." aria-describedby="say-travel">travel</a>, <a class="pop-link" href="../read/" data-say="554 books in the inventory." aria-describedby="say-read">read</a>, <a class="pop-link" href="#writing" data-say="Well, here I have a subset of the things I write." aria-describedby="say-write">write</a> a lot. I also <a class="pop-link" href="../games/" data-say="A small subset of games I play D:" aria-describedby="say-played">played</a> a lot of video games.</p>
 <p>Below is a subset of the things I write.</p>
 </div>
+<div hidden><span id="say-travel">I have visited 138 places in 45 countries.</span><span id="say-read">554 books in the inventory.</span><span id="say-write">Well, here I have a subset of the things I write.</span><span id="say-played">A small subset of games I play D:</span></div>
 <div class="archive-layout">
-<div class="post-list">
+<div class="post-list" id="writing">
 <section class="month-group" id="month-2026-05" aria-label="May 2026">
 <article class="post-card has-cover"><span class="pointer-hand" aria-hidden="true"></span>
 <span class="card-cover"><img class="post-cover" src="../assets/cover-theseus.jpeg" alt="" loading="lazy" decoding="async" width="144" height="144"></span>
