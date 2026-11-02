@@ -696,6 +696,7 @@ button.pop-link { padding: 0; border: 0; background: none; font: inherit; font-w
   hanging-punctuation: first;
 }
 .article-body > :first-child { margin-top: 0; }
+.in-text-citation { color: var(--blue); }
 .article-body p { margin: 0 0 1.1em; }
 .article-body strong { font-weight: 600; color: var(--ink); }
 .article-body a {

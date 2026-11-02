@@ -34,6 +34,8 @@ Write your article here in Markdown.
 
 Metadata takes precedence over automatic defaults. Excerpts are never shortened or generated when missing. Covers and hover quotes are optional; cover paths refer to `public/`, or may be absolute image URLs. Keep a post unpublished with `draft: true` or the existing `featured: false` metadata. The list, month timeline, article, previous/next links, reading time, and sitemap all update together. Duplicate article URLs, invalid dates, and quotes absent from the article stop the build instead of silently overwriting a page.
 
+For numbered bracketed citations such as `[1: The Act of Creation]` or `[1]`, add `citations: true` to the metadata. They appear in the site's blue in the article, reference list, and saved excerpt. Their text is preserved; code blocks and HTML attributes are unaffected.
+
 ## Entrance and research page
 
 The cover at `/` shows only Personal and Research, set in letter-spaced JetBrains Mono, like a game title screen: on a desktop the pointer is a slightly larger pixel arrow (the same one is used on every page), and a pixel hand jumps to the word you hover or pick with ↑ / ↓ (or j / k) and Enter. Touch screens keep the normal cursor. Research goes to `/research/`, where "Deep Reinforcement Learning" in the opening lines pops like the Personal words and says "In most of my past work, I focused on sparse-reward settings." (`fieldSay` in `scripts/build.mjs`). Personal opens `/personal/hello/`: a playful Bayesian detour with oversized Cabinet Grotesk typography and a confirmation conversation.

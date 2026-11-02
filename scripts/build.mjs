@@ -35,6 +35,18 @@ const cleanBody = md => {
 // Links that leave the site open in a new tab.
 const externalLinks = html => html.replace(/<a\s+([^>]*href="https?:\/\/[^>]+)>/g, (tag, attrs) =>
   /\btarget=/.test(attrs) ? tag : `<a ${attrs} target="_blank" rel="noopener noreferrer">`);
+// Opt-in blue bracketed citations. Change text nodes only; code and attributes stay intact.
+const colorCitations = html => {
+  let codeDepth = 0;
+  return html.split(/(<[^>]*>)/g).map(part => {
+    if (part.startsWith('<')) {
+      if (/^<(?:pre|code|script|style)\b/i.test(part)) codeDepth++;
+      if (/^<\/(?:pre|code|script|style)\b/i.test(part)) codeDepth = Math.max(0, codeDepth - 1);
+      return part;
+    }
+    return codeDepth ? part : part.replace(/\[\d+(?::[^\]\n]+)?\]/g, citation => `<span class="in-text-citation">${citation}</span>`);
+  }).join('');
+};
 const posts = [];
 for (const p of meta) {
   if (p.featured === false || p.draft === true) continue;
@@ -42,6 +54,7 @@ for (const p of meta) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug)) throw new Error('Invalid post slug: ' + p.slug);
   const body = cleanBody(p.rawBody);
   let html = marked.parse(body, {gfm: true, breaks: false});
+  if (p.citations === true) html = colorCitations(html);
   html = html.replace(/href="([^"/]+)\.md(?:#[^"]*)?"/g, (_, slug) => `href="../${esc(slug)}/"`);
   const words = text(body).split(/\s+/).length;
   posts.push({...p, body, html: externalLinks(html), readingTime: Math.max(1, Math.ceil(words / 220)), excerpt: p.excerpt || ''});
@@ -174,7 +187,7 @@ const monthId = m => 'month-' + m;
 const asset = (p, base) => /^https?:\/\//.test(p) ? esc(p) : base + esc(p);
 // Each entry is one big link (the title's link stretches over the card). Excerpts are shown in full.
 const excerptHTML = p => (p.excerpt || '').split(/\n\s*\n/).map(part => part.trim()).filter(Boolean)
-  .map(part => `<p class="excerpt">${esc(part)}</p>`).join('\n');
+  .map(part => `<p class="excerpt">${p.citations === true ? colorCitations(esc(part)) : esc(part)}</p>`).join('\n');
 // A post you have read gets a blue pixel star after its title, like a cleared level. The star is there on every
 // card and only takes a colour on :visited (the browser's own history; nothing is stored), so it is kept with
 // the last word to never wrap alone.
