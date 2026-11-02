@@ -140,7 +140,7 @@ const footer = '<div class="site-footer"></div>';
 // Page names are for screen readers; the menu and the tabs already say where you are.
 const pageTitle = title => `<h1 class="sr-only">${esc(title)}</h1>`;
 const vt = name => ` style="view-transition-name: ${name}"`;
-// Tabs across the personal pages. The personal index itself uses its sentence as the menu instead.
+// Shared tabs across every personal page, including the Writing index.
 const personalTabs = (active, base, current = 'page') => `<nav class="personal-tabs" aria-label="Personal pages">
 ${[['writing', 'personal/'], ['reading', 'read/'], ['travel', 'travel/'], ['games', 'games/']].map(([name, path]) =>
   `<a href="${base}${path}"${active === name ? ` aria-current="${current}"` : ''}>${name}</a>`).join('\n')}
@@ -217,6 +217,7 @@ await write('personal/index.html', head({title: 'Personal · Yumi Omori', descri
 <body class="personal-page"><a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 ${header('personal', '../')}
+${personalTabs('writing', '../')}
 <main id="main">
 ${pageTitle('Personal')}
 <div class="personal-intro">

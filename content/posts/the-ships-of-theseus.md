@@ -1,5 +1,5 @@
 ---
-title: "The ships of Theseus rebuilt at different rate"
+title: "The Ships of Theseus Rebuilt at Different Rate"
 date: "2026-05-04"
 source: "https://omoriyumi.com/blog/2026/05/04/the-ships-of-theseus-rebuilt-at-different-rate-reality-is-a-consistent-lucid-dream/"
 cover: "assets/cover-theseus-0918df63.jpeg"
