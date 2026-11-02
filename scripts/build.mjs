@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {marked} from './vendor/marked.mjs';
+import {parsePost, firstPublishedDate} from './post-metadata.mjs';
 import {readingList, bookCategories} from './reading-list.mjs';
 import {writeEntrance} from './entrance.mjs';
 import {arenaHTML} from './arena.mjs';
@@ -17,24 +18,9 @@ const catalogueCount = bookYears.reduce((n, y) => n + y.books.length, 0);
 const travelSource = await read('content/travel.html');
 
 /* Posts. */
-const parsePost = (raw, file) => {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!match) throw new Error(`Missing metadata in ${file}`);
-  const p = {file, slug: file.replace(/\.md$/, '')};
-  for (const line of match[1].split('\n')) {
-    const pair = line.match(/^([a-zA-Z]+):\s*(.*)$/);
-    if (!pair || line.startsWith('#')) continue;
-    try { p[pair[1]] = JSON.parse(pair[2]); }
-    catch { p[pair[1]] = pair[2]; }
-  }
-  if (!p.title || !/^\d{4}-\d{2}-\d{2}$/.test(p.date) || Number.isNaN(new Date(p.date).getTime())) {
-    throw new Error(`Invalid title/date in ${file}`);
-  }
-  return {...p, rawBody: match[2]};
-};
 const meta = [];
 for (const file of await fs.readdir(path.join(root, 'content/posts'))) {
-  if (file.endsWith('.md')) meta.push(parsePost(await read('content/posts/' + file), file));
+  if (/\.md$/i.test(file)) meta.push(parsePost(await read('content/posts/' + file), file, {dateForFile: name => firstPublishedDate(name, root)}));
 }
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const text = s => s.replace(/<[^>]*>/g, ' ').replace(/!\[[^\]]*\]\([^)]+\)/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`#>]/g, '').replace(/\s+/g, ' ').trim();
@@ -51,7 +37,8 @@ const externalLinks = html => html.replace(/<a\s+([^>]*href="https?:\/\/[^>]+)>/
   /\btarget=/.test(attrs) ? tag : `<a ${attrs} target="_blank" rel="noopener noreferrer">`);
 const posts = [];
 for (const p of meta) {
-  if (p.featured === false) continue;
+  if (p.featured === false || p.draft === true) continue;
+  if (posts.some(existing => existing.slug === p.slug)) throw new Error(`Duplicate post URL: ${p.slug}. Rename one of the Markdown files.`);
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug)) throw new Error('Invalid post slug: ' + p.slug);
   const body = cleanBody(p.rawBody);
   let html = marked.parse(body, {gfm: true, breaks: false});

@@ -6,21 +6,33 @@ Every page shares one design (`public/assets/site.css`): white paper, ink text (
 
 ## Add a blog post
 
-Create **one Markdown file** in `content/posts/`, for example `your-post.md`:
+Upload one `.md` file to **`content/posts/`** on the `main` branch, then commit the upload. In GitHub, open that folder and choose **Add file → Upload files → Commit changes**. The included GitHub Actions workflow builds and publishes it automatically. The site updates after that deployment finishes; no code or index needs editing.
+
+A plain Markdown file is enough, for example `my-new-essay.md`:
+
+```markdown
+# My new essay
+
+Write the complete article here in Markdown.
+```
+
+The first `#` heading becomes the title and is shown once, above the article. Without a heading, the filename supplies the title. The initial upload commit supplies the publication date, which stays the same when the post is edited or the site is rebuilt. Use an English filename; spaces and capitals become lowercase hyphens in the URL. A filename such as `2026-11-02-my-new-essay.md` sets the date explicitly while the URL remains `/blog/my-new-essay/`.
+
+Optional metadata lets you provide your own title, date, full excerpt, cover, and hover quotes:
 
 ```markdown
 ---
 title: "Your post title"
-date: "2026-09-30"
-excerpt: "Your authored excerpt."
-featured: true
+date: "2026-11-02"
+excerpt: "Your full authored excerpt."
 cover: "assets/my-cover.jpg"
+quotes: ["An exact sentence from the article."]
 ---
 
 Write your article here in Markdown.
 ```
 
-Commit it to `main` and it appears automatically. The filename becomes the address, and the date places it in the timeline. No separate index needs editing. The preview, reading page, previous/next navigation, and sitemap update together. Use `excerpt` for the full authored summary; the build does not truncate it or invent a summary when it is missing. Each published entry should have a `cover`, either a path in `public/assets/` or an absolute image URL. Set `featured` to `false` to exclude a draft from the build.
+Metadata takes precedence over automatic defaults. Excerpts are never shortened or generated when missing. Covers and hover quotes are optional; cover paths refer to `public/`, or may be absolute image URLs. Keep a post unpublished with `draft: true` or the existing `featured: false` metadata. The list, month timeline, article, previous/next links, reading time, and sitemap all update together. Duplicate article URLs, invalid dates, and quotes absent from the article stop the build instead of silently overwriting a page.
 
 ## Entrance and research page
 
