@@ -54,6 +54,10 @@ for (const p of meta) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug)) throw new Error('Invalid post slug: ' + p.slug);
   const body = cleanBody(p.rawBody);
   let html = marked.parse(body, {gfm: true, breaks: false});
+  // A line break at the very start or end of a paragraph (left over from WordPress) only adds an empty line.
+  html = html.replace(/(<p>)\s*(?:<br\s*\/?>\s*)+/g, '$1').replace(/(?:\s*<br\s*\/?>)+\s*(<\/p>)/g, '$1').replace(/<p>\s*<\/p>\n?/g, '');
+  // Paragraphs that open with a quote mark get class="hang" (single: "hang single"), so the mark can sit in the margin.
+  html = html.replace(/<(p|li)>(?=\s*(?:<(?:em|strong)>)?([“‘"']))/g, (_, tag, mark) => `<${tag} class="hang${/[‘']/.test(mark) ? ' single' : ''}">`);
   if (p.citations === true) html = colorCitations(html);
   html = html.replace(/href="([^"/]+)\.md(?:#[^"]*)?"/g, (_, slug) => `href="../${esc(slug)}/"`);
   const words = text(body).split(/\s+/).length;
