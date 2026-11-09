@@ -28,7 +28,7 @@ Congratulations on reaching this moment! You have completed 1 B.S. in Computer S
 
 You spent 1 semester rowing on the dragon boat team (freshman fall), 1 semester gaming (freshman spring, achieving a worldwide ranking in the 100th percentile twice and in the 95th percentile over 10 times), 1 semester playing basketball (sophomore fall), 1 semester swimming (sophomore spring), 1 semester doing cardio at the gym and hiking (junior fall), 1 semester playing volleyball (senior fall), and 1 semester climbing (senior spring). You also completed 3 internships, accumulated approximately 160 hours of tutoring experience, and worked in 3 different labs. You filled an 800-page journal (also known as “Life’s Adventures, Volume II”), volunteered at 1 conference, attended 2 others, published 1 workshop paper, and have another ICLR paper currently under review. You managed to learn a new language Spanish (A1-A2).
 
-First of all, congratulations on all of these accomplishments! I am proud of you and I think it deserves some celebrations 🙂 Of course, there are also many things you regret not doing:
+First of all, congratulations on all of these accomplishments! I am proud of you and I think it deserves some celebrations :) Of course, there are also many things you regret not doing:
 
 - Joining more Sigs.
 - Proactively engaging in more campus activities and interacting with more people since freshman year, and establishing more connections with others.

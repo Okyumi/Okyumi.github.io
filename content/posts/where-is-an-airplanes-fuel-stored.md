@@ -8,7 +8,7 @@ quotes: ["Why can an airplane, a massive machine weighing hundreds of tons and m
 cover: "https://omoriyumi.com/wp-content/uploads/2025/08/The-Airbus-A380-is-a-wide-body-aircraft-and-is-the%E2%80%A6.jpeg"
 ---
 
-<p>Why can an airplane, a massive machine weighing hundreds of tons and made of metal, fly in the sky? In this article, we will use the largest passenger aircraft in history, the Airbus A380, as an example to start a crash course about airplanes. 🙂</p>
+<p>Why can an airplane, a massive machine weighing hundreds of tons and made of metal, fly in the sky? In this article, we will use the largest passenger aircraft in history, the Airbus A380, as an example to start a crash course about airplanes. :)</p>
 
 
 
